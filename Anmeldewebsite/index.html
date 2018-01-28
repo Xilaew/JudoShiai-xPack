@@ -1,0 +1,266 @@
+ <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anmeldung zur Hamburger Einzelmeisterschaft U15 2018</title>
+  <link href="jquery-ui.min.css" rel="stylesheet">
+  <style>
+#competitor_table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#competitor_table td, #competitor_table th {
+    border: 0px;
+    padding: .5em;
+}
+
+#competitor_table tr:nth-child(even){background-color: #f6f6f6;}
+
+#competitor_table th {
+    padding-top: .7em;
+    padding-bottom: .7em;
+    text-align: left;
+    background-color: #c5c5c5;
+    font-weight: bold;
+}
+#loading {
+    display: inline-block;
+}
+  </style>
+</head>
+<body>
+<div id="accordion">
+  <h2>Neuen Teilnehmer zur Hamburger Einzelmeisterschaft U15/U18/U21 am 28.01.2018 anmelden</h2>
+  <div>
+    <div id="message" ></div>
+    <form action="index.php" method="post" id="signUpForm">
+      <div style="padding: .7em;"><label for="input_firstName">Vorname: </label><input name="firstName" id="input_fistName" required type="text"></div>
+      <div style="padding: .7em;"><label for="input_lastName">Nachname: </label><input name="lastName" id="input_lastName" required type="text"></div>
+      <div style="padding: .7em;">
+	    <label for="input_yearOfBirth">Geburtsjahr: </label><input name="yearOfBirth" id="input_yearOfBirth" required type="number" value="2005" min="1998" max="2006">
+	    <span style="margin-left:1em;" id="labelAgeCat"></span>
+	  </div>
+      <div style="padding: .7em;">Geschlecht: 
+        <div id="radioset">
+          <label for="input_male">männlich</label><input id="input_male" required type="radio" name="sex" value="m">
+          <label for="input_female">weiblich</label><input id="input_female" required type="radio" name="sex" value="f">
+        </div>
+      </div>
+      <div style="padding: .7em;"><label for="input_weight">Gewichtsklasse: </label>
+      <select name="weight" id="input_weight">
+        <option value="">Wähle zuerst Geburtsjahr und Geschlecht</option>
+      </select></div>
+      <div style="padding: .7em;"><label for="input_club">Verein: </label>
+      <select name="club" required id="input_club">
+        <option value="">Wähle den Verein des Kämpfers</option>
+        <option value="1. FC Hellbrook">1. FC Hellbrook</option>
+        <option value="1. SC Norderstedt">1. SC Norderstedt</option>
+        <option value="Alster- Dojo Kendo/Kyudo">Alster- Dojo Kendo/Kyudo</option>
+        <option value="AMTV">AMTV</option>
+        <option value="Barsbütteler SV v. 1948 e.V.">Barsbütteler SV v. 1948 e.V.</option>
+        <option value="BKSV Goliath">BKSV Goliath</option>
+        <option value="Bojutsu- Bushido">Bojutsu- Bushido</option>
+        <option value="Bramfelder SV">Bramfelder SV</option>
+        <option value="Brunsbeker SV">Brunsbeker SV</option>
+        <option value="Buxtehuder SV von 1862 e.V.">Buxtehuder SV von 1862 e.V.</option>
+        <option value="Eimsbütteler TV">Eimsbütteler TV</option>
+        <option value="Freie Sportvereinigung Harburg-Rönneburg">Freie Sportvereinigung Harburg-Rönneburg</option>
+        <option value="Harburger TB">Harburger TB</option>
+        <option value="HNT von 1911 e.V.">HNT von 1911 e.V.</option>
+        <option value="HT 16">HT 16</option>
+        <option value="JC Taiyo">JC Taiyo</option>
+        <option value="JG Sachsenwald in der TSG Bergedorf von 1860 e.V.">JG Sachsenwald in der TSG Bergedorf von 1860 e.V.</option>
+        <option value="Judo-Klub Elmshorn e.V.">Judo-Klub Elmshorn e.V.</option>
+        <option value="KSC Bushido Hamburg e.V.">KSC Bushido Hamburg e.V.</option>
+        <option value="Kummerfelder SV e.V.">Kummerfelder SV e.V.</option>
+        <option value="Lehmsaler Sportverein von 1967 e.V.">Lehmsaler Sportverein von 1967 e.V.</option>
+        <option value="Meiendorfer SV">Meiendorfer SV</option>
+        <option value="Mümmelmannsberger SV von 1974 e.V.">Mümmelmannsberger SV von 1974 e.V.</option>
+        <option value="Niendorfer TSV">Niendorfer TSV</option>
+        <option value="Oststeinbeker SV">Oststeinbeker SV</option>
+        <option value="Rellinger TV">Rellinger TV</option>
+        <option value="Rissener SV v. 1949 e.V.">Rissener SV v. 1949 e.V.</option>
+        <option value="S.V. Blankenese v. 1903 e.V.">S.V. Blankenese v. 1903 e.V.</option>
+        <option value="SC Alstertal- Langenhorn e.V.">SC Alstertal- Langenhorn e.V.</option>
+        <option value="SC Poppenbüttel">SC Poppenbüttel</option>
+        <option value="SC Vier- und Marschlande von 1899 e.V.">SC Vier- und Marschlande von 1899 e.V.</option>
+        <option value="Shin-Rin-Dojo im WSV Tangstedt v.1958 e.V.">Shin-Rin-Dojo im WSV Tangstedt v.1958 e.V.</option>
+        <option value="Sportverein Grün-Weiß Eimsbüttel von 1901 e.V.">Sportverein Grün-Weiß Eimsbüttel von 1901 e.V.</option>
+        <option value="SpVg Blau-Weiß 96 Schenefeld e.V.">SpVg Blau-Weiß 96 Schenefeld e.V.</option>
+        <option value="SV Polizei">SV Polizei</option>
+        <option value="SV Wilhelmsburg">SV Wilhelmsburg</option>
+        <option value="TH Eilbeck">TH Eilbeck</option>
+        <option value="TSC Wellingsbüttel von 1937 e.V.">TSC Wellingsbüttel von 1937 e.V.</option>
+        <option value="TSV Hohenhorst v. 1963 e.V.">TSV Hohenhorst v. 1963 e.V.</option>
+        <option value="TSV Reinbek">TSV Reinbek</option>
+        <option value="TSV Schwarzenbek von 1899 e.V.">TSV Schwarzenbek von 1899 e.V.</option>
+        <option value="TSV Stellingen v. 1888 e.V.">TSV Stellingen v. 1888 e.V.</option>
+        <option value="TSV Uetersen">TSV Uetersen</option>
+        <option value="TSV Wedel">TSV Wedel</option>
+        <option value="TSV Gut Heil Heist von 1910 e.V.">TSV "Gut Heil" Heist von 1910 e.V.</option>
+        <option value="TuRa Harksheide">TuRa Harksheide</option>
+        <option value="TuS Appen">TuS Appen</option>
+        <option value="TuS Berne e.V.">TuS Berne e.V.</option>
+        <option value="TuS Esingen">TuS Esingen</option>
+        <option value="TuS Finkenwerder von 1893 e.V.">TuS Finkenwerder von 1893 e.V.</option>
+        <option value="TuS Germania Schnelsen von 1921 e.V.">TuS Germania Schnelsen von 1921 e.V.</option>
+        <option value="TuS Osdorf von 1907 e.V.">TuS Osdorf von 1907 e.V.</option>
+        <option value="USC Paloma 1909 e.V.">USC Paloma 1909 e.V.</option>
+        <option value="VEJAS Hamburg e.V.">VEJAS Hamburg e.V.</option>
+        <option value="Verein Aktive Freizeit">Verein Aktive Freizeit</option>
+        <option value="VfL 93 Hamburg e.V.">VfL 93 Hamburg e.V.</option>
+        <option value="VfL Börnsen">VfL Börnsen</option>
+        <option value="VfL Geesthacht v. 1885 e.V.">VfL Geesthacht v. 1885 e.V.</option>
+        <option value="VfL Pinneberg e.V.">VfL Pinneberg e.V.</option>
+        <option value="Walddörfer SV e.V. von 1924">Walddörfer SV e.V. von 1924</option>
+        <option value="Wandsbeker TSV Concordia">Wandsbeker TSV Concordia</option>
+      </select></div>
+      <div style="padding: .7em;"><input name="register" type="submit" value="Anmelden"><span id="loading" style="display:none;"><p><img src="loading.gif" /> Please Wait</p></span></div>
+      <div id="test-output" style="padding: .7em;"></div>
+    </form>
+  </div>
+  <h2>Bereits eingegebene Anmeldungen:</h2>
+  <div>
+  <table id="competitor_table">
+    <tr><th>Name</th><th>Geburtsjahr</th><th>Geschlecht</th><th>Klasse</th><th>Verein</th></tr>
+  </table>
+  </div>
+</div>
+<script src="external/jquery/jquery.js"></script>
+<script src="jquery-ui.js"></script>
+<script>
+function getFormData($form){
+  var unindexed_array = $form.serializeArray();
+  var indexed_array = {};
+  $.map(unindexed_array, function(n, i){
+    indexed_array[n['name']] = n['value'];
+  });
+  return indexed_array;
+}
+
+$('#signUpForm').submit(function(e){ 
+  e.preventDefault(); 
+  data =  getFormData($( this ));
+  console.log( data );
+  $.ajax({
+    type: 'POST',
+    url: 'rest.php',
+    data: JSON.stringify(data),
+    contentType: "application/json",
+    beforeSend: function() { $('#loading').show(); },
+    complete: function() { $('#loading').hide(); },
+    success: handleSuccess,
+    error: handleError
+  });
+});
+
+function handleSuccess(data,textStatus,jqXHR){
+  if (jqXHR.status==201){
+    $("#message").html('<div class="ui-widget"><div class="ui-state-highlight ui-corner-all" style="padding: 0 .7em;"><p><strong>' + data.firstName + ' ' + data.lastName + '</strong> wurde erfolgreich angemeldet.</p></div></div>');
+    $("<tr><td>"+data.firstName+" "+data.lastName+"</td><td>"+data.yearOfBirth+"</td><td>"+data.sex+"</td><td>"+data.category+"</td><td>"+data.club+"</td></tr>").appendTo("#competitor_table");
+    $('#radioset input').removeAttr('checked');
+    $('#radioset').buttonset('refresh');
+    $('input[name=firstName]').val('');
+    $("input[name=lastName]").val('');
+    updateWeights(null);
+  } else {
+    $("#message").html('<div class="ui-widget"><div class="ui-state-error ui-corner-all" style="padding: 0 .7em;"><p><strong>Fehler: </strong> ' + data.msg + '</p><p>Kontakt zum Entwickler: Felix von Poblotzki, +4915232787790, xilaew@gmail.com</p></div></div>');
+  }
+}
+
+function handleError(jqXHR,textStatus,errorThrown){
+  $("#message").html('<div class="ui-widget"><div class="ui-state-error ui-corner-all" style="padding: 0 .7em;"><p><strong>Fehler: </strong> etwas ist schief gegangen. textStatus: ' + textStatus + ' errorThrown: ' + errorThrown + ' </p><p>Kontakt zum Entwickler: Felix von Poblotzki, +4915232787790, xilaew@gmail.com</p></p></div></div>');
+}
+
+var category = "";
+var updateWeights = function(e) {
+    mU15=["-34", "-37", "-40", "-43", "-46", "-50", "-55", "-60", "-66", "+66"];
+    fU15=["-33", "-36", "-40", "-44", "-48", "-52", "-57", "-63", "+63"];
+    mU18=["-43", "-46", "-50", "-55", "-60", "-66", "-73", "-81", "-90", "+90"];
+    fU18=["-40", "-44", "-48", "-52", "-57", "-63", "-70", "-78", "+78"];
+    mU21=["-55", "-60", "-66", "-73", "-81", "-90", "-100", "+100"];
+    fU21=["-44", "-48", "-52", "-57", "-63", "-70", "-78", "+78"];
+    var newcategory="";
+    var weights=null;
+    var sex = $('input[name=sex]:checked').val();
+    var yearOfBirth = $('input[name=yearOfBirth]').val();
+    if (yearOfBirth <= 2006 && yearOfBirth >= 2004 ){
+      newcategory="Jugend U15";
+      if ( sex == "m"){
+        newcategory="männliche Jugend U15";
+        weights=mU15;
+      } else if ( sex == "f"){
+        newcategory="weibliche Jugend U15";
+        weights=fU15;
+      }
+    } else if (yearOfBirth <= 2003 && yearOfBirth >= 2001 ){
+      newcategory="U18";
+      if ( sex == "m"){
+        newcategory="Männer U18";
+        weights=mU18;
+      } else if ( sex == "f"){
+        newcategory="Frauen U18";
+        weights=fU18;
+      }
+    } else if(yearOfBirth <= 2000 && yearOfBirth >= 1998 ){
+      newcategory="U21";
+      if ( sex == "m"){
+        newcategory="Männer U21";
+        weights=mU21;
+      } else if ( sex == "f"){
+        newcategory="Frauen U21";
+        weights=fU21;
+      }
+    };
+    if (newcategory == category ){
+//      $("#test-output").text(function(i,text){return text + "."});
+    } else {
+//      $("#test-output").text(function(i,text){return text + "#"});
+      category=newcategory;
+      $("#labelAgeCat").text(category);
+      $("#input_weight").empty();
+      if (weights == null){
+        $("<option/>").text("Wähle zuerst Geburtsjahr und Geschlecht").appendTo("#input_weight");
+      } else {
+        $("<option/>").val("").text("Bitte wähle eine Gewichtsklasse").appendTo("#input_weight");
+        weights.forEach(function (item,index) {
+          $("<option/>").val(item).text(item + "kg").appendTo("#input_weight");
+        })
+      }
+    };
+  };
+
+
+$( "input[name='sex']" ).change(updateWeights);
+$( "input[name='yearOfBirth']" ).change(updateWeights);
+
+//$( "#accordion" ).accordion({heightStyle: "content"});
+$( "#signUpForm input:submit" ).button();
+$('#signUpForm input:text, #signUpForm input:password')
+  .button()
+  .css({
+          'font' : 'inherit',
+         'color' : 'inherit',
+    'text-align' : 'left',
+       'outline' : 'none',
+        'cursor' : 'text',
+  });
+$('#signUpForm select')
+  .button()
+  .css({
+          'font' : 'inherit',
+         'color' : 'inherit',
+    'text-align' : 'left',
+       'outline' : 'none',
+  });
+$( "#radioset" ).buttonset();
+$( "#controlgroup" ).controlgroup();
+$( "#input_yearOfBirth" ).spinner({
+  stop: function( event, ui ) {updateWeights(event);},
+  min:1998,
+  max:2006});
+  
+</script></body>
+</html>

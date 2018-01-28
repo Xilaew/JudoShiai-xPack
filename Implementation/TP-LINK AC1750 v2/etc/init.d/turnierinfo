@@ -1,0 +1,14 @@
+#!/bin/sh /etc/rc.common
+# Copyright Felix von Poblotzki
+
+START=49
+
+start() {
+  echo creating turnierinfo folder
+  mkdir -m 0777 -p /tmp/turnierinfo
+}
+
+stop() {
+  echo deleting turnierinfo folder
+  rm -rf /tmp/turnierinfo
+}
