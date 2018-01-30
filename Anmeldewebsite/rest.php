@@ -1,14 +1,32 @@
 <?php
-header("Content-Type:application/json");
+$categories = new \stdClass;
+$categories->mU15= new \stdClass;
+$categories->mU15->maxAge=14;
+$categories->mU15->sex=m;
+$categories->mU15->maxWeights=array("34000", "370000", "40000", "43000", "46000", "50000", "55000", "60000", "66000", "1000000");
+$categories->mU15->weightTexts=array("-34kg", "-37kg", "-40kg", "-43kg", "-46kg", "-50kg", "-55kg", "-60kg", "-66kg", "+66kg");
+$categories->wU15= new \stdClass;
+$categories->wU15->maxAge=14;
+$categories->wU15->sex=f;
+$categories->wU15->maxWeights=array("33000", "360000", "40000", "44000", "48000", "52000", "57000", "63000", "1000000");
+$categories->wU15->weightTexts=array("-33kg", "-36kg", "-40kg", "-44kg", "-48kg", "-52kg", "-57kg", "-63kg", "+63kg");
+$categories->mU18=array("-43", "-46", "-50", "-55", "-60", "-66", "-73", "-81", "-90", "+90");
+$categories->fU18=array("-40", "-44", "-48", "-52", "-57", "-63", "-70", "-78", "+78");
+$categories->mU21=array("-55", "-60", "-66", "-73", "-81", "-90", "-100", "+100");
+$categories->fU21=array("-44", "-48", "-52", "-57", "-63", "-70", "-78", "+78");
 
+header("Content-Type:application/json");
 // get the HTTP method, path and body of the request
 $method = $_SERVER['REQUEST_METHOD'];
 $input = json_decode(file_get_contents('php://input'));
+session_start();
 
 // create SQL based on HTTP method
 switch ($method) {
   case 'GET':
-    methodNotAllowed();
+    readJudoShiai();
+#    echo json_encode($categories);
+#    methodNotAllowed();
   break;
   case 'PUT':
     methodNotAllowed();
@@ -137,6 +155,15 @@ function map_category ($sex, $yearOfBirth, $weight ) {
   }
   return $category;
 }
+
+function readJudoShiai () {
+	$db= new SQLite3('template.shi');
+	echo $db->querySingle("SELECT value FROM info WHERE item=='Competition'");
+	
+	#$db = sqlite_open('template.shi', 0666, $sqliteError);
+	#$result = sqlite_query("SELECT value FROM info WHERE item=='Competition'",$db);
+	#echo sqlite_fetch_single($result);
+	}
 
 #function add_competitor($competitor,$fp) {
 #  $reslt= new \stdClass;
