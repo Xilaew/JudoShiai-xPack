@@ -1,41 +1,49 @@
 <?php
 function sqlite_getInfo ($db) {
-	$result = new \stdClass;
-	$result->Competition = $db->querySingle("SELECT value FROM info WHERE item=='Competition'");
-	$result->Date = $db->querySingle("SELECT value FROM info WHERE item=='Date'");
-	$result->Place = $db->querySingle("SELECT value FROM info WHERE item=='Place'");
-	return $result;
+  $result = new \stdClass;
+  $result->Competition = $db->querySingle("SELECT value FROM info WHERE item=='Competition'");
+  $result->Date = $db->querySingle("SELECT value FROM info WHERE item=='Date'");
+  $result->Place = $db->querySingle("SELECT value FROM info WHERE item=='Place'");
+  return $result;
 }
 
 function sqlite_getCategories ($db) {
-	$male = array();
-	$female = array();
-	$queryResults = $db->query("SELECT age, agetext, flags, weight, weighttext FROM catdef");
-	while ($row = $queryResults->fetchArray()) {
-		$map=&$female;
-		$sex="f";
-		if ($row["flags"]==1) {
-			$map=&$male;
-			$sex="m";
-		}
-		$age=$row[age];
-		if (($cat=$map[$age])!=NULL){
-			$cat->weights[]=$row[weight];
-			$cat->weightTexts[]=$row[weighttext];
-		} else {
-			$cat= new \stdClass;
-			$cat->age=$age;
-			$cat->agetext=$row[agetext];
-			$cat->sex=$sex;
-			$cat->weights=array($row[weight]);
-			$cat->weightTexts=array($row[weighttext]);
-			$map[$age]=$cat;
-		}
-	}
-	$result=new \stdClass;
-	$result->male = $male;
-	$result->female = $female;
-	return $result;
+  $male = array();
+  $female = array();
+  $queryResults = $db->query("SELECT age, agetext, flags, weight, weighttext FROM catdef");
+  while ($row = $queryResults->fetchArray()) {
+    $map=&$female;
+    $sex="f";
+    if ($row["flags"]==1) {
+      $map=&$male;
+      $sex="m";
+    }
+    $age=$row[age];
+    if (($cat=$map[$age])!=NULL){
+      $cat->weights[]=$row[weight];
+      $cat->weightTexts[]=$row[weighttext];
+    } else {
+      $cat= new \stdClass;
+      $cat->age=$age;
+      $cat->agetext=$row[agetext];
+      $cat->sex=$sex;
+      $cat->weights=array($row[weight]);
+      $cat->weightTexts=array($row[weighttext]);
+      $map[$age]=$cat;
+    }
+  }
+  $result=new \stdClass;
+  $result->male = $male;
+  $result->female = $female;
+  return $result;
+}
+
+function csv_getClubs($fp){
+  $result=array();
+  while (($line = fgetcsv($fp)) !== false) {
+    $result[]=$line[0];
+  }
+  return $result;
 }
 
 function csv_getCompetitors($input){
