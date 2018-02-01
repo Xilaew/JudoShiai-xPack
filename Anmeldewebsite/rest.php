@@ -17,7 +17,7 @@ switch ($method) {
     methodNotAllowed();
     break;
   case 'POST':
-    post($input);
+    post($request,$input);
   break;
   case 'DELETE':
     methodNotAllowed();
@@ -38,8 +38,22 @@ function get($request) {
     case 'clubs':
       get_clubs();
       break;
+    default:
+      http_response_code(404);
   }
 }
+
+function post($request,$input) {
+  $table = preg_replace('/[^a-z0-9_]+/i','',array_shift($request));
+  switch ($table) {
+    case 'competitors':
+      post_competitors($input);
+      break;
+    default:
+      http_response_code(404);
+  }
+}
+
 
 function get_info(){
   echo json_encode(sqlite_getInfo(new SQLite3('template.shi')));

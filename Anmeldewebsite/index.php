@@ -1,221 +1,185 @@
-﻿<!DOCTYPE html>
+﻿<?php
+require 'lib.php';
+$db=new SQLite3('template.shi');
+$info=sqlite_getInfo($db);
+$clubs=csv_getClubs(fopen("clubs.txt", "r"))
+?>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Anmeldung zur Hamburger Einzelmeisterschaft U15 2018</title>
+  <title>Anmeldung <?php echo $info->Competition; ?></title>
   <link href="jquery-ui.min.css" rel="stylesheet">
+  <style>
+#competitor_table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#competitor_table td, #competitor_table th {
+    border: 0px;
+    padding: .5em;
+}
+
+#competitor_table tr:nth-child(even){background-color: #f6f6f6;}
+
+#competitor_table th {
+    padding-top: .7em;
+    padding-bottom: .7em;
+    text-align: left;
+    background-color: #c5c5c5;
+    font-weight: bold;
+}
+#loading {
+    display: inline-block;
+}
+  </style>
 </head>
 <body>
 <div id="accordion">
-  <h2>Neuen Teilnehmer zur Hamburger Einzelmeisterschaft U15 2018 anmelden</h2>
+  <h2>Anmeldung <?php echo $info->Competition; ?></h2>
   <div>
-    <form action="index.php" method="post">
-<?php
-
-$club = $_POST['club'];
-
-if (isset ($_POST['register'])) {
-	//this is where the creating of the csv takes place
-	$firstName = $_POST['firstName'];
-	$lastName = $_POST['lastName'];
-	$yearOfBirth = $_POST['yearOfBirth'];
-	$sex = $_POST['sex'];
-	$cvsData = $firstName . "," . $lastName . "," . $yearOfBirth . "," . $sex . "," . $club . "\n";
-	$fp = fopen("data.csv", "a"); // $fp is now the file pointer to file $filename
-	if ($fp) {
-		fwrite($fp, $cvsData); // Write information to the file
-		fclose($fp); // Close the file
-	}
-	echo 
-"<div class=\"ui-widget\">
-  <div class=\"ui-state-highlight ui-corner-all\" style=\"padding: 0 .7em;\">
-    <p>
-      <strong>" . $firstName . ' ' . $lastName . "</strong> wurde erfolgreich angemeldet.
-    </p>
-  </div>
-</div>";
-}
-?>
+    <div id="message" ></div>
+    <form action="index.php" method="post" id="signUpForm">
       <div style="padding: .7em;"><label for="input_firstName">Vorname: </label><input required name="firstName" id="input_fistName" type="text"></div>
       <div style="padding: .7em;"><label for="input_lastName">Nachname: </label><input required name="lastName" id="input_lastName" type="text"></div>
-      <div style="padding: .7em;"><label for="input_yearOfBirth">Geburtsjahr: </label><input required name="yearOfBirth" id="input_yearOfBirth" value="2005" min="2004" max="2006" type="number"></div>
+      <div style="padding: .7em;">
+        <label for="input_yearOfBirth">Geburtsjahr: </label><input name="yearOfBirth" id="input_yearOfBirth" type="number" required readonly value="2005">
+        <span style="margin-left:1em;" id="labelAgeCat"></span>
+      </div>
       <div style="padding: .7em;">Geschlecht: 
         <div id="radioset">
-          <label for="input_male">männlich</label><input id="input_male" type="radio" required name="sex" value="m">
-          <label for="input_female">weiblich</label><input id="input_female" type="radio" required name="sex" value="f">
+          <label for="input_male">männlich</label><input id="input_male" required type="radio" name="sex" value="m">
+          <label for="input_female">weiblich</label><input id="input_female" required type="radio" name="sex" value="f">
         </div>
       </div>
-      <div style="padding: .7em;"><label for="input_club">Verein: </label>
-      <select name="club" id="input_club" required >
-<option value="">Bitte wählen sie ihren Verein</option>
-<option <?php echo $club=="FC Hellbrook" ? "selected" : ""?> value="FC Hellbrook">FC Hellbrook</option>
-<option <?php echo $club=="1. SC Norderstedt" ? "selected" : ""?> value="1. SC Norderstedt">1. SC Norderstedt</option>
-<option <?php echo $club=="Alster- Dojo Kendo/Kyudo" ? "selected" : ""?> value="Alster- Dojo Kendo/Kyudo">Alster- Dojo Kendo/Kyudo</option>
-<option <?php echo $club=="AMTV" ? "selected" : ""?> value="AMTV">AMTV</option>
-<option <?php echo $club=="Barsbütteler SV v. 1948 e.V." ? "selected" : ""?> value="Barsbütteler SV v. 1948 e.V.">Barsbütteler SV v. 1948 e.V.</option>
-<option <?php echo $club=="BKSV Goliath" ? "selected" : ""?> value="BKSV Goliath">BKSV Goliath</option>
-<option <?php echo $club=="Bojutsu- Bushido" ? "selected" : ""?> value="Bojutsu- Bushido">Bojutsu- Bushido</option>
-<option <?php echo $club=="Bramfelder SV" ? "selected" : ""?> value="Bramfelder SV">Bramfelder SV</option>
-<option <?php echo $club=="Brunsbeker SV" ? "selected" : ""?> value="Brunsbeker SV">Brunsbeker SV</option>
-<option <?php echo $club=="Buxtehuder SV von 1862 e.V." ? "selected" : ""?> value="Buxtehuder SV von 1862 e.V.">Buxtehuder SV von 1862 e.V.</option>
-<option <?php echo $club=="Eimsbütteler TV" ? "selected" : ""?> value="Eimsbütteler TV">Eimsbütteler TV</option>
-<option <?php echo $club=="Freie Sportvereinigung Harburg-Rönneburg" ? "selected" : ""?> value="Freie Sportvereinigung Harburg-Rönneburg">Freie Sportvereinigung Harburg-Rönneburg</option>
-<option <?php echo $club=="Harburger TB" ? "selected" : ""?> value="Harburger TB">Harburger TB</option>
-<option <?php echo $club=="HNT von 1911 e.V." ? "selected" : ""?> value="HNT von 1911 e.V.">HNT von 1911 e.V.</option>
-<option <?php echo $club=="HT 16" ? "selected" : ""?> value="HT 16">HT 16</option>
-<option <?php echo $club=="JC Taiyo" ? "selected" : ""?> value="JC Taiyo">JC Taiyo</option>
-<option <?php echo $club=="JG Sachsenwald in der TSG Bergedorf von 1860 e.V." ? "selected" : ""?> value="JG Sachsenwald in der TSG Bergedorf von 1860 e.V.">JG Sachsenwald in der TSG Bergedorf von 1860 e.V.</option>
-<option <?php echo $club=="Judo-Klub Elmshorn e.V." ? "selected" : ""?> value="Judo-Klub Elmshorn e.V.">Judo-Klub Elmshorn e.V.</option>
-<option <?php echo $club=="KSC Bushido Hamburg e.V." ? "selected" : ""?> value="KSC Bushido Hamburg e.V.">KSC Bushido Hamburg e.V.</option>
-<option <?php echo $club=="Kummerfelder SV e.V." ? "selected" : ""?> value="Kummerfelder SV e.V.">Kummerfelder SV e.V.</option>
-<option <?php echo $club=="Lehmsaler Sportverein von 1967 e.V." ? "selected" : ""?> value="Lehmsaler Sportverein von 1967 e.V.">Lehmsaler Sportverein von 1967 e.V.</option>
-<option <?php echo $club=="Meiendorfer SV" ? "selected" : ""?> value="Meiendorfer SV">Meiendorfer SV</option>
-<option <?php echo $club=="Mümmelmannsberger SV von 1974 e.V." ? "selected" : ""?> value="Mümmelmannsberger SV von 1974 e.V.">Mümmelmannsberger SV von 1974 e.V.</option>
-<option <?php echo $club=="Niendorfer TSV" ? "selected" : ""?> value="Niendorfer TSV">Niendorfer TSV</option>
-<option <?php echo $club=="Oststeinbeker SV" ? "selected" : ""?> value="Oststeinbeker SV">Oststeinbeker SV</option>
-<option <?php echo $club=="Rellinger TV" ? "selected" : ""?> value="Rellinger TV">Rellinger TV</option>
-<option <?php echo $club=="Rissener SV v. 1949 e.V." ? "selected" : ""?> value="Rissener SV v. 1949 e.V.">Rissener SV v. 1949 e.V.</option>
-<option <?php echo $club=="S.V. Blankenese v. 1903 e.V." ? "selected" : ""?> value="S.V. Blankenese v. 1903 e.V.">S.V. Blankenese v. 1903 e.V.</option>
-<option <?php echo $club=="SC Alstertal- Langenhorn e.V." ? "selected" : ""?> value="SC Alstertal- Langenhorn e.V.">SC Alstertal- Langenhorn e.V.</option>
-<option <?php echo $club=="SC Poppenbüttel" ? "selected" : ""?> value="SC Poppenbüttel">SC Poppenbüttel</option>
-<option <?php echo $club=="SC Vier- und Marschlande von 1899 e.V." ? "selected" : ""?> value="SC Vier- und Marschlande von 1899 e.V.">SC Vier- und Marschlande von 1899 e.V.</option>
-<option <?php echo $club=="Shin-Rin-Dojo im WSV Tangstedt v.1958 e.V." ? "selected" : ""?> value="Shin-Rin-Dojo im WSV Tangstedt v.1958 e.V.">Shin-Rin-Dojo im WSV Tangstedt v.1958 e.V.</option>
-<option <?php echo $club=="Sportverein Grün-Weiß Eimsbüttel von 1901 e.V." ? "selected" : ""?> value="Sportverein Grün-Weiß Eimsbüttel von 1901 e.V.">Sportverein Grün-Weiß Eimsbüttel von 1901 e.V.</option>
-<option <?php echo $club=="SpVg Blau-Weiß 96 Schenefeld e.V." ? "selected" : ""?> value="SpVg Blau-Weiß 96 Schenefeld e.V.">SpVg Blau-Weiß 96 Schenefeld e.V.</option>
-<option <?php echo $club=="SV Polizei" ? "selected" : ""?> value="SV Polizei">SV Polizei</option>
-<option <?php echo $club=="SV Wilhelmsburg" ? "selected" : ""?> value="SV Wilhelmsburg">SV Wilhelmsburg</option>
-<option <?php echo $club=="TH Eilbeck" ? "selected" : ""?> value="TH Eilbeck">TH Eilbeck</option>
-<option <?php echo $club=="TSC Wellingsbüttel von 1937 e.V." ? "selected" : ""?> value="TSC Wellingsbüttel von 1937 e.V.">TSC Wellingsbüttel von 1937 e.V.</option>
-<option <?php echo $club=="TSV Hohenhorst v. 1963 e.V." ? "selected" : ""?> value="TSV Hohenhorst v. 1963 e.V.">TSV Hohenhorst v. 1963 e.V.</option>
-<option <?php echo $club=="TSV Reinbek" ? "selected" : ""?> value="TSV Reinbek">TSV Reinbek</option>
-<option <?php echo $club=="TSV Schwarzenbek von 1899 e.V." ? "selected" : ""?> value="TSV Schwarzenbek von 1899 e.V.">TSV Schwarzenbek von 1899 e.V.</option>
-<option <?php echo $club=="TSV Stellingen v. 1888 e.V." ? "selected" : ""?> value="TSV Stellingen v. 1888 e.V.">TSV Stellingen v. 1888 e.V.</option>
-<option <?php echo $club=="TSV Uetersen" ? "selected" : ""?> value="TSV Uetersen">TSV Uetersen</option>
-<option <?php echo $club=="TSV Wedel" ? "selected" : ""?> value="TSV Wedel">TSV Wedel</option>
-<option <?php echo $club=="TSV Gut Heil Heist von 1910 e.V." ? "selected" : ""?> value="TSV Gut Heil Heist von 1910 e.V.">TSV "Gut Heil" Heist von 1910 e.V.</option>
-<option <?php echo $club=="TuRa Harksheide" ? "selected" : ""?> value="TuRa Harksheide">TuRa Harksheide</option>
-<option <?php echo $club=="TuS Appen" ? "selected" : ""?> value="TuS Appen">TuS Appen</option>
-<option <?php echo $club=="TuS Berne e.V." ? "selected" : ""?> value="TuS Berne e.V.">TuS Berne e.V.</option>
-<option <?php echo $club=="TuS Esingen" ? "selected" : ""?> value="TuS Esingen">TuS Esingen</option>
-<option <?php echo $club=="TuS Finkenwerder von 1893 e.V." ? "selected" : ""?> value="TuS Finkenwerder von 1893 e.V.">TuS Finkenwerder von 1893 e.V.</option>
-<option <?php echo $club=="TuS Germania Schnelsen von 1921 e.V." ? "selected" : ""?> value="TuS Germania Schnelsen von 1921 e.V.">TuS Germania Schnelsen von 1921 e.V.</option>
-<option <?php echo $club=="TuS Osdorf von 1907 e.V." ? "selected" : ""?> value="TuS Osdorf von 1907 e.V.">TuS Osdorf von 1907 e.V.</option>
-<option <?php echo $club=="USC Paloma 1909 e.V." ? "selected" : ""?> value="USC Paloma 1909 e.V.">USC Paloma 1909 e.V.</option>
-<option <?php echo $club=="VEJAS Hamburg e.V." ? "selected" : ""?> value="VEJAS Hamburg e.V.">VEJAS Hamburg e.V.</option>
-<option <?php echo $club=="Verein Aktive Freizeit" ? "selected" : ""?> value="Verein Aktive Freizeit">Verein Aktive Freizeit</option>
-<option <?php echo $club=="VfL 93 Hamburg e.V." ? "selected" : ""?> value="VfL 93 Hamburg e.V.">VfL 93 Hamburg e.V.</option>
-<option <?php echo $club=="VfL Börnsen" ? "selected" : ""?> value="VfL Börnsen">VfL Börnsen</option>
-<option <?php echo $club=="VfL Geesthacht v. 1885 e.V." ? "selected" : ""?> value="VfL Geesthacht v. 1885 e.V.">VfL Geesthacht v. 1885 e.V.</option>
-<option <?php echo $club=="VfL Pinneberg e.V." ? "selected" : ""?> value="VfL Pinneberg e.V.">VfL Pinneberg e.V.</option>
-<option <?php echo $club=="Walddörfer SV e.V. von 19241. FC Hellbrook" ? "selected" : ""?> value="Walddörfer SV e.V. von 19241. FC Hellbrook">Walddörfer SV e.V. von 19241. FC Hellbrook</option>
-<option <?php echo $club=="Wandsbeker TSV Concordia1. SC Norderstedt" ? "selected" : ""?> value="Wandsbeker TSV Concordia1. SC Norderstedt">Wandsbeker TSV Concordia1. SC Norderstedt</option>
-<option <?php echo $club=="Kein Mitglied im Hamburger Judo Verband" ? "selected" : ""?> value="Kein Mitglied im Hamburger Judo Verband">Kein Mitglied im Hamburger Judo Verband</option>
+      <div style="padding: .7em;"><label for="input_weight">Gewichtsklasse: </label>
+      <select name="weight" id="input_weight">
+        <option value="">Wähle zuerst Geburtsjahr und Geschlecht</option>
       </select></div>
-      <div style="padding: .7em;"><input name="register" type="submit" value="Anmelden"></div>
-    </form>
-  </div>
-  <h2>Bereits vorhandene Anmeldungen ansehen</h2>
-  <div>
-    <form action="index.php" method="post">
+      <div style="padding: .7em;"><label for="input_club">Verein: </label>
+      <select name="club" required id="input_club">
+        <option value="">Wähle den Verein des Kämpfers</option>
 <?php
-if (isset ($_POST['show'])) {
-  echo "<html><body><table>";
-  echo "<tr><td><strong>Vorname</strong></td><td><strong>Nachname</strong></td><td><strong>Geburtsjahr</strong></td><td><strong>Geschlecht</strong></td><td><strong>Verein</strong></td></tr>";
-  $f = fopen("data.csv", "r");
-  while (($line = fgetcsv($f)) !== false) {
-    if ($line['4']==$club){
-      echo "<tr>";
-      foreach ($line as $cell) {
-        echo "<td>" . $cell . "</td>";
-      }
-      echo "</tr>\n";}
-  }
-  fclose($f);
-  echo "\n</table></body></html>";
+foreach( $clubs as $club ){
+  echo "        <option value=\"$club\">$club</option>\n";
 }
 ?>
-      <div style="padding: .7em;"><label for="input_club">Verein: </label>
-      <select name="club" id="input_club">
-<option value="">Bitte wählen sie ihren Verein</option>
-<option <?php echo $club=="FC Hellbrook" ? "selected" : ""?> value="FC Hellbrook">FC Hellbrook</option>
-<option <?php echo $club=="1. SC Norderstedt" ? "selected" : ""?> value="1. SC Norderstedt">1. SC Norderstedt</option>
-<option <?php echo $club=="Alster- Dojo Kendo/Kyudo" ? "selected" : ""?> value="Alster- Dojo Kendo/Kyudo">Alster- Dojo Kendo/Kyudo</option>
-<option <?php echo $club=="AMTV" ? "selected" : ""?> value="AMTV">AMTV</option>
-<option <?php echo $club=="Barsbütteler SV v. 1948 e.V." ? "selected" : ""?> value="Barsbütteler SV v. 1948 e.V.">Barsbütteler SV v. 1948 e.V.</option>
-<option <?php echo $club=="BKSV Goliath" ? "selected" : ""?> value="BKSV Goliath">BKSV Goliath</option>
-<option <?php echo $club=="Bojutsu- Bushido" ? "selected" : ""?> value="Bojutsu- Bushido">Bojutsu- Bushido</option>
-<option <?php echo $club=="Bramfelder SV" ? "selected" : ""?> value="Bramfelder SV">Bramfelder SV</option>
-<option <?php echo $club=="Brunsbeker SV" ? "selected" : ""?> value="Brunsbeker SV">Brunsbeker SV</option>
-<option <?php echo $club=="Buxtehuder SV von 1862 e.V." ? "selected" : ""?> value="Buxtehuder SV von 1862 e.V.">Buxtehuder SV von 1862 e.V.</option>
-<option <?php echo $club=="Eimsbütteler TV" ? "selected" : ""?> value="Eimsbütteler TV">Eimsbütteler TV</option>
-<option <?php echo $club=="Freie Sportvereinigung Harburg-Rönneburg" ? "selected" : ""?> value="Freie Sportvereinigung Harburg-Rönneburg">Freie Sportvereinigung Harburg-Rönneburg</option>
-<option <?php echo $club=="Harburger TB" ? "selected" : ""?> value="Harburger TB">Harburger TB</option>
-<option <?php echo $club=="HNT von 1911 e.V." ? "selected" : ""?> value="HNT von 1911 e.V.">HNT von 1911 e.V.</option>
-<option <?php echo $club=="HT 16" ? "selected" : ""?> value="HT 16">HT 16</option>
-<option <?php echo $club=="JC Taiyo" ? "selected" : ""?> value="JC Taiyo">JC Taiyo</option>
-<option <?php echo $club=="JG Sachsenwald in der TSG Bergedorf von 1860 e.V." ? "selected" : ""?> value="JG Sachsenwald in der TSG Bergedorf von 1860 e.V.">JG Sachsenwald in der TSG Bergedorf von 1860 e.V.</option>
-<option <?php echo $club=="Judo-Klub Elmshorn e.V." ? "selected" : ""?> value="Judo-Klub Elmshorn e.V.">Judo-Klub Elmshorn e.V.</option>
-<option <?php echo $club=="KSC Bushido Hamburg e.V." ? "selected" : ""?> value="KSC Bushido Hamburg e.V.">KSC Bushido Hamburg e.V.</option>
-<option <?php echo $club=="Kummerfelder SV e.V." ? "selected" : ""?> value="Kummerfelder SV e.V.">Kummerfelder SV e.V.</option>
-<option <?php echo $club=="Lehmsaler Sportverein von 1967 e.V." ? "selected" : ""?> value="Lehmsaler Sportverein von 1967 e.V.">Lehmsaler Sportverein von 1967 e.V.</option>
-<option <?php echo $club=="Meiendorfer SV" ? "selected" : ""?> value="Meiendorfer SV">Meiendorfer SV</option>
-<option <?php echo $club=="Mümmelmannsberger SV von 1974 e.V." ? "selected" : ""?> value="Mümmelmannsberger SV von 1974 e.V.">Mümmelmannsberger SV von 1974 e.V.</option>
-<option <?php echo $club=="Niendorfer TSV" ? "selected" : ""?> value="Niendorfer TSV">Niendorfer TSV</option>
-<option <?php echo $club=="Oststeinbeker SV" ? "selected" : ""?> value="Oststeinbeker SV">Oststeinbeker SV</option>
-<option <?php echo $club=="Rellinger TV" ? "selected" : ""?> value="Rellinger TV">Rellinger TV</option>
-<option <?php echo $club=="Rissener SV v. 1949 e.V." ? "selected" : ""?> value="Rissener SV v. 1949 e.V.">Rissener SV v. 1949 e.V.</option>
-<option <?php echo $club=="S.V. Blankenese v. 1903 e.V." ? "selected" : ""?> value="S.V. Blankenese v. 1903 e.V.">S.V. Blankenese v. 1903 e.V.</option>
-<option <?php echo $club=="SC Alstertal- Langenhorn e.V." ? "selected" : ""?> value="SC Alstertal- Langenhorn e.V.">SC Alstertal- Langenhorn e.V.</option>
-<option <?php echo $club=="SC Poppenbüttel" ? "selected" : ""?> value="SC Poppenbüttel">SC Poppenbüttel</option>
-<option <?php echo $club=="SC Vier- und Marschlande von 1899 e.V." ? "selected" : ""?> value="SC Vier- und Marschlande von 1899 e.V.">SC Vier- und Marschlande von 1899 e.V.</option>
-<option <?php echo $club=="Shin-Rin-Dojo im WSV Tangstedt v.1958 e.V." ? "selected" : ""?> value="Shin-Rin-Dojo im WSV Tangstedt v.1958 e.V.">Shin-Rin-Dojo im WSV Tangstedt v.1958 e.V.</option>
-<option <?php echo $club=="Sportverein Grün-Weiß Eimsbüttel von 1901 e.V." ? "selected" : ""?> value="Sportverein Grün-Weiß Eimsbüttel von 1901 e.V.">Sportverein Grün-Weiß Eimsbüttel von 1901 e.V.</option>
-<option <?php echo $club=="SpVg Blau-Weiß 96 Schenefeld e.V." ? "selected" : ""?> value="SpVg Blau-Weiß 96 Schenefeld e.V.">SpVg Blau-Weiß 96 Schenefeld e.V.</option>
-<option <?php echo $club=="SV Polizei" ? "selected" : ""?> value="SV Polizei">SV Polizei</option>
-<option <?php echo $club=="SV Wilhelmsburg" ? "selected" : ""?> value="SV Wilhelmsburg">SV Wilhelmsburg</option>
-<option <?php echo $club=="TH Eilbeck" ? "selected" : ""?> value="TH Eilbeck">TH Eilbeck</option>
-<option <?php echo $club=="TSC Wellingsbüttel von 1937 e.V." ? "selected" : ""?> value="TSC Wellingsbüttel von 1937 e.V.">TSC Wellingsbüttel von 1937 e.V.</option>
-<option <?php echo $club=="TSV Hohenhorst v. 1963 e.V." ? "selected" : ""?> value="TSV Hohenhorst v. 1963 e.V.">TSV Hohenhorst v. 1963 e.V.</option>
-<option <?php echo $club=="TSV Reinbek" ? "selected" : ""?> value="TSV Reinbek">TSV Reinbek</option>
-<option <?php echo $club=="TSV Schwarzenbek von 1899 e.V." ? "selected" : ""?> value="TSV Schwarzenbek von 1899 e.V.">TSV Schwarzenbek von 1899 e.V.</option>
-<option <?php echo $club=="TSV Stellingen v. 1888 e.V." ? "selected" : ""?> value="TSV Stellingen v. 1888 e.V.">TSV Stellingen v. 1888 e.V.</option>
-<option <?php echo $club=="TSV Uetersen" ? "selected" : ""?> value="TSV Uetersen">TSV Uetersen</option>
-<option <?php echo $club=="TSV Wedel" ? "selected" : ""?> value="TSV Wedel">TSV Wedel</option>
-<option <?php echo $club=="TSV Gut Heil Heist von 1910 e.V." ? "selected" : ""?> value="TSV Gut Heil Heist von 1910 e.V.">TSV "Gut Heil" Heist von 1910 e.V.</option>
-<option <?php echo $club=="TuRa Harksheide" ? "selected" : ""?> value="TuRa Harksheide">TuRa Harksheide</option>
-<option <?php echo $club=="TuS Appen" ? "selected" : ""?> value="TuS Appen">TuS Appen</option>
-<option <?php echo $club=="TuS Berne e.V." ? "selected" : ""?> value="TuS Berne e.V.">TuS Berne e.V.</option>
-<option <?php echo $club=="TuS Esingen" ? "selected" : ""?> value="TuS Esingen">TuS Esingen</option>
-<option <?php echo $club=="TuS Finkenwerder von 1893 e.V." ? "selected" : ""?> value="TuS Finkenwerder von 1893 e.V.">TuS Finkenwerder von 1893 e.V.</option>
-<option <?php echo $club=="TuS Germania Schnelsen von 1921 e.V." ? "selected" : ""?> value="TuS Germania Schnelsen von 1921 e.V.">TuS Germania Schnelsen von 1921 e.V.</option>
-<option <?php echo $club=="TuS Osdorf von 1907 e.V." ? "selected" : ""?> value="TuS Osdorf von 1907 e.V.">TuS Osdorf von 1907 e.V.</option>
-<option <?php echo $club=="USC Paloma 1909 e.V." ? "selected" : ""?> value="USC Paloma 1909 e.V.">USC Paloma 1909 e.V.</option>
-<option <?php echo $club=="VEJAS Hamburg e.V." ? "selected" : ""?> value="VEJAS Hamburg e.V.">VEJAS Hamburg e.V.</option>
-<option <?php echo $club=="Verein Aktive Freizeit" ? "selected" : ""?> value="Verein Aktive Freizeit">Verein Aktive Freizeit</option>
-<option <?php echo $club=="VfL 93 Hamburg e.V." ? "selected" : ""?> value="VfL 93 Hamburg e.V.">VfL 93 Hamburg e.V.</option>
-<option <?php echo $club=="VfL Börnsen" ? "selected" : ""?> value="VfL Börnsen">VfL Börnsen</option>
-<option <?php echo $club=="VfL Geesthacht v. 1885 e.V." ? "selected" : ""?> value="VfL Geesthacht v. 1885 e.V.">VfL Geesthacht v. 1885 e.V.</option>
-<option <?php echo $club=="VfL Pinneberg e.V." ? "selected" : ""?> value="VfL Pinneberg e.V.">VfL Pinneberg e.V.</option>
-<option <?php echo $club=="Walddörfer SV e.V. von 19241. FC Hellbrook" ? "selected" : ""?> value="Walddörfer SV e.V. von 19241. FC Hellbrook">Walddörfer SV e.V. von 19241. FC Hellbrook</option>
-<option <?php echo $club=="Wandsbeker TSV Concordia1. SC Norderstedt" ? "selected" : ""?> value="Wandsbeker TSV Concordia1. SC Norderstedt">Wandsbeker TSV Concordia1. SC Norderstedt</option>
-<option <?php echo $club=="Kein Mitglied im Hamburger Judo Verband" ? "selected" : ""?> value="Kein Mitglied im Hamburger Judo Verband">Kein Mitglied im Hamburger Judo Verband</option>
       </select></div>
-      <div style="padding: .7em;"><input name="show" value="Anmeldungen Ansehen" type="submit"></div>
+      <div style="padding: .7em;"><input name="register" type="submit" value="Anmelden"><span id="loading" style="display:none;"><p><img src="loading.gif" /> Please Wait</p></span></div>
+<!--      <div id="test-output" style="padding: .7em;"></div> -->
     </form>
-    </div>
+  </div>
+  <h2>Bereits eingegebene Anmeldungen:</h2>
+  <div>
+  <table id="competitor_table">
+    <tr><th>Name</th><th>Geburtsjahr</th><th>Geschlecht</th><th>Klasse</th><th>Verein</th></tr>
+  </table>
+  </div>
 </div>
 <script src="external/jquery/jquery.js"></script>
 <script src="jquery-ui.js"></script>
 <script>
-$( "#accordion" ).accordion({heightStyle: "content"});
-<?php
-if (isset ($_POST['show'])) {
-  echo "$(\"#accordion\").accordion('option', 'active' , 1);";
+function getFormData($form){
+  var unindexed_array = $form.serializeArray();
+  var indexed_array = {};
+  $.map(unindexed_array, function(n, i){
+    indexed_array[n['name']] = n['value'];
+  });
+  return indexed_array;
 }
+
+$('#signUpForm').submit(function(e){ 
+  e.preventDefault(); 
+  data =  getFormData($( this ));
+  console.log( data );
+  $.ajax({
+    type: 'POST',
+    url: 'rest.php/competitors',
+    data: JSON.stringify(data),
+    contentType: "application/json",
+    beforeSend: function() { $('#loading').show(); },
+    complete: function() { $('#loading').hide(); },
+    success: handleSuccess,
+    error: handleError
+  });
+});
+
+function handleSuccess(data,textStatus,jqXHR){
+  if (jqXHR.status==201){
+    $("#message").html('<div class="ui-widget"><div class="ui-state-highlight ui-corner-all" style="padding: 0 .7em;"><p><strong>' + data.firstName + ' ' + data.lastName + '</strong> wurde erfolgreich angemeldet.</p></div></div>');
+    $("<tr><td>"+data.firstName+" "+data.lastName+"</td><td>"+data.yearOfBirth+"</td><td>"+data.sex+"</td><td>"+data.category+"</td><td>"+data.club+"</td></tr>").appendTo("#competitor_table");
+    $('#radioset input').removeAttr('checked');
+    $('#radioset').buttonset('refresh');
+    $('input[name=firstName]').val('');
+    $("input[name=lastName]").val('');
+    updateWeights(null);
+  } else {
+    $("#message").html('<div class="ui-widget"><div class="ui-state-error ui-corner-all" style="padding: 0 .7em;"><p><strong>Fehler: </strong> ' + data.msg + '</p><p>Kontakt zum Entwickler: Felix von Poblotzki, +4915232787790, xilaew@gmail.com</p></div></div>');
+  }
+}
+
+function handleError(jqXHR,textStatus,errorThrown){
+  $("#message").html('<div class="ui-widget"><div class="ui-state-error ui-corner-all" style="padding: 0 .7em;"><p><strong>Fehler: </strong> etwas ist schief gegangen. textStatus: ' + textStatus + ' errorThrown: ' + errorThrown + ' </p><p>Kontakt zum Entwickler: Felix von Poblotzki, +4915232787790, xilaew@gmail.com</p></p></div></div>');
+}
+
+var category = "";
+var yearOfTurnament=2018;
+var minYearOfBirth=1980;
+var maxYearOfBirth=2006;
+<?php
+  echo "var categories=".json_encode(sqlite_getCategories($db), JSON_PRETTY_PRINT).";\n";
 ?>
-$( "input:submit" ).button();
-$('input:text, input:password')
+
+var updateWeights = function(e) {
+  var newcategory="";
+  var weights=null;
+  var sex = $('input[name=sex]:checked').val();
+  var yearOfBirth = $('input[name=yearOfBirth]').val();
+  var age=yearOfTurnament-yearOfBirth;
+  if( sex == "m"){
+    var sexCategories=categories.male
+//    $("#test-output").text(function(i,text){return text + "♂"});
+  }
+  if( sex == "f"){
+    var sexCategories=categories.female
+//    $("#test-output").text(function(i,text){return text + "♀"});
+  }
+// This code assumes, that the categories within categories.male and categories.female are in ascending order by their max age.
+  for (var cat in sexCategories){
+    if (age<=cat){
+//      $("#test-output").text(function(i,text){return text + cat});
+      var newcategory=sexCategories[cat].agetext;
+      weights=sexCategories[cat].weights;
+      var weightTexts=sexCategories[cat].weightTexts;
+      break;
+    }
+  }
+  if (newcategory == category ){
+//    $("#test-output").text(function(i,text){return text + "."});
+  } else {
+//    $("#test-output").text(function(i,text){return text + "#"});
+    category=newcategory;
+    $("#labelAgeCat").text(category);
+    $("#input_weight").empty();
+    if (weights == null){
+      $("<option/>").text("Wähle zuerst Geburtsjahr und Geschlecht").appendTo("#input_weight");
+    } else {
+      $("<option/>").val("").text("Bitte wähle eine Gewichtsklasse").appendTo("#input_weight");
+      weightTexts.forEach(function (item,index) {
+        $("<option/>").val(item).text(item).appendTo("#input_weight");
+      })
+    }
+  };
+};
+
+$( "input[name='sex']" ).change(updateWeights);
+$( "input[name='yearOfBirth']" ).change(updateWeights);
+
+//$( "#accordion" ).accordion({heightStyle: "content"});
+$( "#signUpForm input:submit" ).button();
+$('#signUpForm input:text, #signUpForm input:password')
   .button()
   .css({
           'font' : 'inherit',
@@ -224,7 +188,7 @@ $('input:text, input:password')
        'outline' : 'none',
         'cursor' : 'text',
   });
-$('select')
+$('#signUpForm select')
   .button()
   .css({
           'font' : 'inherit',
@@ -234,16 +198,10 @@ $('select')
   });
 $( "#radioset" ).buttonset();
 $( "#controlgroup" ).controlgroup();
-$( "#input_yearOfBirth" ).spinner();
-$( "#tooltip" ).tooltip();
-// Hover states on the static widgets
-$( "#dialog-link, #icons li" ).hover(
-	function() {
-		$( this ).addClass( "ui-state-hover" );
-	},
-	function() {
-		$( this ).removeClass( "ui-state-hover" );
-	}
-);
+$( "#input_yearOfBirth" ).spinner({
+  stop: function( event, ui ) {updateWeights(event);},
+  min:minYearOfBirth,
+  max:maxYearOfBirth
+  });
 </script></body>
 </html>
