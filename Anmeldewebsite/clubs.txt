@@ -41,7 +41,7 @@ TSV Schwarzenbek
 TSV Stellingen
 TSV Uetersen
 TSV Wedel
-TSV Gut Heil Heist
+TSV "Gut Heil" Heist
 TuRa Harksheide
 TuS Appen
 TuS Berne

@@ -1,12 +1,11 @@
-﻿<?php
+<?php
+require 'locale.php';
 require_once 'config.php';
-#require 'locale.php';
 require 'lib.php';
 $db=new SQLite3($judoShiaiTemplateFile);
 $info=sqlite_getInfo($db);
-$clubs=csv_getClubs(fopen($clubsTxt, "r"))
-?>
-<!DOCTYPE html>
+$clubs=csv_getClubs(fopen($clubsTxt, "r"));
+?><!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
@@ -129,11 +128,10 @@ function handleError(jqXHR,textStatus,errorThrown){
 
 var category = "";
 var yearOfTournament=<?php echo $yearOfTournament;?>;
-var minYearOfBirth=<?php echo $minYearOfBirth;?>;;
-var maxYearOfBirth=<?php echo $maxYearOfBirth;?>;;
-<?php
-  echo "var categories=".json_encode(sqlite_getCategories($db), JSON_PRETTY_PRINT).";\n";
-?>
+var minYearOfBirth=<?php echo $minYearOfBirth;?>;
+var maxYearOfBirth=<?php echo $maxYearOfBirth;?>;
+var categories=<?php echo json_encode(sqlite_getCategories($db), JSON_PRETTY_PRINT);?>;
+
 
 var updateWeights = function(e) {
   var newcategory="";
