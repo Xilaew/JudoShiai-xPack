@@ -1,4 +1,6 @@
 <?php
+require_once 'config.php';
+
 function sqlite_getInfo ($db) {
   $result = new \stdClass;
   $result->Competition = $db->querySingle("SELECT value FROM info WHERE item=='Competition'");
@@ -46,11 +48,10 @@ function csv_getClubs($fp){
   return $result;
 }
 
-function csv_getCompetitors($input){
+function csv_getCompetitors($fp){
   $result=array();
   $indices=array("firstName","lastName","yearOfBirth","sex","club");
-  $f = fopen("data.csv", "r");
-  while (($line = fgetcsv($f)) !== false) {
+  while (($line = fgetcsv($fp)) !== false) {
     $competitor=array();
     foreach($line as $k => $content){
       $key=$indices[$k];
@@ -58,11 +59,12 @@ function csv_getCompetitors($input){
     }
     $result[]=$competitor;
   }
-  fclose($f);
   echo json_encode($result);
 }
 
-function csv_addCompetitor($competitor,$fp) {
+function csv_addCompetitor($competitor,$fp,$categories) {
+  global $maxYearOfBirth;
+  global $minYearOfBirth;
   $indices=array("firstName","lastName","yearOfBirth","sex","weight","category","club");
   $result= new \stdClass;
   if ($competitor->lastName=="" and $competitor->firstName=="" ) {
@@ -71,10 +73,10 @@ function csv_addCompetitor($competitor,$fp) {
     $result->msg="Please enter a valid club!";
   } elseif ($competitor->sex!="m" and $competitor->sex!="f" ) {
     $result->msg="Transgenders not allowed!";
-  }elseif ($competitor->yearOfBirth>2006 or $competitor->yearOfBirth<1998 ) {
-    $result->msg="Year Of Birth must be between 1998 and 2006";
+  }elseif ($competitor->yearOfBirth>$maxYearOfBirth or $competitor->yearOfBirth<$minYearOfBirth ) {
+    $result->msg="Year Of Birth must be between $minYearOfBirth and $maxYearOfBirth";
   } else {
-    $competitor->category=map_category($competitor->sex,$competitor->yearOfBirth,$competitor->weight);
+    $competitor->category=map_category($competitor->sex,$competitor->yearOfBirth,$competitor->weight,$categories);
     $line=array();
     foreach ($indices as $key){
       $line[]=$competitor->$key;
@@ -87,46 +89,36 @@ function csv_addCompetitor($competitor,$fp) {
   return $result;
 }
 
-function map_category ($sex, $yearOfBirth, $weight ) {
-  $mU15=array("-34", "-37", "-40", "-43", "-46", "-50", "-55", "-60", "-66", "+66");
-  $fU15=array("-33", "-36", "-40", "-44", "-48", "-52", "-57", "-63", "+63");
-  $mU18=array("-43", "-46", "-50", "-55", "-60", "-66", "-73", "-81", "-90", "+90");
-  $fU18=array("-40", "-44", "-48", "-52", "-57", "-63", "-70", "-78", "+78");
-  $mU21=array("-55", "-60", "-66", "-73", "-81", "-90", "-100", "+100");
-  $fU21=array("-44", "-48", "-52", "-57", "-63", "-70", "-78", "+78");
-  $category="";
-  $weights=array();
-  if ($yearOfBirth <= 2006 and $yearOfBirth >= 2004 ){
-    if ( $sex == "m"){
-      $category="männliche Jugend U15";
-      $weights=$mU15;
-    } else if ( $sex == "f"){
-      $category="weibliche Jugend U15";
-      $weights=$fU15;
-    }
-  } else if ($yearOfBirth <= 2003 and $yearOfBirth >= 2001 ){
-    if ( $sex == "m"){
-      $category="Männer U18";
-      $weights=$mU18;
-    } else if ( $sex == "f"){
-      $category="Frauen U18";
-      $weights=$fU18;
-    }
-  } else if($yearOfBirth <= 2000 and $yearOfBirth >= 1998 ){
-    if ( $sex == "m"){
-      $category="Männer U21";
-      $weights=$mU21;
-    } else if ( $sex == "f"){
-      $category="Frauen U21";
-      $weights=$fU21;
-    }
-  };
-  if ( in_array($weight, $weights) and $category!=""){
-    $category .= " ".$weight."kg";
-  } else {
-    $category = "";
+function map_category ($sex, $yearOfBirth, $weight, $categories ) {
+  global $yearOfTournament;
+  $category=NULL;
+  $age=$yearOfTournament-$yearOfBirth;
+  if ($sex=='m'){
+      $sexCategories=$categories->male;
   }
-  return $category;
+  if ($sex=='f'){
+      $sexCategories=$categories->female;
+  }
+  //XXX This code assumes, that the categories within categories.male and categories.female are in ascending order by their max age.
+  foreach ($sexCategories as $catAge => $cat) {
+    if ($age<=$catAge){
+      $category=$cat;
+      break;
+    }
+  }
+  //XXX This code assumes, that the weights within the weight array are in ascending order.
+  $weightText=NULL;
+  foreach($category->weights as $k => $w) {
+    if ($weight<=$w){
+      $weightText=$category->weightTexts[$k];
+      break;
+    }
+  }
+  if ($weight>1000 and $category!=NULL and $weightText!=NULL){
+      $result = $category->agetext . $weightText;
+  } else {
+    $result = "";
+  }
+  return $result;
 }
-
 ?>

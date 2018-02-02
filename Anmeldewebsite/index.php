@@ -1,8 +1,10 @@
 ﻿<?php
+require_once 'config.php';
+#require 'locale.php';
 require 'lib.php';
-$db=new SQLite3('template.shi');
+$db=new SQLite3($judoShiaiTemplateFile);
 $info=sqlite_getInfo($db);
-$clubs=csv_getClubs(fopen("clubs.txt", "r"))
+$clubs=csv_getClubs(fopen($clubsTxt, "r"))
 ?>
 <!DOCTYPE html>
 <html>
@@ -38,10 +40,11 @@ $clubs=csv_getClubs(fopen("clubs.txt", "r"))
 </head>
 <body>
 <div id="accordion">
-  <h2>Anmeldung <?php echo $info->Competition; ?></h2>
+  <h2><?php echo _("Anmeldung"); echo " ".$info->Competition; ?></h2>
   <div>
     <div id="message" ></div>
     <form action="index.php" method="post" id="signUpForm">
+      <input type="hidden"/>
       <div style="padding: .7em;"><label for="input_firstName">Vorname: </label><input required name="firstName" id="input_fistName" type="text"></div>
       <div style="padding: .7em;"><label for="input_lastName">Nachname: </label><input required name="lastName" id="input_lastName" type="text"></div>
       <div style="padding: .7em;">
@@ -125,9 +128,9 @@ function handleError(jqXHR,textStatus,errorThrown){
 }
 
 var category = "";
-var yearOfTurnament=2018;
-var minYearOfBirth=1980;
-var maxYearOfBirth=2006;
+var yearOfTournament=<?php echo $yearOfTournament;?>;
+var minYearOfBirth=<?php echo $minYearOfBirth;?>;;
+var maxYearOfBirth=<?php echo $maxYearOfBirth;?>;;
 <?php
   echo "var categories=".json_encode(sqlite_getCategories($db), JSON_PRETTY_PRINT).";\n";
 ?>
@@ -137,7 +140,7 @@ var updateWeights = function(e) {
   var weights=null;
   var sex = $('input[name=sex]:checked').val();
   var yearOfBirth = $('input[name=yearOfBirth]').val();
-  var age=yearOfTurnament-yearOfBirth;
+  var age=yearOfTournament-yearOfBirth;
   if( sex == "m"){
     var sexCategories=categories.male
 //    $("#test-output").text(function(i,text){return text + "♂"});
@@ -146,7 +149,7 @@ var updateWeights = function(e) {
     var sexCategories=categories.female
 //    $("#test-output").text(function(i,text){return text + "♀"});
   }
-// This code assumes, that the categories within categories.male and categories.female are in ascending order by their max age.
+//XXX This code assumes, that the categories within categories.male and categories.female are in ascending order by their max age.
   for (var cat in sexCategories){
     if (age<=cat){
 //      $("#test-output").text(function(i,text){return text + cat});
@@ -164,11 +167,11 @@ var updateWeights = function(e) {
     $("#labelAgeCat").text(category);
     $("#input_weight").empty();
     if (weights == null){
-      $("<option/>").text("Wähle zuerst Geburtsjahr und Geschlecht").appendTo("#input_weight");
+      $("<option/>").text("<?php echo _("Wähle zuerst Geburtsjahr und Geschlecht");?>").appendTo("#input_weight");
     } else {
       $("<option/>").val("").text("Bitte wähle eine Gewichtsklasse").appendTo("#input_weight");
       weightTexts.forEach(function (item,index) {
-        $("<option/>").val(item).text(item).appendTo("#input_weight");
+        $("<option/>").val(weights[index]).text(item).appendTo("#input_weight");
       })
     }
   };

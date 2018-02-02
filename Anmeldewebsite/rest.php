@@ -1,4 +1,5 @@
 <?php
+require_once 'config.php';
 require 'lib.php';
 
 header("Content-Type:application/json");
@@ -38,6 +39,9 @@ function get($request) {
     case 'clubs':
       get_clubs();
       break;
+    case 'competitors':
+      get_competitors();
+      break;
     default:
       http_response_code(404);
   }
@@ -56,25 +60,36 @@ function post($request,$input) {
 
 
 function get_info(){
-  echo json_encode(sqlite_getInfo(new SQLite3('template.shi')));
+  global $judoShiaiTemplateFile;
+  echo $judoShiaiTemplateFile;
+  echo json_encode(sqlite_getInfo(new SQLite3($judoShiaiTemplateFile)));
 }
 
 function get_categories(){
-  echo json_encode(sqlite_getCategories(new SQLite3('template.shi')));
+  global $judoShiaiTemplateFile;
+  echo json_encode(sqlite_getCategories(new SQLite3($judoShiaiTemplateFile)));
 }
 
 function get_clubs(){
-  echo json_encode(csv_getClubs(fopen("clubs.txt", "r")));
+  global $clubsTxt;
+  echo json_encode(csv_getClubs(fopen($clubsTxt, "r")));
 }
 
+function get_competitors(){
+  global $dataCsv;
+  echo json_encode(csv_getCompetitors(fopen($dataCsv, "r")));
+}
 
 function post_competitors($input){
-  $fp = fopen("data.csv", "a"); // $fp is now the file pointer to file $filename
+  global $judoShiaiTemplateFile;
+  global $dataCsv;
+  $fp = fopen($dataCsv, "a"); // $fp is now the file pointer to file $filename
+  $categories=sqlite_getCategories(new SQLite3($judoShiaiTemplateFile));
   if (!$input){
     http_response_code(400);
     $msg="Input could not be parsed as JSON.";
   } elseif ( is_object($input) ) {
-    $result = csv_addCompetitor($input,$fp);
+    $result = csv_addCompetitor($input,$fp,$categories);
     if ($result->msg) {
       http_response_code(200);
     } else {
@@ -83,7 +98,7 @@ function post_competitors($input){
     }
   } elseif ( is_array($input) ) {
     foreach( $input as $competitor ){
-      csv_addCompetitor($competitor,$fp);
+      csv_addCompetitor($competitor,$fp,$categories);
     }
   } else {
     http_response_code(400);
