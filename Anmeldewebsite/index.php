@@ -4,13 +4,20 @@ require_once 'config.php';
 require 'lib.php';
 $db=new SQLite3($judoShiaiTemplateFile);
 $info=sqlite_getInfo($db);
-$clubs=csv_getClubs(fopen($clubsTxt, "r"));
+$categories=sqlite_getCategories($db);
+$db->close();
+$fp=fopen($clubsTxt, "r");
+$clubs=csv_getClubs($fp);
+fclose($fp);
+$fp=fopen($dataCsv, "r");
+$competitors=csv_getCompetitors($fp, getTrainerId(true));
+fclose($fp);
 ?><!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Anmeldung <?php echo $info->Competition; ?></title>
+  <title><?php echo _('Anmeldung:') . ' ' . $info->Competition; ?></title>
   <link href="jquery-ui.min.css" rel="stylesheet">
   <style>
 #competitor_table {
@@ -39,50 +46,69 @@ $clubs=csv_getClubs(fopen($clubsTxt, "r"));
 </head>
 <body>
 <div id="accordion">
-  <h2><?php echo _("Anmeldung"); echo " ".$info->Competition; ?></h2>
+  <h2><?php echo _('Anmeldung:') . ' ' . $info->Competition; ?></h2>
   <div>
     <div id="message" ></div>
     <form action="index.php" method="post" id="signUpForm">
-      <input type="hidden"/>
-      <div style="padding: .7em;"><label for="input_firstName">Vorname: </label><input required name="firstName" id="input_fistName" type="text"></div>
-      <div style="padding: .7em;"><label for="input_lastName">Nachname: </label><input required name="lastName" id="input_lastName" type="text"></div>
+      <div style="padding: .7em;"><label for="input_firstName"><?php echo _('Vorname:'); ?> </label><input required name="firstName" id="input_fistName" type="text"></div>
+      <div style="padding: .7em;"><label for="input_lastName"><?php echo _('Nachname:'); ?> </label><input required name="lastName" id="input_lastName" type="text"></div>
       <div style="padding: .7em;">
-        <label for="input_yearOfBirth">Geburtsjahr: </label><input name="yearOfBirth" id="input_yearOfBirth" type="number" required readonly value="2005">
+        <label for="input_yearOfBirth"><?php echo _('Geburtsjahr:'); ?> </label><input name="yearOfBirth" id="input_yearOfBirth" type="number" required readonly value="2005">
         <span style="margin-left:1em;" id="labelAgeCat"></span>
       </div>
-      <div style="padding: .7em;">Geschlecht: 
+      <div style="padding: .7em;"><?php echo _('Geschlecht:'); ?> 
         <div id="radioset">
-          <label for="input_male">männlich</label><input id="input_male" required type="radio" name="sex" value="m">
-          <label for="input_female">weiblich</label><input id="input_female" required type="radio" name="sex" value="f">
+          <label for="input_male"><?php echo _('männlich'); ?></label><input id="input_male" required type="radio" name="sex" value="m">
+          <label for="input_female"><?php echo _('weiblich'); ?></label><input id="input_female" required type="radio" name="sex" value="f">
         </div>
       </div>
-      <div style="padding: .7em;"><label for="input_weight">Gewichtsklasse: </label>
+      <div style="padding: .7em;"><label for="input_weight"><?php echo _('Gewichtsklasse:'); ?> </label>
       <select name="weight" id="input_weight">
-        <option value="">Wähle zuerst Geburtsjahr und Geschlecht</option>
+        <option value=""><?php echo _('Wähle zuerst Geburtsjahr und Geschlecht'); ?></option>
       </select></div>
-      <div style="padding: .7em;"><label for="input_club">Verein: </label>
+      <div style="padding: .7em;"><label for="input_club"><?php echo _('Verein:'); ?> </label>
       <select name="club" required id="input_club">
-        <option value="">Wähle den Verein des Kämpfers</option>
+        <option value=""><?php echo _('Wähle den Verein des Kämpfers'); ?></option>
 <?php
 foreach( $clubs as $club ){
   echo "        <option value=\"$club\">$club</option>\n";
 }
 ?>
       </select></div>
-      <div style="padding: .7em;"><input name="register" type="submit" value="Anmelden"><span id="loading" style="display:none;"><p><img src="loading.gif" /> Please Wait</p></span></div>
+      <div style="padding: .7em;"><input name="register" type="submit" value="<?php echo _('Anmelden'); ?>"><span id="loading" style="display:none;"><p><img src="loading.gif" /> <?php echo _('please wait'); ?></p></span></div>
 <!--      <div id="test-output" style="padding: .7em;"></div> -->
     </form>
   </div>
-  <h2>Bereits eingegebene Anmeldungen:</h2>
+  <h2><?php echo _('Bereits eingegebene Anmeldungen:'); ?></h2>
   <div>
+    <div id="messageTrainerId" >
+<?php if (count($competitors)>0 && getTrainerId(false)==""){
+  echo '      <div class="ui-widget"><div class="ui-state-error ui-corner-all" style="padding: 0 .7em;"><p><strong>' . _('Hinweis:') . ' </strong>' . _('Um später deine bereits angemeldeten Kämpfer einsehen und bearbeiten zu können solltest du eine Trainer Id (Benutzernamen) anlegen.') . '</p></div></div>';
+}?>
+    </div>
+    <form id="trainerIdForm">
+      <div style="padding: .7em;"><label for="input_trainerId"><?php echo _('Trainer Id:'); ?> </label><input required name="trainerId" id="input_trainerId" type="text" value="<?php echo getTrainerId(false);?>"><input name="postTrainerId" id="input_postTrainerId" type="submit" value="<?php echo _('Anmelden / Registrieren'); ?>" <?php if (getTrainerId(false)!=''){echo 'style="display:none;"';}?>><input name="delTrainerId" id="input_delTrainerId" type="submit" value="<?php echo _('Abmelden'); ?>" <?php if (getTrainerId(false)==''){echo 'style="display:none;"';}?>><span id="loading_trainerId" style="display:none;"><p><img src="loading.gif" /> <?php echo _('please wait'); ?></p></span></div>
+    </form>
   <table id="competitor_table">
-    <tr><th>Name</th><th>Geburtsjahr</th><th>Geschlecht</th><th>Klasse</th><th>Verein</th></tr>
+    <tr><th><?php echo _('Name'); ?></th><th><?php echo _('Geburtsjahr'); ?></th><th><?php echo _('Geschlecht'); ?></th><th><?php echo _('Klasse'); ?></th><th><?php echo _('Verein'); ?></th></tr>
+<?php
+foreach( $competitors as $competitor ){
+  echo "      <tr><td>" . $competitor->firstName . " " . $competitor->lastName . "</td><td>" . $competitor->yearOfBirth . "</td><td>" . $competitor->sex . "</td><td>" . $competitor->category . "</td><td>" . $competitor->club . "</td></tr>\n";
+}
+?>
   </table>
   </div>
 </div>
 <script src="external/jquery/jquery.js"></script>
 <script src="jquery-ui.js"></script>
 <script>
+var yearOfTournament=<?php echo $yearOfTournament;?>;
+var minYearOfBirth=<?php echo $minYearOfBirth;?>;
+var maxYearOfBirth=<?php echo $maxYearOfBirth;?>;
+var categories=<?php echo json_encode($categories);?>;
+var trainerId = '<?php echo(getTrainerId(false)); ?>';
+var competitors = <?php echo json_encode($competitors); ?>
+
 function getFormData($form){
   var unindexed_array = $form.serializeArray();
   var indexed_array = {};
@@ -94,7 +120,7 @@ function getFormData($form){
 
 $('#signUpForm').submit(function(e){ 
   e.preventDefault(); 
-  data =  getFormData($( this ));
+  var data = getFormData($( this ));
   console.log( data );
   $.ajax({
     type: 'POST',
@@ -103,37 +129,125 @@ $('#signUpForm').submit(function(e){
     contentType: "application/json",
     beforeSend: function() { $('#loading').show(); },
     complete: function() { $('#loading').hide(); },
-    success: handleSuccess,
-    error: handleError
+    success: function (data,textStatus,jqXHR){
+      if (jqXHR.status==201){
+        message([ '<?php printf(_('%s wurde erfolgreich angemeldet.'),'<strong>\' + data.firstName + \' \' + data.lastName + \'</strong>');?>' ]);
+        addCompetitorTableEntry(data);
+        competitors.push(data);
+        $('#radioset input').removeAttr('checked');
+        $('#radioset').buttonset('refresh');
+        $('input[name=firstName]').val('');
+        $("input[name=lastName]").val('');
+        updateWeights(null);
+        if (trainerId == ''){
+          message([ '<?php echo '<strong>' . _('Hinweis:') . ' </strong>' . _('Um später deine bereits angemeldeten Kämpfer einsehen und bearbeiten zu können solltest du eine Trainer Id (Benutzernamen) anlegen.')?>' ], 'messageTrainerId', 'error');
+        }
+      } else {
+        message([ <?php echo ('\'<strong>' . _('Fehler:') . ' </strong> \' + data.msg');?>, developerContact() ], 'message', 'error');
+      }
+    },
+    error: function(jqXHR,textStatus,errorThrown) { handleError(jqXHR,textStatus,errorThrown,'messageTrainerId');}
   });
 });
 
-function handleSuccess(data,textStatus,jqXHR){
-  if (jqXHR.status==201){
-    $("#message").html('<div class="ui-widget"><div class="ui-state-highlight ui-corner-all" style="padding: 0 .7em;"><p><strong>' + data.firstName + ' ' + data.lastName + '</strong> wurde erfolgreich angemeldet.</p></div></div>');
-    $("<tr><td>"+data.firstName+" "+data.lastName+"</td><td>"+data.yearOfBirth+"</td><td>"+data.sex+"</td><td>"+data.category+"</td><td>"+data.club+"</td></tr>").appendTo("#competitor_table");
-    $('#radioset input').removeAttr('checked');
-    $('#radioset').buttonset('refresh');
-    $('input[name=firstName]').val('');
-    $("input[name=lastName]").val('');
-    updateWeights(null);
-  } else {
-    $("#message").html('<div class="ui-widget"><div class="ui-state-error ui-corner-all" style="padding: 0 .7em;"><p><strong>Fehler: </strong> ' + data.msg + '</p><p>Kontakt zum Entwickler: Felix von Poblotzki, +4915232787790, xilaew@gmail.com</p></div></div>');
+$('#trainerIdForm').submit(function(e){ 
+  e.preventDefault(); 
+  var data = document.getElementById('input_trainerId').value ;
+  var val = 'GET';
+  if ( trainerId=='' && competitors.length>0 ){
+    val = "POST";
+  } else if(trainerId=='' && competitors.length==0 ){
+    val = "PUT";
+  } else if (trainerId!=''){
+    val = "DELETE";
   }
+  $.ajax({
+    type: val,
+    url: 'rest.php/trainerid',
+    data: JSON.stringify(data),
+    contentType: "application/json",
+    beforeSend: function() { $('#loading_trainerId').show(); },
+    complete: function() { $('#loading_trainerId').hide(); },
+    success: function (data,textStatus,jqXHR){
+      if (val=='POST' && jqXHR.status==201){
+        message([ '<?php printf(_('Du kannst dich ab sofort jederzeit mit der TrainerId %s wieder einloggen und deine Anmeldungen einsehen und bearbeiten.'), '<strong>\' + data.new_sid + \'</strong>' );?>' ], 'messageTrainerId' );
+        trainerId = data.new_sid;
+        document.getElementById('input_trainerId').value = data.new_sid;
+        document.getElementById('input_postTrainerId').style.display="none";
+        document.getElementById('input_delTrainerId').style.display="";
+      } else if (val=='DELETE' && jqXHR.status==204){
+        message([ '<?php echo(_('Du wurdest erfolgreich ausgeloggt.'));?>' ], 'messageTrainerId' );
+        trainerId = '';
+        document.getElementById('input_trainerId').value = '';
+        document.getElementById('input_postTrainerId').style.display="";
+        document.getElementById('input_delTrainerId').style.display="none";
+      } else if (val=='PUT' && jqXHR.status==200){
+        message([ '<?php printf(_('Du wurdest erfolgreich als %s eingeloggt.'),'<strong>\' + data.new_sid + \'</strong>');?>' ], 'messageTrainerId' );
+        trainerId = data.new_sid;
+        document.getElementById('input_trainerId').value = data.new_sid;
+        document.getElementById('input_postTrainerId').style.display="none";
+        document.getElementById('input_delTrainerId').style.display="";
+      } else {
+        handleError(jqXHR,textStatus,'setting Trainer Id: unexpected response.','messageTrainerId');
+        return;
+      }
+      getCompetitors();
+    },
+    error: function(jqXHR,textStatus,errorThrown) { handleError(jqXHR,textStatus,errorThrown,'messageTrainerId');}
+  });
+});
+
+function getCompetitors(){
+  $.ajax({
+    type: 'GET',
+    url: 'rest.php/competitors',
+    contentType: "application/json",
+    beforeSend: function() { $('#loading_trainerId').show(); },
+    complete: function() { $('#loading_trainerId').hide(); },
+    success: function (data,textStatus,jqXHR){
+      var cntnt=document.getElementById('competitor_table');
+      cntnt.getElementsByTagName("tbody")[0].innerHTML = cntnt.rows[0].innerHTML;
+      data.forEach(function (competitor,index){
+        addCompetitorTableEntry(competitor);
+        // $("#test-output").text(function(i,text){return text + index});
+      });
+      competitors=data;
+      if(competitors.length == 0 && trainerId != '' ){
+        message([ <?php printf( '\'' . _('No competitors found with Coach Id %s') . '\'', '<strong>\' + trainerId + \'</strong>')?> ], 'messageTrainerId', 'error', true);
+      }
+    },
+    error: function(jqXHR,textStatus,errorThrown) { handleError(jqXHR,textStatus,errorThrown,'messageTrainerId');}
+  });
+};
+
+function addCompetitorTableEntry(data){
+  $("<tr><td>"+data.firstName+" "+data.lastName+"</td><td>"+data.yearOfBirth+"</td><td>"+data.sex+"</td><td>"+data.category+"</td><td>"+data.club+"</td></tr>").appendTo("#competitor_table");
 }
 
-function handleError(jqXHR,textStatus,errorThrown){
-  $("#message").html('<div class="ui-widget"><div class="ui-state-error ui-corner-all" style="padding: 0 .7em;"><p><strong>Fehler: </strong> etwas ist schief gegangen. textStatus: ' + textStatus + ' errorThrown: ' + errorThrown + ' </p><p>Kontakt zum Entwickler: Felix von Poblotzki, +4915232787790, xilaew@gmail.com</p></p></div></div>');
+function handleError(jqXHR,textStatus,errorThrown,msgFieldId){
+  message([ <?php printf( '\'<strong>' . _('Fehler:') . ' </strong>' . _('Etwas ist schief gegangen. textStatus: %s errorThrown: %s'), '\' + textStatus + \'', '\' + errorThrown')?> ,
+           developerContact() ], msgFieldId, 'error' );
 }
+
+function developerContact(){
+  return '<?php echo _('Kontakt zum Entwickler: Felix von Poblotzki, +4915232787790, xilaew@gmail.com'); ?>'
+};
+
+function message(messages,msgFieldId="message",msgType="highlight",append=false){
+  var html = '<div class="ui-widget"><div class="ui-state-'+msgType+' ui-corner-all" style="padding: 0 .7em;">'
+  messages.forEach(function (m,i) {
+    html += '<p>' + m + '</p>'
+  });
+  html += '</div></div>';
+  if (append){
+    document.getElementById(msgFieldId).insertAdjacentHTML('beforeend', html);
+  } else {
+    document.getElementById(msgFieldId).innerHTML=html;
+  }
+};
 
 var category = "";
-var yearOfTournament=<?php echo $yearOfTournament;?>;
-var minYearOfBirth=<?php echo $minYearOfBirth;?>;
-var maxYearOfBirth=<?php echo $maxYearOfBirth;?>;
-var categories=<?php echo json_encode(sqlite_getCategories($db), JSON_PRETTY_PRINT);?>;
-
-
-var updateWeights = function(e) {
+function updateWeights(e) {
   var newcategory="";
   var weights=null;
   var sex = $('input[name=sex]:checked').val();
@@ -203,6 +317,16 @@ $( "#input_yearOfBirth" ).spinner({
   stop: function( event, ui ) {updateWeights(event);},
   min:minYearOfBirth,
   max:maxYearOfBirth
+  });
+$( "#trainerIdForm input:submit" ).button();
+$('#trainerIdForm input:text, #signUpForm input:password')
+  .button()
+  .css({
+          'font' : 'inherit',
+         'color' : 'inherit',
+    'text-align' : 'left',
+       'outline' : 'none',
+        'cursor' : 'text',
   });
 </script></body>
 </html>
