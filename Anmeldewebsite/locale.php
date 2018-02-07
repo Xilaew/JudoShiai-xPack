@@ -1,20 +1,20 @@
 <?php
 // use sessions
-#session_start();
+session_start();
 
 // get language preference
-#if (isset($_GET["lang"])) {
-#    $language = $_GET["lang"];
-#}
-#else if (isset($_SESSION["lang"])) {
-#    $language  = $_SESSION["lang"];
-#}
-#else {
-    $language = "de_DE";
-#}
+if (isset($_GET["lang"])) {
+    $language = $_GET["lang"];
+}
+else if (isset($_SESSION["lang"])) {
+    $language = $_SESSION["lang"];
+}
+else {
+   $language = $defaultLocale;
+}
 
 // save language preference for future page requests
-#$_SESSION["Language"]  = $language;
+$_SESSION["lang"]  = $language;
 
 $folder = "locale";
 $domain = "messages";

@@ -19,140 +19,146 @@ msgstr ""
 
 #: index.php:20 index.php:49
 msgid "Anmeldung:"
-msgstr "Registration:"
+msgstr ""
 
 #: index.php:53
 msgid "Vorname:"
-msgstr "first name:"
+msgstr ""
 
 #: index.php:54
 msgid "Nachname:"
-msgstr "last name:"
+msgstr ""
 
 #: index.php:56
 msgid "Geburtsjahr:"
-msgstr "year of birth:"
+msgstr ""
 
 #: index.php:59
 msgid "Geschlecht:"
-msgstr "sex:"
+msgstr ""
 
 #: index.php:61
 msgid "männlich"
-msgstr "male"
+msgstr ""
 
 #: index.php:62
 msgid "weiblich"
-msgstr "female"
+msgstr ""
 
 #: index.php:65
 msgid "Gewichtsklasse:"
-msgstr "weight category:"
+msgstr ""
 
 #: index.php:67 index.php:282
 msgid "Wähle zuerst Geburtsjahr und Geschlecht"
-msgstr "Select year of birth and sex first"
+msgstr ""
 
 #: index.php:69
 msgid "Verein:"
-msgstr "club:"
+msgstr ""
 
 #: index.php:71
 msgid "Wähle den Verein des Kämpfers"
-msgstr "Choose the competitors club"
+msgstr ""
 
 #: index.php:78
 msgid "Anmelden"
-msgstr "Register"
+msgstr ""
 
 #: index.php:78 index.php:90
 msgid "Bitte Warten..."
-msgstr "please wait..."
+msgstr ""
 
 #: index.php:82
 msgid "Bereits eingegebene Anmeldungen:"
-msgstr "Already registered competitors:"
+msgstr ""
 
 #: index.php:86 index.php:143
 msgid "Hinweis:"
-msgstr "Hint:"
+msgstr ""
 
 #: index.php:86 index.php:143
 msgid ""
 "Um später deine bereits angemeldeten Kämpfer einsehen und bearbeiten zu "
 "können solltest du eine Trainer Id (Benutzernamen) anlegen."
-msgstr "In order to view and modify the entered competitors later on you should create a Coach Id (username)."
+msgstr ""
 
 #: index.php:90
 msgid "Trainer Id:"
-msgstr "Coach Id:"
+msgstr ""
 
 #: index.php:90
 msgid "Anmelden / Registrieren"
-msgstr "Sign in / Register"
+msgstr ""
 
 #: index.php:90
 msgid "Abmelden"
-msgstr "Sign out"
+msgstr ""
 
 #: index.php:93
 msgid "Name"
-msgstr "name"
+msgstr ""
 
 #: index.php:93
 msgid "Geburtsjahr"
-msgstr "year of birth"
+msgstr ""
 
 #: index.php:93
 msgid "Geschlecht"
-msgstr "sex"
+msgstr ""
 
 #: index.php:93
 msgid "Klasse"
-msgstr "category"
+msgstr ""
 
 #: index.php:93
 msgid "Verein"
-msgstr "club"
+msgstr ""
 
 #: index.php:134
 #, php-format
 msgid "%s wurde erfolgreich angemeldet."
-msgstr "successfully registered %s."
+msgstr ""
 
 #: index.php:146 index.php:228
 #, php-format
 msgid "Fehler:"
-msgstr "Error:"
+msgstr ""
 
 #: index.php:173
 #, php-format
 msgid ""
 "Du kannst dich ab sofort jederzeit mit der TrainerId %s wieder einloggen und "
 "deine Anmeldungen einsehen und bearbeiten."
-msgstr "From now on you can sign in with your Coach Id %s and view/edit your competitors"
+msgstr ""
 
 #: index.php:179
 msgid "Du wurdest erfolgreich ausgeloggt."
-msgstr "You have been signed out successfully."
+msgstr ""
 
 #: index.php:185
 #, php-format
 msgid "Du wurdest erfolgreich als %s eingeloggt."
-msgstr "You have been signed in as %s successfully."
+msgstr ""
 
 #: index.php:216
 #, php-format
 msgid "Mit der Trainer Id %s wurden keine Kämpfer gefunden."
-msgstr "No competitors found for Coach Id %s"
+msgstr ""
 
 #: index.php:228
 #, php-format
 msgid "Etwas ist schief gegangen. textStatus: %s errorThrown: %s"
-msgstr "Something went wrong. textStatus: %s errorThrown: %s"
+msgstr ""
 
 #: index.php:233
 msgid ""
 "Kontakt zum Entwickler: Felix von Poblotzki, +4915232787790, xilaew@gmail.com"
-msgstr "Developer contact details: Felix von Poblotzki, +4915232787790, xilaew@gmail.com"
+msgstr ""
 
+#: rest.php:178 rest.php:193
+#, php-format
+msgid ""
+"\"%s\" is not a valid trainerid. A trainerid should consist of at least two "
+"characters out of [A-Za-z0-9]"
+msgstr ""
