@@ -281,7 +281,7 @@ function updateWeights(e) {
     if (weights == null){
       $("<option/>").text("<?php echo(_("Wähle zuerst Geburtsjahr und Geschlecht"));?>").appendTo("#input_weight");
     } else {
-      $("<option/>").val("").text("Bitte wähle eine Gewichtsklasse").appendTo("#input_weight");
+      $("<option/>").val("").text("<?php echo(_("Bitte wähle eine Gewichtsklasse"));?>").appendTo("#input_weight");
       weightTexts.forEach(function (item,index) {
         $("<option/>").val(weights[index]).text(item).appendTo("#input_weight");
       })

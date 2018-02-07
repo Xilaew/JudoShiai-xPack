@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-07 23:09+0100\n"
+"POT-Creation-Date: 2018-02-07 23:58+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -156,9 +156,6 @@ msgid ""
 "Kontakt zum Entwickler: Felix von Poblotzki, +4915232787790, xilaew@gmail.com"
 msgstr ""
 
-#: rest.php:178 rest.php:193
-#, php-format
-msgid ""
-"\"%s\" is not a valid trainerid. A trainerid should consist of at least two "
-"characters out of [A-Za-z0-9]"
+#: index.php:284
+msgid "Bitte wähle eine Gewichtsklasse"
 msgstr ""
