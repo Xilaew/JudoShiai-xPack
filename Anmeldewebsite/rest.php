@@ -43,8 +43,8 @@ function get($request) {
     case 'competitors':
       get_competitors();
       break;
-    case 'trainerid':
-      get_trainerid();
+    case 'coachid':
+      get_coachid();
       break;
     default:
       http_response_code(404);
@@ -57,8 +57,8 @@ function post($request,$input) {
     case 'competitors':
       post_competitors($input);
       break;
-    case 'trainerid':
-      post_trainerid($input);
+    case 'coachid':
+      post_coachid($input);
       break;
     default:
       http_response_code(404);
@@ -68,8 +68,8 @@ function post($request,$input) {
 function put($request,$input) {
   $table = preg_replace('/[^a-z0-9_]+/i','',array_shift($request));
   switch ($table) {
-    case 'trainerid':
-      put_trainerid($input);
+    case 'coachid':
+      put_coachid($input);
       break;
     default:
       http_response_code(404);
@@ -79,8 +79,8 @@ function put($request,$input) {
 function _delete($request,$input) {
   $table = preg_replace('/[^a-z0-9_]+/i','',array_shift($request));
   switch ($table) {
-    case 'trainerid':
-      delete_trainerid();
+    case 'coachid':
+      delete_coachid();
       break;
     default:
       http_response_code(404);
@@ -113,23 +113,23 @@ function get_competitors(){
   global $judoShiaiTemplateFile;
   global $dataCsv;
   // $db = new SQLite3($judoShiaiTemplateFile);
-  // if (isset($_SESSION['trainerid']) && trim($_SESSION['trainerid'])!="" ){
-    // echo json_encode(sqlite_getCompetitors(new SQLite3($judoShiaiTemplateFile),trim($_SESSION['trainerid'])));
+  // if (isset($_SESSION['coachid']) && trim($_SESSION['coachid'])!="" ){
+    // echo json_encode(sqlite_getCompetitors(new SQLite3($judoShiaiTemplateFile),trim($_SESSION['coachid'])));
   // } else {
     // echo json_encode(sqlite_getCompetitors(new SQLite3($judoShiaiTemplateFile),session_id()));
   // }
   // $db->close();
   $fp=fopen($dataCsv,'r') or die("Unable to open file!");
-  if (isset($_SESSION['trainerid']) && trim($_SESSION['trainerid'])!="" ){
-    echo json_encode(csv_getCompetitors($fp,trim($_SESSION['trainerid'])));
+  if (isset($_SESSION['coachid']) && trim($_SESSION['coachid'])!="" ){
+    echo json_encode(csv_getCompetitors($fp,trim($_SESSION['coachid'])));
   } else {
     echo json_encode(csv_getCompetitors($fp,session_id()));
   }
   fclose($fp);
 }
 
-function get_trainerid(){
-  echo json_encode(getTrainerId(false));
+function get_coachid(){
+  echo json_encode(getCoachId(false));
 }
 
 function post_competitors($input){
@@ -139,12 +139,12 @@ function post_competitors($input){
   $db = new SQLite3($judoShiaiTemplateFile);
   $categories=sqlite_getCategories($db);
   $db->close();
-  $trainerid=getTrainerId(true);
+  $coachid=getCoachId(true);
   if (!$input){
     http_response_code(400);
     $msg="Input could not be parsed as JSON.";
   } elseif ( is_object($input) ) {
-    $result = csv_addCompetitor($input,$fp,$categories,$trainerid);
+    $result = csv_addCompetitor($input,$fp,$categories,$coachid);
     if ($result->msg) {
       http_response_code(200);
     } else {
@@ -153,7 +153,7 @@ function post_competitors($input){
     }
   } elseif ( is_array($input) ) {
     foreach( $input as $competitor ){
-      csv_addCompetitor($competitor,$fp,$categories,$trainerid);
+      csv_addCompetitor($competitor,$fp,$categories,$coachid);
     }
   } else {
     http_response_code(400);
@@ -166,33 +166,33 @@ function post_competitors($input){
   echo json_encode($result);
 }
 
-function post_trainerid($input){
+function post_coachid($input){
   $result = new \stdClass;
   global $dataCsv;
-  $sid_old=getTrainerId(true);
+  $sid_old=getCoachId(true);
   $sid_new=trim($input);
   $result->new_sid=$sid_new;
   $result->old_sid=$sid_old;
   if ($sid_new=='' || !preg_match('/[A-Za-z0-9]+/',$sid_new)){
     http_response_code(200);
-    $result->msg=sprintf( _('"%s" is not a valid trainerid. A trainerid should consist of at least two characters out of [A-Za-z0-9]'),$sid_new);
+    $result->msg=sprintf( _('"%s" is not a valid Coach Id. A Coach Id should consist of at least two characters out of [A-Za-z0-9]'),$sid_new);
   } else {
     http_response_code(201);
     csv_updateCompetitorsSid($dataCsv, $sid_old,$sid_new);
-    $_SESSION["trainerid"]=$sid_new;
+    $_SESSION["coachid"]=$sid_new;
   }
   echo json_encode($result);
 }
 
-function put_trainerid($input){
+function put_coachid($input){
   $result = new \stdClass;
   $sid_new=trim($input);
-  $sid_old=getTrainerId(true);
+  $sid_old=getCoachId(true);
   if ($sid_new=='' || !preg_match('/[A-Za-z0-9]+/',$sid_new)){
     http_response_code(200);
-    $result->msg=sprintf( _('"%s" is not a valid trainerid. A trainerid should consist of at least two characters out of [A-Za-z0-9]'),$sid_new);
+    $result->msg=sprintf( _('"%s" is not a valid Coach Id. A Coach Id should consist of at least two characters out of [A-Za-z0-9]'),$sid_new);
   } else {
-    $_SESSION["trainerid"]=$sid_new;
+    $_SESSION["coachid"]=$sid_new;
     $result->new_sid=$sid_new;
     $result->old_sid=$sid_old;
     http_response_code(200);
@@ -200,8 +200,8 @@ function put_trainerid($input){
   echo json_encode($result);
 }
 
-function delete_trainerid(){
-  unset($_SESSION["trainerid"]);
+function delete_coachid(){
+  unset($_SESSION["coachid"]);
   http_response_code(204);
 }
 

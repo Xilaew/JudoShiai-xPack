@@ -10,7 +10,7 @@ $fp=fopen($clubsTxt, "r");
 $clubs=csv_getClubs($fp);
 fclose($fp);
 $fp=fopen($dataCsv, "r");
-$competitors=csv_getCompetitors($fp, getTrainerId(true));
+$competitors=csv_getCompetitors($fp, getCoachId(true));
 fclose($fp);
 ?><!DOCTYPE html>
 <html>
@@ -81,13 +81,13 @@ foreach( $clubs as $club ){
   </div>
   <h2><?php echo(_('Bereits eingegebene Anmeldungen:'));?></h2>
   <div>
-    <div id="messageTrainerId" >
-<?php if (count($competitors)>0 && getTrainerId(false)==""){
+    <div id="messageCoachId" >
+<?php if (count($competitors)>0 && getCoachId(false)==""){
   echo('      <div class="ui-widget"><div class="ui-state-error ui-corner-all" style="padding: 0 .7em;"><p><strong>' . _('Hinweis:') . ' </strong>' . _('Um später deine bereits angemeldeten Kämpfer einsehen und bearbeiten zu können solltest du eine Trainer Id (Benutzernamen) anlegen.') . '</p></div></div>');
 }?>
     </div>
-    <form id="trainerIdForm">
-      <div style="padding: .7em;"><label for="input_trainerId"><?php echo(_('Trainer Id:'));?> </label><input required name="trainerId" id="input_trainerId" type="text" value="<?php echo(getTrainerId(false));?>"><input name="postTrainerId" id="input_postTrainerId" type="submit" value="<?php echo(_('Anmelden / Registrieren')); ?>" <?php if (getTrainerId(false)!=''){echo('style="display:none;"');}?>><input name="delTrainerId" id="input_delTrainerId" type="submit" value="<?php echo(_('Abmelden'));?>" <?php if (getTrainerId(false)==''){echo('style="display:none;"');}?>><span id="loading_trainerId" style="display:none;"><p><img src="loading.gif" /> <?php echo(_('Bitte Warten...'));?></p></span></div>
+    <form id="coachIdForm">
+      <div style="padding: .7em;"><label for="input_coachId"><?php echo(_('Trainer Id:'));?> </label><input required name="coachId" id="input_coachId" type="text" value="<?php echo(getCoachId(false));?>"><input name="postCoachId" id="input_postCoachId" type="submit" value="<?php echo(_('Anmelden / Registrieren')); ?>" <?php if (getCoachId(false)!=''){echo('style="display:none;"');}?>><input name="delCoachId" id="input_delCoachId" type="submit" value="<?php echo(_('Abmelden'));?>" <?php if (getCoachId(false)==''){echo('style="display:none;"');}?>><span id="loading_coachId" style="display:none;"><p><img src="loading.gif" /> <?php echo(_('Bitte Warten...'));?></p></span></div>
     </form>
   <table id="competitor_table">
     <tr><th><?php echo(_('Name'));?></th><th><?php echo(_('Geburtsjahr'));?></th><th><?php echo(_('Geschlecht'));?></th><th><?php echo(_('Klasse'));?></th><th><?php echo(_('Verein'));?></th></tr>
@@ -106,7 +106,7 @@ var yearOfTournament=<?php echo($yearOfTournament);?>;
 var minYearOfBirth=<?php echo($minYearOfBirth);?>;
 var maxYearOfBirth=<?php echo($maxYearOfBirth);?>;
 var categories=<?php echo(json_encode($categories));?>;
-var trainerId = '<?php echo(getTrainerId(false)); ?>';
+var coachId = '<?php echo(getCoachId(false)); ?>';
 var competitors = <?php echo(json_encode($competitors)); ?>
 
 function getFormData($form){
@@ -139,61 +139,61 @@ $('#signUpForm').submit(function(e){
         $('input[name=firstName]').val('');
         $("input[name=lastName]").val('');
         updateWeights(null);
-        if (trainerId == ''){
-          message([ '<?php echo('<strong>' . _('Hinweis:') . ' </strong>' . _('Um später deine bereits angemeldeten Kämpfer einsehen und bearbeiten zu können solltest du eine Trainer Id (Benutzernamen) anlegen.'));?>' ], 'messageTrainerId', 'error');
+        if (coachId == ''){
+          message([ '<?php echo('<strong>' . _('Hinweis:') . ' </strong>' . _('Um später deine bereits angemeldeten Kämpfer einsehen und bearbeiten zu können solltest du eine Trainer Id (Benutzernamen) anlegen.'));?>' ], 'messageCoachId', 'error');
         }
       } else {
         message([ <?php echo('\'<strong>' . _('Fehler:') . ' </strong> \' + data.msg');?>, developerContact() ], 'message', 'error');
       }
     },
-    error: function(jqXHR,textStatus,errorThrown) { handleError(jqXHR,textStatus,errorThrown,'messageTrainerId');}
+    error: function(jqXHR,textStatus,errorThrown) { handleError(jqXHR,textStatus,errorThrown,'messageCoachId');}
   });
 });
 
-$('#trainerIdForm').submit(function(e){ 
+$('#coachIdForm').submit(function(e){ 
   e.preventDefault(); 
-  var data = document.getElementById('input_trainerId').value ;
+  var data = document.getElementById('input_coachId').value ;
   var val = 'GET';
-  if ( trainerId=='' && competitors.length>0 ){
+  if ( coachId=='' && competitors.length>0 ){
     val = "POST";
-  } else if(trainerId=='' && competitors.length==0 ){
+  } else if(coachId=='' && competitors.length==0 ){
     val = "PUT";
-  } else if (trainerId!=''){
+  } else if (coachId!=''){
     val = "DELETE";
   }
   $.ajax({
     type: val,
-    url: 'rest.php/trainerid',
+    url: 'rest.php/coachid',
     data: JSON.stringify(data),
     contentType: "application/json",
-    beforeSend: function() { $('#loading_trainerId').show(); },
-    complete: function() { $('#loading_trainerId').hide(); },
+    beforeSend: function() { $('#loading_coachId').show(); },
+    complete: function() { $('#loading_coachId').hide(); },
     success: function (data,textStatus,jqXHR){
       if (val=='POST' && jqXHR.status==201){
-        message([ '<?php printf(_('Du kannst dich ab sofort jederzeit mit der TrainerId %s wieder einloggen und deine Anmeldungen einsehen und bearbeiten.'), '<strong>\' + data.new_sid + \'</strong>' );?>' ], 'messageTrainerId' );
-        trainerId = data.new_sid;
-        document.getElementById('input_trainerId').value = data.new_sid;
-        document.getElementById('input_postTrainerId').style.display="none";
-        document.getElementById('input_delTrainerId').style.display="";
+        message([ '<?php printf(_('Du kannst dich ab sofort jederzeit mit der CoachId %s wieder einloggen und deine Anmeldungen einsehen und bearbeiten.'), '<strong>\' + data.new_sid + \'</strong>' );?>' ], 'messageCoachId' );
+        coachId = data.new_sid;
+        document.getElementById('input_coachId').value = data.new_sid;
+        document.getElementById('input_postCoachId').style.display="none";
+        document.getElementById('input_delCoachId').style.display="";
       } else if (val=='DELETE' && jqXHR.status==204){
-        message([ '<?php echo(_('Du wurdest erfolgreich ausgeloggt.'));?>' ], 'messageTrainerId' );
-        trainerId = '';
-        document.getElementById('input_trainerId').value = '';
-        document.getElementById('input_postTrainerId').style.display="";
-        document.getElementById('input_delTrainerId').style.display="none";
+        message([ '<?php echo(_('Du wurdest erfolgreich ausgeloggt.'));?>' ], 'messageCoachId' );
+        coachId = '';
+        document.getElementById('input_coachId').value = '';
+        document.getElementById('input_postCoachId').style.display="";
+        document.getElementById('input_delCoachId').style.display="none";
       } else if (val=='PUT' && jqXHR.status==200){
-        message([ '<?php printf(_('Du wurdest erfolgreich als %s eingeloggt.'),'<strong>\' + data.new_sid + \'</strong>');?>' ], 'messageTrainerId' );
-        trainerId = data.new_sid;
-        document.getElementById('input_trainerId').value = data.new_sid;
-        document.getElementById('input_postTrainerId').style.display="none";
-        document.getElementById('input_delTrainerId').style.display="";
+        message([ '<?php printf(_('Du wurdest erfolgreich als %s eingeloggt.'),'<strong>\' + data.new_sid + \'</strong>');?>' ], 'messageCoachId' );
+        coachId = data.new_sid;
+        document.getElementById('input_coachId').value = data.new_sid;
+        document.getElementById('input_postCoachId').style.display="none";
+        document.getElementById('input_delCoachId').style.display="";
       } else {
-        handleError(jqXHR,textStatus,'setting Trainer Id: unexpected response.','messageTrainerId');
+        handleError(jqXHR,textStatus,'setting Trainer Id: unexpected response.','messageCoachId');
         return;
       }
       getCompetitors();
     },
-    error: function(jqXHR,textStatus,errorThrown) { handleError(jqXHR,textStatus,errorThrown,'messageTrainerId');}
+    error: function(jqXHR,textStatus,errorThrown) { handleError(jqXHR,textStatus,errorThrown,'messageCoachId');}
   });
 });
 
@@ -202,8 +202,8 @@ function getCompetitors(){
     type: 'GET',
     url: 'rest.php/competitors',
     contentType: "application/json",
-    beforeSend: function() { $('#loading_trainerId').show(); },
-    complete: function() { $('#loading_trainerId').hide(); },
+    beforeSend: function() { $('#loading_coachId').show(); },
+    complete: function() { $('#loading_coachId').hide(); },
     success: function (data,textStatus,jqXHR){
       var cntnt=document.getElementById('competitor_table');
       cntnt.getElementsByTagName("tbody")[0].innerHTML = cntnt.rows[0].innerHTML;
@@ -212,11 +212,11 @@ function getCompetitors(){
         // $("#test-output").text(function(i,text){return text + index});
       });
       competitors=data;
-      if(competitors.length == 0 && trainerId != '' ){
-        message([ <?php printf( '\'' . _('Mit der Trainer Id %s wurden keine Kämpfer gefunden.') . '\'', '<strong>\' + trainerId + \'</strong>');?> ], 'messageTrainerId', 'error', true);
+      if(competitors.length == 0 && coachId != '' ){
+        message([ "<?php printf( _('Mit der Trainer Id %s wurden keine Kämpfer gefunden.'), '<strong>" + coachId + "</strong>');?>" ], 'messageCoachId', 'error', true);
       }
     },
-    error: function(jqXHR,textStatus,errorThrown) { handleError(jqXHR,textStatus,errorThrown,'messageTrainerId');}
+    error: function(jqXHR,textStatus,errorThrown) { handleError(jqXHR,textStatus,errorThrown,'messageCoachId');}
   });
 };
 
@@ -225,12 +225,12 @@ function addCompetitorTableEntry(data){
 }
 
 function handleError(jqXHR,textStatus,errorThrown,msgFieldId){
-  message([ <?php printf( '\'<strong>' . _('Fehler:') . ' </strong>' . _('Etwas ist schief gegangen. textStatus: %s errorThrown: %s'), '\' + textStatus + \'', '\' + errorThrown');?> ,
+  message([ "<?php printf( '<strong>' . _('Fehler:') . ' </strong>' . _('Etwas ist schief gegangen. textStatus: %s errorThrown: %s'), '" + textStatus + "', '" + errorThrown + "' );?>" ,
            developerContact() ], msgFieldId, 'error' );
 }
 
 function developerContact(){
-  return '<?php echo(_('Kontakt zum Entwickler: Felix von Poblotzki, +4915232787790, xilaew@gmail.com'));?>'
+  return "<?php echo(_('Kontakt zum Entwickler: Felix von Poblotzki, +4915232787790, xilaew@gmail.com'));?>"
 };
 
 function message(messages,msgFieldId="message",msgType="highlight",append=false){
@@ -318,8 +318,8 @@ $( "#input_yearOfBirth" ).spinner({
   min:minYearOfBirth,
   max:maxYearOfBirth
   });
-$( "#trainerIdForm input:submit" ).button();
-$('#trainerIdForm input:text, #signUpForm input:password')
+$( "#coachIdForm input:submit" ).button();
+$('#coachIdForm input:text, #signUpForm input:password')
   .button()
   .css({
           'font' : 'inherit',

@@ -40,9 +40,9 @@ function sqlite_getCategories ($db) {
   return $result;
 }
 
-function sqlite_getCompetitors ($db, $trainerid) {
+function sqlite_getCompetitors ($db, $coachid) {
   $results = array();
-  $indices=array("firstName","lastName","yearOfBirth","sex","weight","category","club","trainerid");
+  $indices=array("firstName","lastName","yearOfBirth","sex","weight","category","club","coachid");
   $queryResults = $db->query("SELECT first, last, birthyear, deleted, weight, regcategory, club, coachid FROM competitors");
   while ($row = $queryResults->fetchArray(SQLITE3_NUM)) {
     $competitor=new \stdClass;
@@ -63,46 +63,46 @@ function csv_getClubs($fp){
   return $result;
 }
 
-function csv_getCompetitors($fp, $trainerid){
+function csv_getCompetitors($fp, $coachid){
   $result=array();
-  $indices=array("firstName","lastName","yearOfBirth","sex","weight","category","club","trainerid");
+  $indices=array("firstName","lastName","yearOfBirth","sex","weight","category","club","coachid");
   while (($line = fgetcsv($fp)) !== false) {
     $competitor=new \stdClass;
     foreach($line as $k => $content){
       $key=$indices[$k];
       $competitor->$key=$content;
     }
-    if($competitor->trainerid == $trainerid){
+    if($competitor->coachid == $coachid){
       $result[]=$competitor;
     }
   }
   return $result;
 }
 
-function csv_addCompetitor($competitor,$fp,$categories,$trainerid) {
+function csv_addCompetitor($competitor,$fp,$categories,$coachid) {
   global $maxYearOfBirth;
   global $minYearOfBirth;
-  $indices=array("firstName","lastName","yearOfBirth","sex","weight","category","club","trainerid");
+  $indices=array("firstName","lastName","yearOfBirth","sex","weight","category","club","coachid");
   $result= new \stdClass;
   if ($competitor->lastName=="" and $competitor->firstName=="" ) {
-    $result->msg="Please enter a name!";
+    $result->msg=_("Please enter a name!");
   } elseif ($competitor->club=="" ) {
-    $result->msg="Please enter a valid club!";
+    $result->msg=_("Please enter a valid club!");
   } elseif ($competitor->sex!="m" and $competitor->sex!="f" ) {
-    $result->msg="Transgenders not allowed!";
+    $result->msg=_("Please enter the competitors Sex!");
   }elseif ($competitor->yearOfBirth>$maxYearOfBirth or $competitor->yearOfBirth<$minYearOfBirth ) {
-    $result->msg="Year Of Birth must be between $minYearOfBirth and $maxYearOfBirth";
+    $result->msg=sprintf(_("Year of birth must be between %d and %d!"),$minYearOfBirth,$maxYearOfBirth);
   } else {
     $competitor->category=map_category($competitor->sex,$competitor->yearOfBirth,$competitor->weight,$categories);
-    $competitor->trainerid=$trainerid;
+    $competitor->coachid=$coachid;
     $line=array();
     foreach ($indices as $key){
       $line[]=$competitor->$key;
       $result->$key=$competitor->$key;
     }
     if (!fputcsv($fp,$line)) {
-      $result->msg="Not saved due to internal error!";
-    } 
+      $result->msg=_("Not saved due to internal error!");
+    }
   }
   return $result;
 }
@@ -159,10 +159,10 @@ function map_category ($sex, $yearOfBirth, $weight, $categories ) {
   return $result;
 }
 
-function getTrainerId($sid_ok){
+function getCoachId($sid_ok){
   $result="";
-  if (isset($_SESSION['trainerid']) && trim($_SESSION['trainerid'])!="" ){
-    $result=trim($_SESSION['trainerid']);
+  if (isset($_SESSION['coachid']) && trim($_SESSION['coachid'])!="" ){
+    $result=trim($_SESSION['coachid']);
   } elseif ($sid_ok) {
     $result=session_id();
   }
