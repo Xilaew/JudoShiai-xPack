@@ -17,7 +17,7 @@ fclose($fp);
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title><?php echo(_('Anmeldung:') . ' ' . $info->Competition);?></title>
+  <title><?php echo($info->Competition);?></title>
   <link href="jquery-ui.min.css" rel="stylesheet">
   <style>
 #competitor_table {
@@ -45,52 +45,53 @@ fclose($fp);
   </style>
 </head>
 <body>
+<h1><?php echo($info->Competition);?></h1>
 <div id="accordion">
-  <h2><?php echo(_('Anmeldung:') . ' ' . $info->Competition);?></h2>
+  <h2><?php echo(_("Register new competitors:"));?></h2>
   <div>
     <div id="message" ></div>
     <form action="index.php" method="post" id="signUpForm">
-      <div style="padding: .7em;"><label for="input_firstName"><?php echo(_('Vorname:'));?> </label><input required name="firstName" id="input_fistName" type="text"></div>
-      <div style="padding: .7em;"><label for="input_lastName"><?php echo(_('Nachname:'));?> </label><input required name="lastName" id="input_lastName" type="text"></div>
+      <div style="padding: .7em;"><label for="input_firstName"><?php echo(_("First Name"));?> </label><input required name="firstName" id="input_fistName" type="text"></div>
+      <div style="padding: .7em;"><label for="input_lastName"><?php echo(_("Last Name"));?> </label><input required name="lastName" id="input_lastName" type="text"></div>
       <div style="padding: .7em;">
-        <label for="input_yearOfBirth"><?php echo(_('Geburtsjahr:'));?> </label><input name="yearOfBirth" id="input_yearOfBirth" type="number" required readonly value="2005">
+        <label for="input_yearOfBirth"><?php echo(_("Year of birth"));?> </label><input name="yearOfBirth" id="input_yearOfBirth" type="number" required readonly value="2005">
         <span style="margin-left:1em;" id="labelAgeCat"></span>
       </div>
-      <div style="padding: .7em;"><?php echo(_('Geschlecht:'));?> 
+      <div style="padding: .7em;"><?php echo(_("Sex"));?> 
         <div id="radioset">
-          <label for="input_male"><?php echo(_('männlich'));?></label><input id="input_male" required type="radio" name="sex" value="m">
-          <label for="input_female"><?php echo(_('weiblich'));?></label><input id="input_female" required type="radio" name="sex" value="f">
+          <label for="input_male"><?php echo(_("male"));?></label><input id="input_male" required type="radio" name="sex" value="m">
+          <label for="input_female"><?php echo(_("female"));?></label><input id="input_female" required type="radio" name="sex" value="f">
         </div>
       </div>
-      <div style="padding: .7em;"><label for="input_weight"><?php echo(_('Gewichtsklasse:'));?> </label>
+      <div style="padding: .7em;"><label for="input_weight"><?php echo(_("Weight Category"));?> </label>
       <select name="weight" id="input_weight">
-        <option value=""><?php echo(_('Wähle zuerst Geburtsjahr und Geschlecht'));?></option>
+        <option value=""><?php echo(_("Select year of birth and sex first."));?></option>
       </select></div>
-      <div style="padding: .7em;"><label for="input_club"><?php echo(_('Verein:'));?> </label>
+      <div style="padding: .7em;"><label for="input_club"><?php echo(_("Club"));?> </label>
       <select name="club" required id="input_club">
-        <option value=""><?php echo(_('Wähle den Verein des Kämpfers'));?></option>
+        <option value=""><?php echo(_("Choose the competitor's club."));?></option>
 <?php
 foreach( $clubs as $club ){
   echo("        <option value=\"$club\">$club</option>\n");
 }
 ?>
       </select></div>
-      <div style="padding: .7em;"><input name="register" type="submit" value="<?php echo(_('Anmelden'));?>"><span id="loading" style="display:none;"><p><img src="loading.gif" /> <?php echo(_('Bitte Warten...'));?></p></span></div>
+      <div style="padding: .7em;"><input name="register" type="submit" value="<?php echo(_('Register Competitor'));?>"><span id="loading" style="display:none;"><p><img src="loading.gif" /> <?php echo(_('please wait...'));?></p></span></div>
 <!--      <div id="test-output" style="padding: .7em;"></div> -->
     </form>
   </div>
-  <h2><?php echo(_('Bereits eingegebene Anmeldungen:'));?></h2>
+  <h2><?php echo(_("Already registered competitors:"));?></h2>
   <div>
     <div id="messageCoachId" >
 <?php if (count($competitors)>0 && getCoachId(false)==""){
-  echo('      <div class="ui-widget"><div class="ui-state-error ui-corner-all" style="padding: 0 .7em;"><p><strong>' . _('Hinweis:') . ' </strong>' . _('Um später deine bereits angemeldeten Kämpfer einsehen und bearbeiten zu können solltest du eine Trainer Id (Benutzernamen) anlegen.') . '</p></div></div>');
+  echo('      <div class="ui-widget"><div class="ui-state-error ui-corner-all" style="padding: 0 .7em;"><p><strong>' . _('Hint:') . ' </strong>' . _('In order to view and modify the entered competitors later on you should create a Coach Id (username).') . '</p></div></div>');
 }?>
     </div>
     <form id="coachIdForm">
-      <div style="padding: .7em;"><label for="input_coachId"><?php echo(_('Trainer Id:'));?> </label><input required name="coachId" id="input_coachId" type="text" value="<?php echo(getCoachId(false));?>"><input name="postCoachId" id="input_postCoachId" type="submit" value="<?php echo(_('Anmelden / Registrieren')); ?>" <?php if (getCoachId(false)!=''){echo('style="display:none;"');}?>><input name="delCoachId" id="input_delCoachId" type="submit" value="<?php echo(_('Abmelden'));?>" <?php if (getCoachId(false)==''){echo('style="display:none;"');}?>><span id="loading_coachId" style="display:none;"><p><img src="loading.gif" /> <?php echo(_('Bitte Warten...'));?></p></span></div>
+      <div style="padding: .7em;"><label for="input_coachId"><?php echo(_('Coach Id'));?> </label><input required name="coachId" id="input_coachId" type="text" value="<?php echo(getCoachId(false));?>"><input name="postCoachId" id="input_postCoachId" type="submit" value="<?php echo(_("Log-in / Register")); ?>" <?php if (getCoachId(false)!=''){echo('style="display:none;"');}?>><input name="delCoachId" id="input_delCoachId" type="submit" value="<?php echo(_('Log-out'));?>" <?php if (getCoachId(false)==''){echo('style="display:none;"');}?>><span id="loading_coachId" style="display:none;"><p><img src="loading.gif" /> <?php echo(_('please wait...'));?></p></span></div>
     </form>
   <table id="competitor_table">
-    <tr><th><?php echo(_('Name'));?></th><th><?php echo(_('Geburtsjahr'));?></th><th><?php echo(_('Geschlecht'));?></th><th><?php echo(_('Klasse'));?></th><th><?php echo(_('Verein'));?></th></tr>
+    <tr><th><?php echo(_("Name"));?></th><th><?php echo(_("Year of birth"));?></th><th><?php echo(_("Sex"));?></th><th><?php echo(_("Category"));?></th><th><?php echo(_("Club"));?></th></tr>
 <?php
 foreach( $competitors as $competitor ){
   echo("      <tr><td>" . $competitor->firstName . " " . $competitor->lastName . "</td><td>" . $competitor->yearOfBirth . "</td><td>" . $competitor->sex . "</td><td>" . $competitor->category . "</td><td>" . $competitor->club . "</td></tr>\n");
@@ -131,7 +132,7 @@ $('#signUpForm').submit(function(e){
     complete: function() { $('#loading').hide(); },
     success: function (data,textStatus,jqXHR){
       if (jqXHR.status==201){
-        message([ '<?php printf(_('%s wurde erfolgreich angemeldet.'),'<strong>\' + data.firstName + \' \' + data.lastName + \'</strong>');?>' ]);
+        message([ '<?php printf(_('%s was successfully registered.'),'<strong>\' + data.firstName + \' \' + data.lastName + \'</strong>');?>' ]);
         addCompetitorTableEntry(data);
         competitors.push(data);
         $('#radioset input').removeAttr('checked');
@@ -140,10 +141,10 @@ $('#signUpForm').submit(function(e){
         $("input[name=lastName]").val('');
         updateWeights(null);
         if (coachId == ''){
-          message([ '<?php echo('<strong>' . _('Hinweis:') . ' </strong>' . _('Um später deine bereits angemeldeten Kämpfer einsehen und bearbeiten zu können solltest du eine Trainer Id (Benutzernamen) anlegen.'));?>' ], 'messageCoachId', 'error');
+          message([ '<?php echo('<strong>' . _('Hint:') . ' </strong>' . _('In order to view and modify the entered competitors later on you should create a Coach Id (username).'));?>' ], 'messageCoachId', 'error');
         }
       } else {
-        message([ <?php echo('\'<strong>' . _('Fehler:') . ' </strong> \' + data.msg');?>, developerContact() ], 'message', 'error');
+        message([ <?php echo('\'<strong>' . _('Error:') . ' </strong> \' + data.msg');?>, developerContact() ], 'message', 'error');
       }
     },
     error: function(jqXHR,textStatus,errorThrown) { handleError(jqXHR,textStatus,errorThrown,'messageCoachId');}
@@ -170,25 +171,25 @@ $('#coachIdForm').submit(function(e){
     complete: function() { $('#loading_coachId').hide(); },
     success: function (data,textStatus,jqXHR){
       if (val=='POST' && jqXHR.status==201){
-        message([ '<?php printf(_('Du kannst dich ab sofort jederzeit mit der CoachId %s wieder einloggen und deine Anmeldungen einsehen und bearbeiten.'), '<strong>\' + data.new_sid + \'</strong>' );?>' ], 'messageCoachId' );
+        message([ "<?php printf(_("From now on you can log-in with your Coach Id %s anytime to view and edit your registered competitors."), '<strong>" + data.new_sid + "</strong>' );?>" ], 'messageCoachId' );
         coachId = data.new_sid;
         document.getElementById('input_coachId').value = data.new_sid;
         document.getElementById('input_postCoachId').style.display="none";
         document.getElementById('input_delCoachId').style.display="";
       } else if (val=='DELETE' && jqXHR.status==204){
-        message([ '<?php echo(_('Du wurdest erfolgreich ausgeloggt.'));?>' ], 'messageCoachId' );
+        message([ "<?php echo(_("You have been logged-out successfully."));?>" ], 'messageCoachId' );
         coachId = '';
         document.getElementById('input_coachId').value = '';
         document.getElementById('input_postCoachId').style.display="";
         document.getElementById('input_delCoachId').style.display="none";
       } else if (val=='PUT' && jqXHR.status==200){
-        message([ '<?php printf(_('Du wurdest erfolgreich als %s eingeloggt.'),'<strong>\' + data.new_sid + \'</strong>');?>' ], 'messageCoachId' );
+        message([ "<?php printf(_("You have been logged-in as %s successfully."),'<strong>" + data.new_sid + "</strong>');?>" ], 'messageCoachId' );
         coachId = data.new_sid;
         document.getElementById('input_coachId').value = data.new_sid;
         document.getElementById('input_postCoachId').style.display="none";
         document.getElementById('input_delCoachId').style.display="";
       } else {
-        handleError(jqXHR,textStatus,'setting Trainer Id: unexpected response.','messageCoachId');
+        handleError(jqXHR,textStatus,'setting Coach Id: unexpected response.','messageCoachId');
         return;
       }
       getCompetitors();
@@ -213,7 +214,7 @@ function getCompetitors(){
       });
       competitors=data;
       if(competitors.length == 0 && coachId != '' ){
-        message([ "<?php printf( _('Mit der Trainer Id %s wurden keine Kämpfer gefunden.'), '<strong>" + coachId + "</strong>');?>" ], 'messageCoachId', 'error', true);
+        message([ "<?php printf( _('No competitors were found for the Coach Id %s.'), '<strong>" + coachId + "</strong>');?>" ], 'messageCoachId', 'error', true);
       }
     },
     error: function(jqXHR,textStatus,errorThrown) { handleError(jqXHR,textStatus,errorThrown,'messageCoachId');}
@@ -225,12 +226,12 @@ function addCompetitorTableEntry(data){
 }
 
 function handleError(jqXHR,textStatus,errorThrown,msgFieldId){
-  message([ "<?php printf( '<strong>' . _('Fehler:') . ' </strong>' . _('Etwas ist schief gegangen. textStatus: %s errorThrown: %s'), '" + textStatus + "', '" + errorThrown + "' );?>" ,
+  message([ "<?php printf( '<strong>' . _('Error:') . ' </strong>' . _('Something went wrong. textStatus: %s errorThrown: %s'), '" + textStatus + "', '" + errorThrown + "' );?>" ,
            developerContact() ], msgFieldId, 'error' );
 }
 
 function developerContact(){
-  return "<?php echo(_('Kontakt zum Entwickler: Felix von Poblotzki, +4915232787790, xilaew@gmail.com'));?>"
+  return "<?php echo(_("Developer's contact details: Felix von Poblotzki, +4915232787790, xilaew@gmail.com"));?>"
 };
 
 function message(messages,msgFieldId="message",msgType="highlight",append=false){
@@ -279,9 +280,9 @@ function updateWeights(e) {
     $("#labelAgeCat").text(category);
     $("#input_weight").empty();
     if (weights == null){
-      $("<option/>").text("<?php echo(_("Wähle zuerst Geburtsjahr und Geschlecht"));?>").appendTo("#input_weight");
+      $("<option/>").text("<?php echo(_("Select year of birth and sex first."));?>").appendTo("#input_weight");
     } else {
-      $("<option/>").val("").text("<?php echo(_("Bitte wähle eine Gewichtsklasse"));?>").appendTo("#input_weight");
+      $("<option/>").val("").text("<?php echo(_("Please choose a weight category."));?>").appendTo("#input_weight");
       weightTexts.forEach(function (item,index) {
         $("<option/>").val(weights[index]).text(item).appendTo("#input_weight");
       })

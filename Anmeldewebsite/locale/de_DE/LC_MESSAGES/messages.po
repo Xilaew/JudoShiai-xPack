@@ -14,104 +14,106 @@ msgstr ""
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: index.php:50
 msgid "Register new competitors:"
-msgstr ""
+msgstr "Neue Kämpfer anmelden:"
 
 #: index.php:54
 msgid "First Name"
-msgstr ""
+msgstr "Vorname"
 
 #: index.php:55
 msgid "Last Name"
-msgstr ""
+msgstr "Nachname"
 
 #: index.php:57 index.php:94
 msgid "Year of birth"
-msgstr ""
+msgstr "Geburtsjahr"
 
 #: index.php:60 index.php:94
 msgid "Sex"
-msgstr ""
+msgstr "Geschlecht"
 
 #: index.php:62
 msgid "male"
-msgstr ""
+msgstr "männlich"
 
 #: index.php:63
 msgid "female"
-msgstr ""
+msgstr "weiblich"
 
 #: index.php:66
 msgid "Weight Category"
-msgstr ""
+msgstr "Gewichtsklasse"
 
 #: index.php:68 index.php:283
 msgid "Select year of birth and sex first."
-msgstr ""
+msgstr "Wähle zuerst Geburtsjahr und Geschlecht"
 
 #: index.php:70 index.php:94
 msgid "Club"
-msgstr ""
+msgstr "Verein"
 
 #: index.php:72
 msgid "Choose the competitor's club."
-msgstr ""
+msgstr "Wähle den Verein des Kämpfers."
 
 #: index.php:79
 msgid "Register Competitor"
-msgstr ""
+msgstr "Kämpfer Anmelden"
 
 #: index.php:79 index.php:91
 msgid "please wait..."
-msgstr ""
+msgstr "Bitte Warten..."
 
 #: index.php:83
 msgid "Already registered competitors:"
-msgstr ""
+msgstr "Bereits eingegebene Anmeldungen:"
 
 #: index.php:87 index.php:144
 msgid "Hint:"
-msgstr ""
+msgstr "Hinweis:"
 
 #: index.php:87 index.php:144
 msgid ""
 "In order to view and modify the entered competitors later on you should "
 "create a Coach Id (username)."
 msgstr ""
+"Um später deine bereits angemeldeten Kämpfer einsehen und bearbeiten zu "
+"können solltest du eine Trainer Id (Benutzernamen) anlegen."
 
 #: index.php:91
 msgid "Coach Id"
-msgstr ""
+msgstr "Trainer Id"
 
 #: index.php:91
 msgid "Log-in / Register"
-msgstr ""
+msgstr "Anmelden / Registrieren"
 
 #: index.php:91
 msgid "Log-out"
-msgstr ""
+msgstr "Abmelden"
 
 #: index.php:94
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: index.php:94
 msgid "Category"
-msgstr ""
+msgstr "Klasse"
 
 #: index.php:135
 #, php-format
 msgid "%s was successfully registered."
-msgstr ""
+msgstr "%s wurde erfolgreich angemeldet."
 
 #: index.php:147 index.php:229
 #, php-format
 msgid "Error:"
-msgstr ""
+msgstr "Fehler:"
 
 #: index.php:174
 #, php-format
@@ -119,35 +121,38 @@ msgid ""
 "From now on you can log-in with your Coach Id %s anytime to view and edit "
 "your registered competitors."
 msgstr ""
+"Du kannst dich ab sofort jederzeit mit der Trainer Id %s wieder einloggen "
+"und deine Anmeldungen einsehen und bearbeiten."
 
 #: index.php:180
 msgid "You have been logged-out successfully."
-msgstr ""
+msgstr "Du wurdest erfolgreich abgemeldet."
 
 #: index.php:186
 #, php-format
 msgid "You have been logged-in as %s successfully."
-msgstr ""
+msgstr "Du wurdest erfolgreich als %s angemeldet."
 
 #: index.php:217
 #, php-format
 msgid "No competitors were found for the Coach Id %s."
-msgstr ""
+msgstr "Mit der Trainer Id %s wurden keine Kämpfer gefunden."
 
 #: index.php:229
 #, php-format
 msgid "Something went wrong. textStatus: %s errorThrown: %s"
-msgstr ""
+msgstr "Etwas ist schief gegangen. textStatus: %s errorThrown: %s"
 
 #: index.php:234
 msgid ""
 "Developer's contact details: Felix von Poblotzki, +4915232787790, "
 "xilaew@gmail.com"
 msgstr ""
+"Kontakt zum Entwickler: Felix von Poblotzki, +4915232787790, xilaew@gmail.com"
 
 #: index.php:285
 msgid "Please choose a weight category."
-msgstr ""
+msgstr "Bitte wähle eine Gewichtsklasse."
 
 #: lib.php:88
 msgid "Please enter a name!"
@@ -155,24 +160,24 @@ msgstr ""
 
 #: lib.php:90
 msgid "Please enter a valid club!"
-msgstr ""
+msgstr "Bitte gib einen Vereinsnamen an!"
 
 #: lib.php:92
 msgid "Please enter the competitors Sex!"
-msgstr ""
+msgstr "Bitte gib das Geschlecht des Kämpfers an!"
 
 #: lib.php:94
 #, php-format
 msgid "Year of birth must be between %d and %d!"
-msgstr ""
+msgstr "Das Geburtsjahr muss zwischen %d und %d liegen!"
 
 #: lib.php:104
 msgid "Not saved due to internal error!"
-msgstr ""
+msgstr "Wegen internem Fehler nicht gespeichert!"
 
 #: rest.php:178 rest.php:193
 #, php-format
 msgid ""
 "\"%s\" is not a valid Coach Id. A Coach Id should consist of at least two "
 "characters out of [A-Za-z0-9]"
-msgstr ""
+msgstr "\"%s\" ist keine zulässige Trainer Id. Eine Trainer Id sollte mindestens aus zwei der folgenden Zeichen bestehen [A-Za-z0-9]"
