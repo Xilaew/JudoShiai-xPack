@@ -1,4 +1,6 @@
 <?php
+require_once 'config.php';
+
 // use sessions
 session_start();
 

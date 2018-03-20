@@ -1,6 +1,6 @@
 <?php
-require 'locale.php';
 require_once 'config.php';
+require 'locale.php';
 require 'lib.php';
 $db=new SQLite3($judoShiaiTemplateFile);
 $info=sqlite_getInfo($db);
