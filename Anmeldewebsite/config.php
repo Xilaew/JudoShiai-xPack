@@ -20,4 +20,5 @@ $dataCsv='data.csv';
 /* For internationalisation you can set the default locale to use when nothing
 else is requested by the user.*/
 $defaultLocale="de_DE";
+$forceRegistration=true
 ?>
