@@ -49,12 +49,19 @@ fclose($fp);
 <div id="accordion">
   <h2><?php echo(_("Register new competitors:"));?></h2>
   <div>
-    <div id="message" ></div>
-    <form action="index.php" method="post" id="signUpForm">
+    <div id="message" >
+<?php if (count($competitors)>0 && getCoachId(false)==""){
+  echo('      <div class="ui-widget"><div class="ui-state-error ui-corner-all" style="padding: 0 .7em;"><p><strong>' . _('Hint:') . ' </strong>' . _('In order to view and modify the entered competitors later on you should create a Coach Id (username).') . '</p></div></div>');
+}?>
+<?php if ($forceRegistration && getCoachId(false)==""){
+  echo('      <div class="ui-widget"><div class="ui-state-error ui-corner-all" style="padding: 0 .7em;"><p>' . _('Before you can register competitors you need to sign up by entering your email address as Coach Id. We use the email to keep you updated about any changes regarding the tournament. Further you can view and modify your competitors later on with this email/Coach Id as login.') . '</p></div></div>');
+}?>
+    </div>
+    <form action="index.php" method="post" id="signUpForm" <?php if ($forceRegistration && getCoachId(false)==""){echo('style="display: none;"');}?>>
       <div style="padding: .7em;"><label for="input_firstName"><?php echo(_("First Name"));?> </label><input required name="firstName" id="input_fistName" type="text"></div>
       <div style="padding: .7em;"><label for="input_lastName"><?php echo(_("Last Name"));?> </label><input required name="lastName" id="input_lastName" type="text"></div>
       <div style="padding: .7em;">
-        <label for="input_yearOfBirth"><?php echo(_("Year of birth"));?> </label><input name="yearOfBirth" id="input_yearOfBirth" type="number" required readonly value="2005">
+        <label for="input_yearOfBirth"><?php echo(_("Year of birth"));?> </label><input name="yearOfBirth" id="input_yearOfBirth" type="number" required readonly value="<?php echo(floor(($minYearOfBirth+$maxYearOfBirth)/2));?>">
         <span style="margin-left:1em;" id="labelAgeCat"></span>
       </div>
       <div style="padding: .7em;"><?php echo(_("Sex"));?> 
@@ -83,9 +90,6 @@ foreach( $clubs as $club ){
   <h2><?php echo(_("Already registered competitors:"));?></h2>
   <div>
     <div id="messageCoachId" >
-<?php if (count($competitors)>0 && getCoachId(false)==""){
-  echo('      <div class="ui-widget"><div class="ui-state-error ui-corner-all" style="padding: 0 .7em;"><p><strong>' . _('Hint:') . ' </strong>' . _('In order to view and modify the entered competitors later on you should create a Coach Id (username).') . '</p></div></div>');
-}?>
     </div>
     <form id="coachIdForm">
       <div style="padding: .7em;"><label for="input_coachId"><?php echo(_('Coach Id'));?> </label><input required name="coachId" id="input_coachId" type="text" value="<?php echo(getCoachId(false));?>"><input name="postCoachId" id="input_postCoachId" type="submit" value="<?php echo(_("Log-in / Register")); ?>" <?php if (getCoachId(false)!=''){echo('style="display:none;"');}?>><input name="delCoachId" id="input_delCoachId" type="submit" value="<?php echo(_('Log-out'));?>" <?php if (getCoachId(false)==''){echo('style="display:none;"');}?>><span id="loading_coachId" style="display:none;"><p><img src="loading.gif" /> <?php echo(_('please wait...'));?></p></span></div>
@@ -108,7 +112,8 @@ var minYearOfBirth=<?php echo($minYearOfBirth);?>;
 var maxYearOfBirth=<?php echo($maxYearOfBirth);?>;
 var categories=<?php echo(json_encode($categories));?>;
 var coachId = '<?php echo(getCoachId(false)); ?>';
-var competitors = <?php echo(json_encode($competitors)); ?>
+var competitors = <?php echo(json_encode($competitors)); ?>;
+var forceRegistration = <?php echo($forceRegistration); ?>;
 
 function getFormData($form){
   var unindexed_array = $form.serializeArray();
@@ -141,13 +146,13 @@ $('#signUpForm').submit(function(e){
         $("input[name=lastName]").val('');
         updateWeights(null);
         if (coachId == ''){
-          message([ '<?php echo('<strong>' . _('Hint:') . ' </strong>' . _('In order to view and modify the entered competitors later on you should create a Coach Id (username).'));?>' ], 'messageCoachId', 'error');
+          message([ '<?php echo('<strong>' . _('Hint:') . ' </strong>' . _('In order to view and modify the entered competitors later on you should create a Coach Id (username).'));?>' ], 'message', 'error');
         }
       } else {
         message([ <?php echo('\'<strong>' . _('Error:') . ' </strong> \' + data.msg');?>, developerContact() ], 'message', 'error');
       }
     },
-    error: function(jqXHR,textStatus,errorThrown) { handleError(jqXHR,textStatus,errorThrown,'messageCoachId');}
+    error: function(jqXHR,textStatus,errorThrown) { handleError(jqXHR,textStatus,errorThrown,'message');}
   });
 });
 
@@ -171,30 +176,36 @@ $('#coachIdForm').submit(function(e){
     complete: function() { $('#loading_coachId').hide(); },
     success: function (data,textStatus,jqXHR){
       if (val=='POST' && jqXHR.status==201){
-        message([ "<?php printf(_("From now on you can log-in with your Coach Id %s anytime to view and edit your registered competitors."), '<strong>" + data.new_sid + "</strong>' );?>" ], 'messageCoachId' );
+        message([ "<?php printf(_("From now on you can log-in with your Coach Id %s anytime to view and edit your registered competitors."), '<strong>" + data.new_sid + "</strong>' );?>" ], 'message' );
         coachId = data.new_sid;
         document.getElementById('input_coachId').value = data.new_sid;
         document.getElementById('input_postCoachId').style.display="none";
         document.getElementById('input_delCoachId').style.display="";
+        document.getElementById('signUpForm').style.display="";
       } else if (val=='DELETE' && jqXHR.status==204){
-        message([ "<?php echo(_("You have been logged-out successfully."));?>" ], 'messageCoachId' );
+        message([ "<?php echo(_("You have been logged-out successfully."));?>" ], 'message' );
         coachId = '';
         document.getElementById('input_coachId').value = '';
         document.getElementById('input_postCoachId').style.display="";
         document.getElementById('input_delCoachId').style.display="none";
+        if (forceRegistration){
+          document.getElementById('signUpForm').style.display="none";
+          message([ "<?php echo(_("Before you can register competitors you need to sign up by entering your email address as Coach Id. We use the email to keep you updated about any changes regarding the tournament. Further you can view and modify your competitors later on with this email/Coach Id as login."));?>" ], 'message', 'error', true );
+        }
       } else if (val=='PUT' && jqXHR.status==200){
-        message([ "<?php printf(_("You have been logged-in as %s successfully."),'<strong>" + data.new_sid + "</strong>');?>" ], 'messageCoachId' );
+        message([ "<?php printf(_("You have been logged-in as %s successfully."),'<strong>" + data.new_sid + "</strong>');?>" ], 'message' );
         coachId = data.new_sid;
         document.getElementById('input_coachId').value = data.new_sid;
         document.getElementById('input_postCoachId').style.display="none";
         document.getElementById('input_delCoachId').style.display="";
+        document.getElementById('signUpForm').style.display="";
       } else {
-        handleError(jqXHR,textStatus,'setting Coach Id: unexpected response.','messageCoachId');
+        handleError(jqXHR,textStatus,'setting Coach Id: unexpected response.','message');
         return;
       }
       getCompetitors();
     },
-    error: function(jqXHR,textStatus,errorThrown) { handleError(jqXHR,textStatus,errorThrown,'messageCoachId');}
+    error: function(jqXHR,textStatus,errorThrown) { handleError(jqXHR,textStatus,errorThrown,'message');}
   });
 });
 
@@ -214,10 +225,10 @@ function getCompetitors(){
       });
       competitors=data;
       if(competitors.length == 0 && coachId != '' ){
-        message([ "<?php printf( _('No competitors were found for the Coach Id %s.'), '<strong>" + coachId + "</strong>');?>" ], 'messageCoachId', 'error', true);
+        message([ "<?php printf( _('No competitors were found for the Coach Id %s.'), '<strong>" + coachId + "</strong>');?>" ], 'message', 'error', true);
       }
     },
-    error: function(jqXHR,textStatus,errorThrown) { handleError(jqXHR,textStatus,errorThrown,'messageCoachId');}
+    error: function(jqXHR,textStatus,errorThrown) { handleError(jqXHR,textStatus,errorThrown,'message');}
   });
 };
 
