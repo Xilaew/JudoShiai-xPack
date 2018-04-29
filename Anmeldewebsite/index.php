@@ -53,12 +53,48 @@ fclose($fp);
   </style>
 </head>
 <body>
+<div class="off-canvas-wrap" data-offcanvas="">
+<div class="inner-wrap">
+<aside class="left-off-canvas-menu">
+		
+			<!-- whatever you want goes here -->
+			<ul><li><a href="http://www.hamburg-judo.de/aktuelles/">Aktuelles</a></li><li><a href="http://www.hamburg-judo.de/termine-ausschreibungen/">Termine &amp; Ausschreibungen</a></li><li><a href="http://www.hamburg-judo.de/der-hjv/gesch-vorstand/">Der HJV</a></li><li><a href="http://www.hamburg-judo.de/ressort/wettkampf-leistungssport/stuetzpunkttraining/">Ressort</a></li><li class="active"><a href="http://www.hamburg-judo.de/downloads/">Downloads</a></li><li><a href="http://www.hamburg-judo.de/kontakt/">Kontakt</a></li><li><a href="http://www.hamburg-judo.de/impressum/">Impressum</a></li></ul>
+			
+		</aside>
+<nav class="tab-bar show-for-small-only">
+			<section class="left-small">
+				<a class="left-off-canvas-toggle menu-icon" href="#off-canvas-navigation"><span></span></a>
+			</section>
+			<section class="right tab-bar-section">
+				<a href="http://www.hamburg-judo.de/">
+					Hamburger Judo Verband e.V.
+				</a>
+			</section>
+		</nav>
 <header class="hide-for-small">
 <img class="hide-for-small" src="http://www.hamburg-judo.de/typo3conf/ext/mc_foundation_template/Resources/Public/Images/header.jpg" width="100%">
 </header>
+<section class="top-menu-bar">
+  <div class="row hide-for-small">
+    <div class="small-12 large-12 columns">  
+      <nav class="top-bar" data-topbar="" role="navigation">
+        <ul class="title-area">
+          <li class="name">
+            <h1><a href="http://www.hamburg-judo.de/">HJV</a></h1>
+          </li>
+        </ul>
+        
+      <section class="top-bar-section">
+          <!-- Left Nav Section -->
+          <ul class="left"><li><a href="http://www.hamburg-judo.de/aktuelles/">Aktuelles</a></li><li class="active"><a href="http://www.hamburg-judo.de/termine-ausschreibungen/">Termine &amp; Ausschreibungen</a></li><li class="has-dropdown not-click"><a href="http://www.hamburg-judo.de/der-hjv/gesch-vorstand/">Der HJV</a><ul class="dropdown"><li class="title back js-generated"><h5><a href="javascript:void(0)">Back</a></h5></li><li class="parent-link show-for-small"><a class="parent-link js-generated" href="http://www.hamburg-judo.de/der-hjv/gesch-vorstand/">Der HJV</a></li><li><a href="http://www.hamburg-judo.de/der-hjv/gesch-vorstand/">gesch. Vorstand</a></li><li><a href="http://www.hamburg-judo.de/der-hjv/ehrenmitglieder/">Ehrenmitglieder</a></li><li><a href="http://www.hamburg-judo.de/der-hjv/vorstand/">Vorstand</a></li><li><a href="http://www.hamburg-judo.de/der-hjv/landestrainer/">Landestrainer</a></li><li><a href="http://www.hamburg-judo.de/der-hjv/beauftragte/">Beauftragte</a></li><li><a href="http://www.hamburg-judo.de/der-hjv/kassenpruefer/">Kassenprüfer</a></li><li><a href="http://www.hamburg-judo.de/der-hjv/rechtsausschuss/">Rechtsausschuss</a></li><li><a href="http://www.hamburg-judo.de/der-hjv/ehrenrat/">Ehrenrat</a></li><li><a href="http://www.hamburg-judo.de/der-hjv/ehrenliste/">Ehrenliste</a></li><li><a href="http://www.hamburg-judo.de/der-hjv/mitgliedsvereine/">Mitgliedsvereine</a></li><li><a href="http://www.hamburg-judo.de/der-hjv/leistungen-preise/">Leistungen &amp; Preise</a></li></ul></li><li class="has-dropdown not-click"><a href="http://www.hamburg-judo.de/ressort/wettkampf-leistungssport/stuetzpunkttraining/">Ressort</a><ul class="dropdown"><li class="title back js-generated"><h5><a href="javascript:void(0)">Back</a></h5></li><li class="parent-link show-for-small"><a class="parent-link js-generated" href="http://www.hamburg-judo.de/ressort/wettkampf-leistungssport/stuetzpunkttraining/">Ressort</a></li><li><a href="http://www.hamburg-judo.de/ressort/wettkampf-leistungssport/stuetzpunkttraining/">Wettkampf-/Leistungssport</a></li><li><a href="http://www.hamburg-judo.de/ressort/eliteschule-des-sports/">Eliteschule des Sports</a></li><li><a href="http://www.hamburg-judo.de/ressort/kampfrichter/">Kampfrichter</a></li><li><a href="http://www.hamburg-judo.de/ressort/lehr-und-pruefungswesen/">Lehr- und Prüfungswesen</a></li><li><a href="http://www.hamburg-judo.de/ressort/hamburg-liga/">Hamburg-Liga</a></li><li><a href="http://www.hamburg-judo.de/ressort/hamburger-judo-team/" target="_blank">Hamburger Judo Team</a></li><li><a href="http://www.hamburg-judo.de/ressort/foerderverein-judo-in-hamburg/" target="_blank">Förderverein Judo in Hamburg</a></li><li><a href="http://www.hamburg-judo.de/ressort/kyudo/">Kyudo</a></li><li><a href="http://www.hamburg-judo.de/ressort/kendo/">Kendo</a></li><li><a href="http://www.hamburg-judo.de/ressort/jiu-jitsu/">Jiu-Jitsu</a></li><li><a href="http://www.hamburg-judo.de/ressort/aikido/">Aikido</a></li></ul></li><li><a href="http://www.hamburg-judo.de/downloads/">Downloads</a></li><li><a href="http://www.hamburg-judo.de/kontakt/">Kontakt</a></li><li><a href="http://www.hamburg-judo.de/impressum/">Impressum</a></li></ul>
+        </section></nav>
+    </div>
+  </div>
+</section>
 <header class="show-for-small-only">
 <img class="show-for-small-only" src="http://www.hamburg-judo.de/typo3conf/ext/mc_foundation_template/Resources/Public/Images/header-small.jpg" width="100%">
 </header>
+<section id="main-content">
 <h1><?php echo($info->Competition);?></h1>
 <h1><?php echo($info->Date . " | " . $info->Place);?></h1>
   <h3><?php echo(_("Register new competitors:"));?></h3>
@@ -118,8 +154,56 @@ foreach( $competitors as $competitor ){
 ?>
   </table>
   </div>
-<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-<script src="jquery-ui.min.js"></script>
+</section>
+<section class="footer-top">
+  <div class="row">
+    <div class="small-12 large-12 columns">
+      <ul class="small-block-grid-3 medium-block-grid-5 large-block-grid-5">
+        <li>
+          <a href="http://www.foerderverein-judo-in-hamburg.de" target="_blank">
+            <img src="http://www.hamburg-judo.de/fileadmin/template/Resources/Public/Images/footer_logo_foerderverein.jpg">
+          </a>
+        </li>
+        <li>
+          <a href="https://www.facebook.com/FoerdervereinJudoInHamburg" target="_blank">
+            <img src="http://www.hamburg-judo.de/fileadmin/template/Resources/Public/Images/footer_logo_herz.jpg">
+          </a>
+        </li>
+        <li>
+          <a href="http://www.hamburger-judo-team.de" target="_blank">
+            <img src="http://www.hamburg-judo.de/fileadmin/template/Resources/Public/Images/footer_logo_hjt.jpg">  
+          </a>
+        </li>
+        <li>
+          <a href="http://www.stiftung-leistungssport.de" target="_blank">
+            <img src="http://www.hamburg-judo.de/fileadmin/template/Resources/Public/Images/footer_logo_leistungssport.jpg">
+          </a>
+        </li>
+        <li>
+          <a href="http://www.hamburg.de/active-city/" target="_blank">
+            <img src="http://www.hamburg-judo.de/fileadmin/template/Resources/Public/Images/footer_logo_activecity.jpg">
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+<footer class="footer-bottom">
+  <div class="row">
+    <div class="small-12 large-12 columns">
+      © Copyright 2016 Hamburger Judo Verband e.V. | <a href="http://www.hamburg-judo.de/kontakt/">Kontakt</a> | <a href="http://www.hamburg-judo.de/impressum/">Impressum</a><br>
+      Powered by <a href="https://github.com/Xilaew/JudoShiai-xPack">JudoShiai-xPack</a> | Author: Felix von Poblotzki
+    </div>
+  </div>
+</footer>
+<a class="exit-off-canvas"></a>
+</div>
+</div>
+<script src="http://www.hamburg-judo.de/typo3conf/ext/mc_foundation_template/Resources/Public/foundation-5.4.6/js/vendor/jquery.js?1412891670" type="text/javascript"></script><script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="http://www.hamburg-judo.de/typo3conf/ext/mc_foundation_template/Resources/Public/foundation-5.4.6/js/foundation.min.js?1412891670" type="text/javascript"></script><script src="jquery-ui.min.js"></script>
+<script>
+	$(document).foundation();
+</script>
 <script>
 var yearOfTournament=<?php echo($yearOfTournament);?>;
 var minYearOfBirth=<?php echo($minYearOfBirth);?>;
@@ -355,46 +439,5 @@ $('#coachIdForm input:text, #signUpForm input:password')
         'cursor' : 'text',
   });
 </script>
-<section class="footer-top">
-  <div class="row">
-    <div class="small-12 large-12 columns">
-      <ul class="small-block-grid-3 medium-block-grid-5 large-block-grid-5">
-        <li>
-          <a href="http://www.foerderverein-judo-in-hamburg.de" target="_blank">
-            <img src="http://www.hamburg-judo.de/fileadmin/template/Resources/Public/Images/footer_logo_foerderverein.jpg">
-          </a>
-        </li>
-        <li>
-          <a href="https://www.facebook.com/FoerdervereinJudoInHamburg" target="_blank">
-            <img src="http://www.hamburg-judo.de/fileadmin/template/Resources/Public/Images/footer_logo_herz.jpg">
-          </a>
-        </li>
-        <li>
-          <a href="http://www.hamburger-judo-team.de" target="_blank">
-            <img src="http://www.hamburg-judo.de/fileadmin/template/Resources/Public/Images/footer_logo_hjt.jpg">  
-          </a>
-        </li>
-        <li>
-          <a href="http://www.stiftung-leistungssport.de" target="_blank">
-            <img src="http://www.hamburg-judo.de/fileadmin/template/Resources/Public/Images/footer_logo_leistungssport.jpg">
-          </a>
-        </li>
-        <li>
-          <a href="http://www.hamburg.de/active-city/" target="_blank">
-            <img src="http://www.hamburg-judo.de/fileadmin/template/Resources/Public/Images/footer_logo_activecity.jpg">
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</section>
-<footer class="footer-bottom">
-  <div class="row">
-    <div class="small-12 large-12 columns">
-      © Copyright 2016 Hamburger Judo Verband e.V. | <a href="http://www.hamburg-judo.de/kontakt/">Kontakt</a> | <a href="http://www.hamburg-judo.de/impressum/">Impressum</a><br>
-      Powered by <a href="https://github.com/Xilaew/JudoShiai-xPack">JudoShiai-xPack</a> | Author: Felix von Poblotzki
-    </div>
-  </div>
-</footer>
 </body>
 </html>
