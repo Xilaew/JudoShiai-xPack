@@ -9,7 +9,11 @@ $db->close();
 $fp=fopen($clubsTxt, "r");
 $clubs=csv_getClubs($fp);
 fclose($fp);
-$fp=fopen($dataCsv, "r");
+if (file_exists($dataCsv)){
+  $fp=fopen($dataCsv, "r");
+} else {
+  $fp=fopen($dataCsv, "a");
+}
 $competitors=csv_getCompetitors($fp, getCoachId(true));
 fclose($fp);
 ?><!DOCTYPE html>
@@ -104,8 +108,8 @@ foreach( $competitors as $competitor ){
   </table>
   </div>
 </div>
-<script src="external/jquery/jquery.js"></script>
-<script src="jquery-ui.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="jquery-ui.min.js"></script>
 <script>
 var yearOfTournament=<?php echo($yearOfTournament);?>;
 var minYearOfBirth=<?php echo($minYearOfBirth);?>;
@@ -113,7 +117,7 @@ var maxYearOfBirth=<?php echo($maxYearOfBirth);?>;
 var categories=<?php echo(json_encode($categories));?>;
 var coachId = '<?php echo(getCoachId(false)); ?>';
 var competitors = <?php echo(json_encode($competitors)); ?>;
-var forceRegistration = <?php echo($forceRegistration); ?>;
+var forceRegistration = <?php echo(json_encode($forceRegistration)); ?>;
 
 function getFormData($form){
   var unindexed_array = $form.serializeArray();
