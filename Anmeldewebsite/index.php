@@ -22,7 +22,11 @@ fclose($fp);
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><?php echo($info->Competition);?></title>
+  <link rel="stylesheet" type="text/css" href="http://www.hamburg-judo.de/typo3conf/ext/mc_foundation_template/Resources/Public/foundation-5.4.6/css/normalize.css?1412891670" media="all">
+  <link rel="stylesheet" type="text/css" href="http://www.hamburg-judo.de/typo3conf/ext/mc_foundation_template/Resources/Public/foundation-5.4.6/css/foundation.css?1412891670" media="all">
+  <link rel="stylesheet" type="text/css" href="http://www.hamburg-judo.de/fileadmin/template/Resources/Public/Css/app.css?1497456989" media="all">
   <link href="jquery-ui.min.css" rel="stylesheet">
+  <script src="http://www.hamburg-judo.de/typo3conf/ext/mc_foundation_template/Resources/Public/foundation-5.4.6/js/vendor/modernizr.js?1412891670" type="text/javascript"></script>
   <style>
 #competitor_table {
     border-collapse: collapse;
@@ -49,9 +53,15 @@ fclose($fp);
   </style>
 </head>
 <body>
+<header class="hide-for-small">
+<img class="hide-for-small" src="http://www.hamburg-judo.de/typo3conf/ext/mc_foundation_template/Resources/Public/Images/header.jpg" width="100%">
+</header>
+<header class="show-for-small-only">
+<img class="show-for-small-only" src="http://www.hamburg-judo.de/typo3conf/ext/mc_foundation_template/Resources/Public/Images/header-small.jpg" width="100%">
+</header>
 <h1><?php echo($info->Competition);?></h1>
-<div id="accordion">
-  <h2><?php echo(_("Register new competitors:"));?></h2>
+<h1><?php echo($info->Date . " | " . $info->Place);?></h1>
+  <h3><?php echo(_("Register new competitors:"));?></h3>
   <div>
     <div id="message" >
 <?php if (count($competitors)>0 && getCoachId(false)==""){
@@ -62,23 +72,24 @@ fclose($fp);
 }?>
     </div>
     <form action="index.php" method="post" id="signUpForm" <?php if ($forceRegistration && getCoachId(false)==""){echo('style="display: none;"');}?>>
-      <div style="padding: .7em;"><label for="input_firstName"><?php echo(_("First Name"));?> </label><input required name="firstName" id="input_fistName" type="text"></div>
-      <div style="padding: .7em;"><label for="input_lastName"><?php echo(_("Last Name"));?> </label><input required name="lastName" id="input_lastName" type="text"></div>
-      <div style="padding: .7em;">
-        <label for="input_yearOfBirth"><?php echo(_("Year of birth"));?> </label><input name="yearOfBirth" id="input_yearOfBirth" type="number" required readonly value="<?php echo(floor(($minYearOfBirth+$maxYearOfBirth)/2));?>">
+      <div><label for="input_firstName"><?php echo(_("First Name"));?> </label><input required name="firstName" id="input_fistName" type="text"></div>
+      <div><label for="input_lastName"><?php echo(_("Last Name"));?> </label><input required name="lastName" id="input_lastName" type="text"></div>
+      <div style="margin-bottom: 1rem;">
+        <label for="input_yearOfBirth"><?php echo(_("Year of birth"));?> </label><input name="yearOfBirth" id="input_yearOfBirth" style="width: 100%; height: 100%; margin: 0;" type="number" required readonly value="<?php echo(floor(($minYearOfBirth+$maxYearOfBirth)/2));?>">
         <span style="margin-left:1em;" id="labelAgeCat"></span>
       </div>
-      <div style="padding: .7em;"><?php echo(_("Sex"));?> 
-        <div id="radioset">
+      <div>
+        <label for="radioset"><?php echo(_("Sex"));?> </label>
+        <div  style="margin-bottom: 1rem;" id="radioset">
           <label for="input_male"><?php echo(_("male"));?></label><input id="input_male" required type="radio" name="sex" value="m">
           <label for="input_female"><?php echo(_("female"));?></label><input id="input_female" required type="radio" name="sex" value="f">
         </div>
       </div>
-      <div style="padding: .7em;"><label for="input_weight"><?php echo(_("Weight Category"));?> </label>
+      <div><label for="input_weight"><?php echo(_("Weight Category"));?> </label>
       <select name="weight" id="input_weight">
         <option value=""><?php echo(_("Select year of birth and sex first."));?></option>
       </select></div>
-      <div style="padding: .7em;"><label for="input_club"><?php echo(_("Club"));?> </label>
+      <div><label for="input_club"><?php echo(_("Club"));?> </label>
       <select name="club" required id="input_club">
         <option value=""><?php echo(_("Choose the competitor's club."));?></option>
 <?php
@@ -87,16 +98,16 @@ foreach( $clubs as $club ){
 }
 ?>
       </select></div>
-      <div style="padding: .7em;"><input name="register" type="submit" value="<?php echo(_('Register Competitor'));?>"><span id="loading" style="display:none;"><p><img src="loading.gif" /> <?php echo(_('please wait...'));?></p></span></div>
+      <div><input style="margin-bottom: 1rem;" name="register" type="submit" value="<?php echo(_('Register Competitor'));?>"><span id="loading" style="display:none;"><p><img src="loading.gif" /> <?php echo(_('please wait...'));?></p></span></div>
 <!--      <div id="test-output" style="padding: .7em;"></div> -->
     </form>
   </div>
-  <h2><?php echo(_("Already registered competitors:"));?></h2>
+  <h3><?php echo(_("Already registered competitors:"));?></h3>
   <div>
     <div id="messageCoachId" >
     </div>
     <form id="coachIdForm">
-      <div style="padding: .7em;"><label for="input_coachId"><?php echo(_('Coach Id'));?> </label><input required name="coachId" id="input_coachId" type="text" value="<?php echo(getCoachId(false));?>"><input name="postCoachId" id="input_postCoachId" type="submit" value="<?php echo(_("Log-in / Register")); ?>" <?php if (getCoachId(false)!=''){echo('style="display:none;"');}?>><input name="delCoachId" id="input_delCoachId" type="submit" value="<?php echo(_('Log-out'));?>" <?php if (getCoachId(false)==''){echo('style="display:none;"');}?>><span id="loading_coachId" style="display:none;"><p><img src="loading.gif" /> <?php echo(_('please wait...'));?></p></span></div>
+      <div style="margin-bottom: 1rem;"><label for="input_coachId"><?php echo(_('Coach Id'));?> </label><input required name="coachId" id="input_coachId" type="text" value="<?php echo(getCoachId(false));?>"><input name="postCoachId" id="input_postCoachId" type="submit" value="<?php echo(_("Log-in / Register")); ?>" <?php if (getCoachId(false)!=''){echo('style="display:none;"');}?>><input name="delCoachId" id="input_delCoachId" type="submit" value="<?php echo(_('Log-out'));?>" <?php if (getCoachId(false)==''){echo('style="display:none;"');}?>><span id="loading_coachId" style="display:none;"><p><img src="loading.gif" /> <?php echo(_('please wait...'));?></p></span></div>
     </form>
   <table id="competitor_table">
     <tr><th><?php echo(_("Name"));?></th><th><?php echo(_("Year of birth"));?></th><th><?php echo(_("Sex"));?></th><th><?php echo(_("Category"));?></th><th><?php echo(_("Club"));?></th></tr>
@@ -107,7 +118,6 @@ foreach( $competitors as $competitor ){
 ?>
   </table>
   </div>
-</div>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="jquery-ui.min.js"></script>
 <script>
@@ -344,5 +354,47 @@ $('#coachIdForm input:text, #signUpForm input:password')
        'outline' : 'none',
         'cursor' : 'text',
   });
-</script></body>
+</script>
+<section class="footer-top">
+  <div class="row">
+    <div class="small-12 large-12 columns">
+      <ul class="small-block-grid-3 medium-block-grid-5 large-block-grid-5">
+        <li>
+          <a href="http://www.foerderverein-judo-in-hamburg.de" target="_blank">
+            <img src="http://www.hamburg-judo.de/fileadmin/template/Resources/Public/Images/footer_logo_foerderverein.jpg">
+          </a>
+        </li>
+        <li>
+          <a href="https://www.facebook.com/FoerdervereinJudoInHamburg" target="_blank">
+            <img src="http://www.hamburg-judo.de/fileadmin/template/Resources/Public/Images/footer_logo_herz.jpg">
+          </a>
+        </li>
+        <li>
+          <a href="http://www.hamburger-judo-team.de" target="_blank">
+            <img src="http://www.hamburg-judo.de/fileadmin/template/Resources/Public/Images/footer_logo_hjt.jpg">  
+          </a>
+        </li>
+        <li>
+          <a href="http://www.stiftung-leistungssport.de" target="_blank">
+            <img src="http://www.hamburg-judo.de/fileadmin/template/Resources/Public/Images/footer_logo_leistungssport.jpg">
+          </a>
+        </li>
+        <li>
+          <a href="http://www.hamburg.de/active-city/" target="_blank">
+            <img src="http://www.hamburg-judo.de/fileadmin/template/Resources/Public/Images/footer_logo_activecity.jpg">
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+<footer class="footer-bottom">
+  <div class="row">
+    <div class="small-12 large-12 columns">
+      © Copyright 2016 Hamburger Judo Verband e.V. | <a href="http://www.hamburg-judo.de/kontakt/">Kontakt</a> | <a href="http://www.hamburg-judo.de/impressum/">Impressum</a><br>
+      Powered by <a href="https://github.com/Xilaew/JudoShiai-xPack">JudoShiai-xPack</a> | Author: Felix von Poblotzki
+    </div>
+  </div>
+</footer>
+</body>
 </html>
