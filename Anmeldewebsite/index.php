@@ -17,7 +17,7 @@ if (file_exists($dataCsv)) {
 $competitors = csv_getCompetitors($fp, getCoachId(true));
 fclose($fp);
 ?><!DOCTYPE html>
-<html lang="<?php echo(_("en")); ?>">
+<html lang="<?php echo(_("en"));?>">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -58,28 +58,32 @@ fclose($fp);
       <h2><?php echo(_("Register new competitors:")); ?></h2>
       <div>
         <div id="message" >
-          <?php if (count($competitors) > 0 && getCoachId(false) == "") { ?>
+          <?php
+          if (count($competitors) > 0 && getCoachId(false) == "") {
+            ?>
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
-              <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+              <strong><?php echo(_('Hint:')); ?></strong><?php echo(_('In order to view and modify the entered competitors later on you should create a Coach Id (username).')); ?>
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
-            </div>
-            <div class="ui-widget">
-              <div class="ui-state-error ui-corner-all" style="padding: 0 .7em;">
-                <p><strong><?php echo(_('Hint:')); ?></strong><?php echo(_('In order to view and modify the entered competitors later on you should create a Coach Id (username).')); ?></p>
-              </div>
             </div>
             <?php
           }
           ?>
           <?php
           if ($forceRegistration && getCoachId(false) == "") {
-            echo('      <div class="ui-widget"><div class="ui-state-error ui-corner-all" style="padding: 0 .7em;"><p>' . _('Before you can register competitors you need to sign up by entering your email address as Coach Id. We use the email to keep you updated about any changes regarding the tournament. Further you can view and modify your competitors later on with this email/Coach Id as login.') . '</p></div></div>');
+            ?>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <?php echo(_('Before you can register competitors you need to sign up by entering your email address as Coach Id. We use the email to keep you updated about any changes regarding the tournament. Further you can view and modify your competitors later on with this email/Coach Id as login.')); ?>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <?php
           }
           ?>
         </div>
-        <form action="index.php" method="post" id="signUpForm" <?php echo( ($forceRegistration && getCoachId(false) == "") ? 'style="display: none;"' : ''); ?>>
+        <form action="index.php" method="post" id="signUpForm" class="<?php echo( ($forceRegistration && getCoachId(false) == "") ? 'd-none' : ''); ?>">
           <div class="row">
             <div class="col-md form-group"><label for="input_firstName"><?php echo(_("First Name")); ?></label><input required name="firstName" id="input_firstName" type="text" class="form-control"></div>
             <div class="col-md form-group"><label for="input_lastName"><?php echo(_("Last Name")); ?></label><input required name="lastName" id="input_lastName" type="text" class="form-control"></div>
@@ -89,16 +93,15 @@ fclose($fp);
               <label for="input_yearOfBirth"><?php echo(_("Year of birth")); ?></label>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                  <button class="btn btn-outline-primary" type="button" tabindex="-1">-</button>
+                  <button id="btn_dec_yearOfBirth" class="btn btn-outline-primary" type="button" tabindex="-1">-</button>
                 </div>
                 <input name="yearOfBirth" id="input_yearOfBirth" type="number" required value="<?php echo(floor(($minYearOfBirth + $maxYearOfBirth) / 2)); ?>" min="<?php echo($minYearOfBirth); ?>" max="<?php echo($maxYearOfBirth); ?>" class="form-control input-number–noSpinners">
                 <div class="input-group-append">
-                  <button class="btn btn-outline-primary" type="button" tabindex="-1">+</button>
+                  <button id="btn_inc_yearOfBirth" class="btn btn-outline-primary" type="button" tabindex="-1">+</button>
                 </div>            
               </div>
             </div>
             <fieldset class="col-md form-group">
-              <!--              <fieldset>-->
               <legend class="label"><?php echo(_("Sex")); ?></legend>
               <div id="btn_group_sex" class="btn-group btn-group-toggle d-flex" data-toggle="buttons">
                 <label class="btn btn-outline-primary active w-100" for="input_male">
@@ -109,13 +112,11 @@ fclose($fp);
                 </label>
               </div>
             </fieldset>
-            <!--            </div>-->
           </div>
           <div class="row">
             <div class="col-md form-group">
               <label for="labelAgeCat"><?php echo(_("Age Category")); ?></label>
-              <!--              <div id="labelAgeCat"></div>-->
-              <input id="labelAgeCat" type="text" readonly tabindex="-1" class="form-control" value="">
+              <input id="labelAgeCat" type="text" readonly class="form-control-plaintext" value="">
             </div>
             <div class="col-md form-group"><label for="input_weight"><?php echo(_("Weight Category")); ?></label>
               <select name="weight" id="input_weight" class="form-control">
@@ -153,7 +154,7 @@ fclose($fp);
             <label for="input_coachId"><?php echo(_('Coach Id')); ?></label><input required name="coachId" id="input_coachId" type="text" value="<?php echo(getCoachId(false)); ?>" class="form-control">
           </div>              
           <div class="col-md form-group align-self-end">
-            <input name="postCoachId" id="input_postCoachId" type="submit" value="<?php echo(_("Log-in / Register")); ?>" <?php echo((getCoachId(false) != '') ? 'style="display:none;"' : ''); ?> class="btn btn-primary btn-blk">
+            <input name="postCoachId" id="input_postCoachId" type="submit" value="<?php echo(_("Log-in / Register")); ?>" class="btn btn-primary btn-blk <?php echo((getCoachId(false) != '') ? 'd-none' : ''); ?>">
             <input name="delCoachId" id="input_delCoachId" type="submit" value="<?php echo(_('Log-out')); ?>" class="btn btn-primary btn-blk <?php echo((getCoachId(false) == '') ? 'd-none' : ''); ?>">
             <span id="loading_coachId" class="d-none"><p><img src="loading.gif" /><?php echo(_('please wait...')); ?></p></span>
           </div>
@@ -214,19 +215,19 @@ fclose($fp);
           $('#loading').hide();
         },
         success: function (data, textStatus, jqXHR) {
-          if (jqXHR.status == 201) {
-            message(['<?php printf(_('%s was successfully registered.'), '<strong>\' + data.firstName + \' \' + data.lastName + \'</strong>'); ?>']);
+          if (jqXHR.status === 201) {
+            message(['<?php printf(_('%s was successfully registered.'), '<strong>\' + data.firstName + \' \' + data.lastName + \'</strong>'); ?>'],'message','success');
             addCompetitorTableEntry(data);
             competitors.push(data);
             $('#radioset input').removeAttr('checked');
             $('input[name=firstName]').val('');
             $("input[name=lastName]").val('');
             updateWeights(null);
-            if (coachId == '') {
-              message(['<?php echo('<strong>' . _('Hint:') . ' </strong>' . _('In order to view and modify the entered competitors later on you should create a Coach Id (username).')); ?>'], 'message', 'error');
+            if (coachId === '') {
+              message(['<?php echo('<strong>' . _('Hint:') . ' </strong>' . _('In order to view and modify the entered competitors later on you should create a Coach Id (username).')); ?>'], 'message', 'warning');
             }
           } else {
-            message([<?php echo('\'<strong>' . _('Error:') . ' </strong> \' + data.msg'); ?>, developerContact()], 'message', 'error');
+            message([<?php echo('\'<strong>' . _('Error:') . ' </strong> \' + data.msg'); ?>, developerContact()], 'message', 'danger');
           }
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -239,11 +240,11 @@ fclose($fp);
       e.preventDefault();
       var data = document.getElementById('input_coachId').value;
       var val = 'GET';
-      if (coachId == '' && competitors.length > 0) {
+      if (coachId === '' && competitors.length > 0) {
         val = "POST";
-      } else if (coachId == '' && competitors.length == 0) {
+      } else if (coachId === '' && competitors.length === 0) {
         val = "PUT";
-      } else if (coachId != '') {
+      } else if (coachId !== '') {
         val = "DELETE";
       }
       $.ajax({
@@ -258,30 +259,30 @@ fclose($fp);
           $('#loading_coachId').hide();
         },
         success: function (data, textStatus, jqXHR) {
-          if (val == 'POST' && jqXHR.status == 201) {
+          if (val === 'POST' && jqXHR.status === 201) {
             message(["<?php printf(_("From now on you can log-in with your Coach Id %s anytime to view and edit your registered competitors."), '<strong>" + data.new_sid + "</strong>'); ?>"], 'message');
             coachId = data.new_sid;
             document.getElementById('input_coachId').value = data.new_sid;
-            document.getElementById('input_postCoachId').style.display = "none";
-            document.getElementById('input_delCoachId').style.display = "";
-            document.getElementById('signUpForm').style.display = "";
-          } else if (val == 'DELETE' && jqXHR.status == 204) {
+            document.getElementById('input_postCoachId').classList.add("d-none");
+            document.getElementById('input_delCoachId').classList.remove("d-none");
+            document.getElementById('signUpForm').classList.remove("d-none");
+          } else if (val === 'DELETE' && jqXHR.status === 204) {
             message(["<?php echo(_("You have been logged-out successfully.")); ?>"], 'message');
             coachId = '';
             document.getElementById('input_coachId').value = '';
-            document.getElementById('input_postCoachId').style.display = "";
-            document.getElementById('input_delCoachId').style.display = "none";
+            document.getElementById('input_postCoachId').classList.remove("d-none");
+            document.getElementById('input_delCoachId').classList.add("d-none");
             if (forceRegistration) {
-              document.getElementById('signUpForm').style.display = "none";
-              message(["<?php echo(_("Before you can register competitors you need to sign up by entering your email address as Coach Id. We use the email to keep you updated about any changes regarding the tournament. Further you can view and modify your competitors later on with this email/Coach Id as login.")); ?>"], 'message', 'error', true);
+              document.getElementById('signUpForm').classList.add("d-none");
+              message(["<?php echo(_("Before you can register competitors you need to sign up by entering your email address as Coach Id. We use the email to keep you updated about any changes regarding the tournament. Further you can view and modify your competitors later on with this email/Coach Id as login.")); ?>"], 'message', 'warning', true);
             }
-          } else if (val == 'PUT' && jqXHR.status == 200) {
+          } else if (val === 'PUT' && jqXHR.status === 200) {
             message(["<?php printf(_("You have been logged-in as %s successfully."), '<strong>" + data.new_sid + "</strong>'); ?>"], 'message');
             coachId = data.new_sid;
             document.getElementById('input_coachId').value = data.new_sid;
-            document.getElementById('input_postCoachId').style.display = "none";
-            document.getElementById('input_delCoachId').style.display = "";
-            document.getElementById('signUpForm').style.display = "";
+            document.getElementById('input_postCoachId').classList.add("d-none");
+            document.getElementById('input_delCoachId').classList.remove("d-none");
+            document.getElementById('signUpForm').classList.remove("d-none");
           } else {
             handleError(jqXHR, textStatus, 'setting Coach Id: unexpected response.', 'message');
             return;
@@ -307,14 +308,14 @@ fclose($fp);
         },
         success: function (data, textStatus, jqXHR) {
           var cntnt = document.getElementById('competitor_table');
-          cntnt.getElementsByTagName("tbody")[0].innerHTML = cntnt.rows[0].innerHTML;
+          cntnt.getElementsByTagName("tbody")[0].innerHTML = '';
           data.forEach(function (competitor, index) {
             addCompetitorTableEntry(competitor);
             // $("#test-output").text(function(i,text){return text + index});
           });
           competitors = data;
-          if (competitors.length == 0 && coachId != '') {
-            message(["<?php printf(_('No competitors were found for the Coach Id %s.'), '<strong>" + coachId + "</strong>'); ?>"], 'message', 'error', true);
+          if (competitors.length === 0 && coachId !== '') {
+            message(["<?php printf(_('No competitors were found for the Coach Id %s.'), '<strong>" + coachId + "</strong>'); ?>"], 'message', 'warning', true);
           }
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -330,7 +331,7 @@ fclose($fp);
 
     function handleError(jqXHR, textStatus, errorThrown, msgFieldId) {
       message(["<?php printf('<strong>' . _('Error:') . ' </strong>' . _('Something went wrong. textStatus: %s errorThrown: %s'), '" + textStatus + "', '" + errorThrown + "'); ?>",
-        developerContact()], msgFieldId, 'error');
+        developerContact()], msgFieldId, 'danger');
     }
 
     function developerContact() {
@@ -338,17 +339,30 @@ fclose($fp);
     }
     ;
 
-    function message(messages, msgFieldId = "message", msgType = "highlight", append = false) {
-      var html = '<div class="ui-widget"><div class="ui-state-' + msgType + ' ui-corner-all" style="padding: 0 .7em;">'
+    function message(messages, msgFieldId = "message", msgType = "success", append = false) {
+      if (!(["success","info","warning","danger"].includes(msgType))) {
+        console.log('msgType: \"'+msgType+'\" is not a valid Message Type');
+        var msgType="info";
+      }
+      var content = '';
       messages.forEach(function (m, i) {
-        html += '<p>' + m + '</p>'
+        if (i > 0){
+          content += '<br>';
+        }
+        content += m;
       });
-      html += '</div></div>';
+      var html = `
+      <div class="alert alert-${msgType} alert-dismissible fade show" role="alert">
+        ${content}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>`;
       if (append) {
         document.getElementById(msgFieldId).insertAdjacentHTML('beforeend', html);
       } else {
         document.getElementById(msgFieldId).innerHTML = html;
-    }
+      }
     }
     ;
 
@@ -359,11 +373,11 @@ fclose($fp);
       var sex = $('input[name=sex]:checked').val();
       var yearOfBirth = $('input[name=yearOfBirth]').val();
       var age = yearOfTournament - yearOfBirth;
-      if (sex == "m") {
+      if (sex === "m") {
         var sexCategories = categories.male;
         //    $("#test-output").text(function(i,text){return text + "♂"});
       }
-      if (sex == "f") {
+      if (sex === "f") {
         var sexCategories = categories.female;
         //    $("#test-output").text(function(i,text){return text + "♀"});
       }
@@ -377,14 +391,14 @@ fclose($fp);
           break;
         }
       }
-      if (newcategory == category) {
+      if (newcategory === category) {
         //    $("#test-output").text(function(i,text){return text + "."});
       } else {
         //    $("#test-output").text(function(i,text){return text + "#"});
         category = newcategory;
-        $("#labelAgeCat").text(category);
+        $("#labelAgeCat").val(category);
         $("#input_weight").empty();
-        if (weights == null) {
+        if (weights === null) {
           $("<option/>").text("<?php echo(_("Select year of birth and sex first.")); ?>").appendTo("#input_weight");
         } else {
           $("<option/>").val("").text("<?php echo(_("Please choose a weight category.")); ?>").appendTo("#input_weight");
@@ -395,8 +409,48 @@ fclose($fp);
       }
     }
 
+    $.fn.mouseheld = function (step) {
+      var nextTime = 0;
+      var delay = 160;
+      var running = true;
+
+      function runStep(time) {
+        if (running)
+          requestAnimationFrame(runStep);
+        if (time < nextTime)
+          return;
+        nextTime = time + delay;
+
+        step();
+      }
+      this.mousedown(function () {
+        running = true;
+        nextTime = 0;
+        requestAnimationFrame(runStep);
+      }).bind('mouseup mouseleave', function () {
+        running = false;
+      });
+    };
+
+    $("#btn_inc_yearOfBirth").mouseheld(function (e) {
+      var elem = $("#input_yearOfBirth");
+      if (elem.attr('max') > elem.val()) {
+        elem.val(+elem.val() + 1);
+        elem.change();
+      }
+    });
+
+    $("#btn_dec_yearOfBirth").mouseheld(function (e) {
+      var elem = $("#input_yearOfBirth");
+      if (elem.attr('min') < elem.val()) {
+        elem.val(+elem.val() - 1);
+        elem.change();
+      }
+    });
+
     $("input[name='sex']").change(updateWeights);
     $("input[name='yearOfBirth']").change(updateWeights);
+    updateWeights();
   </script>
 </body>
 </html>
