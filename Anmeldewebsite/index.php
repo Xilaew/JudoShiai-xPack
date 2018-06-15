@@ -98,7 +98,7 @@ fclose($fp);
                 <input name="yearOfBirth" id="input_yearOfBirth" type="number" required value="<?php echo(floor(($minYearOfBirth + $maxYearOfBirth) / 2)); ?>" min="<?php echo($minYearOfBirth); ?>" max="<?php echo($maxYearOfBirth); ?>" class="form-control input-number–noSpinners">
                 <div class="input-group-append">
                   <button id="btn_inc_yearOfBirth" class="btn btn-outline-primary" type="button" tabindex="-1">+</button>
-                </div>            
+                </div>
               </div>
             </div>
             <fieldset class="col-md form-group">
@@ -125,14 +125,17 @@ fclose($fp);
             </div>
           </div>
           <div class="form-group"><label for="input_club"><?php echo(_("Club")); ?> </label>
-            <select name="club" required id="input_club" class="form-control">
+            <select name="club" required id="input_club" class="form-control" onchange="if(this.options[this.selectedIndex].value=='customOption'){toggleField(this,this.nextSibling); this.selectedIndex='0';}">
               <option value="" selected disabled><?php echo(_("Choose the competitor's club.")); ?></option>
               <?php
+              if ($allowCustomClub == true) {
+                echo('<option value="customOption">'._('My club is not in this list.').'</option>');
+              }
               foreach ($clubs as $club) {
                 echo("              <option value=\"$club\">$club</option>\n");
               }
               ?>
-            </select>
+            </select><input name="club" style="display:none;" disabled="disabled" type="text" class="form-control" onblur="if(this.value==''){toggleField(this,this.previousSibling);}">
           </div>
           <div class="form-group">
             <input name="register" type="submit" value="<?php echo(_('Register Competitor')); ?>" class="btn btn-primary">
@@ -451,6 +454,14 @@ fclose($fp);
     $("input[name='sex']").change(updateWeights);
     $("input[name='yearOfBirth']").change(updateWeights);
     updateWeights();
+    
+    function toggleField(hideObj,showObj){
+      hideObj.disabled=true;
+      hideObj.style.display='none';
+      showObj.disabled=false;
+      showObj.style.display='inline';
+      showObj.focus();
+    }
   </script>
 </body>
 </html>

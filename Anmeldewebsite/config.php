@@ -1,11 +1,11 @@
 <?php
 /* In which year will the competition take place.
 This is necessary information to calculate the contestants age and determine 
-which category they will compete in.*/
+which category they will compete in. */
 $yearOfTournament=2018;
 /* The minimum and maximum yearOfBirth for competitors.
 Input will be validated against these boundaries and hopefully nobody will try 
-to enter a way to young or old competitor.*/
+to enter a way to young or old competitor. */
 $minYearOfBirth=1980;
 $maxYearOfBirth=2006;
 /* Filenames of different config files.
@@ -18,10 +18,16 @@ $judoShiaiTemplateFile='template.shi';
 $clubsTxt='clubs.txt';
 $dataCsv='data.csv';
 /* For internationalisation you can set the default locale to use when nothing
-else is requested by the user.*/
+else is requested by the user. */
 $defaultLocale="de_DE";
 /* If you want to communicate with the registering coaches you need their email
 address. Set forceRegistration to true if you want to enforce the coaches to 
-create a Coach Id with their email address.*/
-$forceRegistration=false
+create a Coach Id with their email address. */
+$forceRegistration=false;
+/* For official tournaments you only invite clubs within the league. So you can
+ * list all clubs in the ClubsTxt and only those clubs may register Competitors.
+ * For open tournaments you want the invitation to spread wide and do not know
+ * in advance from where Fighters might be registert. In this case you want to
+ * allow people to enter custom club names. */
+$allowCustomClub=false;
 ?>
