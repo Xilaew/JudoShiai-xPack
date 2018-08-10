@@ -34,8 +34,8 @@ if (!$disabled) { /* if manually disabled the $disabledErrorMessage supplied in 
     $disabledErrorMessage = sprintf(_('The tounament took place on %s. There is no point in registering new competitors for a long gone turnament.'), $dateOfTournament);
   }
 }
-$showAlertCoachId = (count($competitors) > 0 && getCoachId(false) == "");
-$showAlertRegistrationRequired = ($forceRegistration && getCoachId(false) == "");
+$showAlertCoachId = (!$showAlertDisabled && count($competitors) > 0 && getCoachId(false) == "");
+$showAlertRegistrationRequired = (!$showAlertDisabled && $forceRegistration && getCoachId(false) == "");
 $showContainerSignUp = !($disabled || $turnamentIsOver || ($registrationIsClosed && $lateRegistrationHandling == 'reject'));
 $displayFormSignUp = !($forceRegistration && getCoachId(false) == "");
 $showContainerAlreadyRegistered = !($disabled || $turnamentIsOver);

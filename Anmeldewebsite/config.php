@@ -1,7 +1,7 @@
 <?php
 /* Date of the Tournament.
-This is necessary information to calculate the contestants age and determine 
-which category they will compete in. Further this information is used to 
+This is necessary information to calculate the contestants age and determine
+which category they will compete in. Further this information is used to
 automatically disable registration after the Tournament began */
 $dateOfTournament='25.08.2018';
 /* Registration closing date and how to handle late registrations
