@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg2"
+   viewBox="0 0 488.64268 492.22191"
+   version="1.0"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="Logo-Turnierinfo.svg"
+   width="488.6427"
+   height="492.22192">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1680"
+     inkscape:window-height="987"
+     id="namedview33"
+     showgrid="false"
+     fit-margin-top="-15"
+     fit-margin-left="-15"
+     fit-margin-right="-15"
+     fit-margin-bottom="-15"
+     inkscape:zoom="0.71908129"
+     inkscape:cx="342.01735"
+     inkscape:cy="53.566449"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <defs
+     id="defs4">
+    <filter
+       id="filter3901">
+      <feGaussianBlur
+         id="feGaussianBlur3903"
+         stdDeviation="2.1482521" />
+    </filter>
+    <radialGradient
+       id="radialGradient3998"
+       gradientUnits="userSpaceOnUse"
+       cy="287.45001"
+       cx="205.06"
+       gradientTransform="matrix(1.2632474,5.6934003e-8,-5.5616485e-8,1.2339569,-14.68893,-108.56993)"
+       r="209.97">
+      <stop
+         id="stop3917"
+         stop-color="#fff"
+         stop-opacity="0"
+         offset="0" />
+      <stop
+         id="stop3923"
+         stop-color="#787878"
+         stop-opacity=".096939"
+         offset=".5" />
+      <stop
+         id="stop3919"
+         offset="1" />
+    </radialGradient>
+    <radialGradient
+       id="radialGradient4000"
+       gradientUnits="userSpaceOnUse"
+       cy="440.54999"
+       cx="62.546001"
+       gradientTransform="matrix(0.95782,0.79649,-3.1229,3.7554,1388.5,-1274.8)"
+       r="209.97">
+      <stop
+         id="stop3879"
+         stop-color="#fff"
+         offset="0" />
+      <stop
+         id="stop3881"
+         stop-opacity="0"
+         offset="1" />
+    </radialGradient>
+    <linearGradient
+       id="linearGradient4002"
+       y2="243.92"
+       gradientUnits="userSpaceOnUse"
+       x2="-226.91"
+       y1="81.872002"
+       x1="-217.71001"
+       gradientTransform="matrix(1.141,0.90894,-0.943,1.1825,752.89073,135.69041)">
+      <stop
+         id="stop3909"
+         stop-color="#fff"
+         offset="0" />
+      <stop
+         id="stop3911"
+         stop-color="#fff"
+         stop-opacity="0"
+         offset="1" />
+    </linearGradient>
+  </defs>
+  <path
+     style="fill:#00ff00"
+     inkscape:connector-curvature="0"
+     d="m 476.41234,246.12889 a 232.07984,232.07984 0 1 1 -464.148636,0 232.07984,232.07984 0 1 1 464.148636,0 z"
+     id="path3925" />
+  <path
+     style="fill-rule:evenodd"
+     inkscape:connector-curvature="0"
+     d="m 146.68773,79.847414 c -1.58,0.06 -3.13,0.5 -4.5,1.28 C 82.225727,113.88741 41.587727,174.95741 41.587727,244.84741 c 0.003,72.19 43.361,134.92 106.600003,166.84 3.2,1.79 7.15,1.69 10.25,-0.28 3.09,-1.97 4.85,-5.49 4.59,-9.16 -0.26,-3.66 -2.5,-6.89 -5.84,-8.4 -57.14,-28.84 -95.598003,-84.81 -95.598003,-149 10e-4,-62.15 36.037998,-116.57 90.188003,-146.16 4.14,-2.18 6.22,-6.92 5,-11.44 -1.22,-4.519996 -5.42,-7.609996 -10.09,-7.399996 z m 197.9,2.06 c -4.45,0.26 -8.18,3.469996 -9.15,7.809996 -0.98,4.35 1.03,8.8 4.93,10.94 52.21,30 86.69,83.39 86.69,144.19 0,62.85 -36.86,117.77 -92.03,147.12 -4.88,2.6 -6.72,8.66 -4.12,13.53 2.59,4.88 8.65,6.73 13.53,4.13 61.07,-32.49 102.62,-94.1 102.62,-164.78 0,-68.38 -38.89,-128.3 -96.72,-161.529996 -1.73,-1.04 -3.73,-1.53 -5.75,-1.41 z m -178.47,31.589996 c -1.17,0.06 -2.32,0.39 -3.34,0.97 -47.88,26.17 -80.312003,74.87 -80.312003,130.66 0,57.62 34.592003,107.73 85.092003,133.22 3.7,1.86 8.23,0.39 10.09,-3.32 1.87,-3.7 0.36,-8.22 -3.34,-10.09 -45.92,-23.18 -76.842005,-68.19 -76.842005,-119.81 0,-49.98 28.982005,-93.72 72.502005,-117.5 3.1,-1.64 4.67,-5.21 3.75,-8.6 -0.92,-3.38 -4.09,-5.69 -7.6,-5.53 z m 158.57,1.66 c -3.32,0.21 -6.11,2.6 -6.85,5.84 -0.73,3.25 0.76,6.57 3.66,8.19 41.96,24.12 69.72,67.04 69.72,115.94 0,50.54 -29.66,94.72 -74,118.31 -3.66,1.95 -5.05,6.5 -3.1,10.16 1.95,3.66 6.5,5.04 10.16,3.09 48.77,-25.95 81.94,-75.15 81.94,-131.56 0,-54.58 -31.05,-102.4 -77.22,-128.94 -1.3,-0.77 -2.81,-1.13 -4.31,-1.03 z m -139.6,31.22 c -0.78,0.04 -1.54,0.27 -2.22,0.65 -36.07,19.72 -60.5,56.41 -60.5,98.41 0,43.38 26.05,81.08 64.1,100.28 2.47,1.25 5.47,0.25 6.72,-2.22 1.24,-2.46 0.25,-5.47 -2.22,-6.71 -35,-17.67 -58.6,-51.97 -58.6,-91.35 0,-38.13 22.12,-71.5 55.28,-89.62 2.1,-1.08 3.15,-3.48 2.54,-5.75 -0.62,-2.28 -2.74,-3.82 -5.1,-3.69 z m 120.66,1.25 c -2.31,-0.08 -4.38,1.46 -5,3.69 -0.62,2.23 0.38,4.57 2.4,5.68 31.98,18.38 53.13,51.14 53.13,88.44 0,38.56 -22.61,72.24 -56.41,90.22 -2.44,1.29 -3.35,4.34 -2.06,6.78 1.3,2.44 4.31,3.36 6.75,2.06 36.75,-19.55 61.72,-56.59 61.72,-99.06 0,-0.17 -0.01,-0.33 -0.03,-0.5 -0.19,-40.88 -23.48,-76.68 -58.13,-96.59 -0.71,-0.44 -1.53,-0.69 -2.37,-0.72 z m -59.47,94.8226 c -16.41,0.01 -88.12786,-14.0126 -88.12786,8.22072 0,12.39 67.16786,15.92668 79.21786,19.45668 l 0,182.38 c 0,4.9 3.96,8.9 8.91,8.9 4.95,0 8.94,-4 8.94,-8.9 l 0,-182.38 c 12.05,-3.53 79.21786,-12.62934 79.21786,-25.01934 0,-22.23332 -71.74786,-2.65806 -88.15786,-2.65806 z"
+     id="path5112"
+     sodipodi:nodetypes="cccccccccsccccscccsccccscccsccccccscscsccccscccsccccscscccsccccscssscsc" />
+  <path
+     id="path2838"
+     d="m 476.41134,246.13189 a 232.07984,232.07984 0 1 1 -464.148636,0 232.07984,232.07984 0 1 1 464.148636,0 z"
+     style="fill:url(#radialGradient3998)"
+     inkscape:connector-curvature="0" />
+  <path
+     id="path3875"
+     d="m 415.02,287.45 a 209.97,209.97 0 1 1 -419.93,0 209.97,209.97 0 1 1 419.93,0 z"
+     transform="matrix(1.0292,0,0,1.0292,33.278727,-49.732586)"
+     style="fill:none;stroke:url(#radialGradient4000);stroke-width:9.71590042;stroke-linecap:square;filter:url(#filter3901)"
+     inkscape:connector-curvature="0" />
+  <path
+     id="path3905"
+     d="M 430.08874,230.20533 A 137.03096,89.143635 38.519675 1 1 215.72907,59.442773 137.03096,89.143635 38.519675 1 1 430.08874,230.20533 Z"
+     style="fill:url(#linearGradient4002)"
+     inkscape:connector-curvature="0" />
+  <metadata
+     id="metadata31">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title></dc:title>
+        <dc:date>2008-04-14T11:42:44</dc:date>
+        <dc:description>A general purpose WiFi symbol with a glassy finish. Although I did it in green you can always re-edit with a different color scheme.</dc:description>
+        <dc:source>http://openclipart.org/detail/16369/glassy-wifi-symbol-by-coredump</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>coredump</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>clip art</rdf:li>
+            <rdf:li>clipart</rdf:li>
+            <rdf:li>how i did it</rdf:li>
+            <rdf:li>icon</rdf:li>
+            <rdf:li>image</rdf:li>
+            <rdf:li>media</rdf:li>
+            <rdf:li>network</rdf:li>
+            <rdf:li>png</rdf:li>
+            <rdf:li>public domain</rdf:li>
+            <rdf:li>remix</rdf:li>
+            <rdf:li>svg</rdf:li>
+            <rdf:li>symbol</rdf:li>
+            <rdf:li>wifi</rdf:li>
+            <rdf:li>wireless</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>
