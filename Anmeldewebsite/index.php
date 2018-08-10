@@ -17,9 +17,6 @@ if (file_exists($dataCsv)) {
 $competitors = csv_getCompetitors($fp, getCoachId(true));
 fclose($fp);
 $dateOfTournamentDate = strtotime($dateOfTournament) or die('ERROR: could not parse '.$dateOfTournament.' as date. Please go to config.php and enter a valid value for $dateOfTournament. See http://php.net/manual/de/datetime.formats.php for detailed information about valid Date formats.');
-var_dump($dateOfTournamentDate);
-echo "The time is " . date("d,m,Y h:i:sa");
-
 $dateRegistrationClosing = strtotime($registrationClosingDate) or die('ERROR: could not parse '.$registrationClosingDate.' as date. Please go to config.php and enter a valid value for $registrationClosingDate. See http://php.net/manual/de/datetime.formats.php for detailed information about valid Date formats.');;
 $yearOfTournament = date('Y', $dateOfTournamentDate);
 $turnamentIsOver = (($dateOfTournamentDate - time()) < 0);
