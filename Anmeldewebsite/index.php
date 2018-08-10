@@ -16,6 +16,29 @@ if (file_exists($dataCsv)) {
 }
 $competitors = csv_getCompetitors($fp, getCoachId(true));
 fclose($fp);
+$dateOfTournamentDate = strtotime($dateOfTournament) or die('ERROR: could not parse '.$dateOfTournament.' as date. Please go to config.php and enter a valid value for $dateOfTournament. See http://php.net/manual/de/datetime.formats.php for detailed information about valid Date formats.');
+var_dump($dateOfTournamentDate);
+echo "The time is " . date("d,m,Y h:i:sa");
+
+$dateRegistrationClosing = strtotime($registrationClosingDate) or die('ERROR: could not parse '.$registrationClosingDate.' as date. Please go to config.php and enter a valid value for $registrationClosingDate. See http://php.net/manual/de/datetime.formats.php for detailed information about valid Date formats.');;
+$yearOfTournament = date('Y', $dateOfTournamentDate);
+$turnamentIsOver = (($dateOfTournamentDate - time()) < 0);
+$registrationIsClosed = (($dateRegistrationClosing - time()) < 0);
+/* Buissness logic to determine which parts of the website are visible and which not. */
+$showAlertDisabled = ($disabled || $turnamentIsOver || ($registrationIsClosed && $lateRegistrationHandling == 'reject'));
+if (!$disabled) { /* if manually disabled the $disabledErrorMessage supplied in the config file shall be used */
+  if ($registrationIsClosed && $lateRegistrationHandling == 'reject') {
+    $disabledErrorMessage = sprintf(_('Registration for this tournament was closed on %s. No new registrations will be accepted. please consider registering before closing of registration for the next tournament.'), $registrationClosingDate);
+  }
+  if ($turnamentIsOver) {
+    $disabledErrorMessage = sprintf(_('The tounament took place on %s. There is no point in registering new competitors for a long gone turnament.'), $dateOfTournament);
+  }
+}
+$showAlertCoachId = (count($competitors) > 0 && getCoachId(false) == "");
+$showAlertRegistrationRequired = ($forceRegistration && getCoachId(false) == "");
+$showContainerSignUp = !($disabled || $turnamentIsOver || ($registrationIsClosed && $lateRegistrationHandling == 'reject'));
+$displayFormSignUp = !($forceRegistration && getCoachId(false) == "");
+$showContainerAlreadyRegistered = !($disabled || $turnamentIsOver);
 ?><!DOCTYPE html>
 <html lang="<?php echo(_("en"));?>">
   <head>
@@ -53,37 +76,53 @@ fclose($fp);
   <body>
     <div class="container">
       <h1><?php echo($info->Competition); ?></h1>
+      <h1><?php echo($info->Date . " | " . $info->Place);?></h1>
+      <div id="message" >
+        <?php
+        if ($showAlertDisabled) {
+        ?>
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <?php echo($disabledErrorMessage); ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        <?php
+        }
+        ?>
+        <?php
+        if ($showAlertCoachId) {
+        ?>
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong><?php echo(_('Hint:')); ?></strong><?php echo(_('In order to view and modify the entered competitors later on you should create a Coach Id (username).')); ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        <?php
+        }
+        ?>
+        <?php
+        if ($showAlertRegistrationRequired) {
+        ?>
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <?php echo(_('Before you can register competitors you need to sign up by entering your email address as Coach Id. We use the email to keep you updated about any changes regarding the tournament. Further you can view and modify your competitors later on with this email/Coach Id as login.')); ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        <?php
+        }
+        ?>
+      </div>
     </div>
-    <div class="container">
+    <?php
+      if ($showContainerSignUp) {
+    ?>
+    <div class="container <?php echo( $displayFormSignUp ? '' : 'd-none'); ?>" id="containerSignUp">
       <h2><?php echo(_("Register new competitors:")); ?></h2>
       <div>
-        <div id="message" >
-          <?php
-          if (count($competitors) > 0 && getCoachId(false) == "") {
-            ?>
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-              <strong><?php echo(_('Hint:')); ?></strong><?php echo(_('In order to view and modify the entered competitors later on you should create a Coach Id (username).')); ?>
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <?php
-          }
-          ?>
-          <?php
-          if ($forceRegistration && getCoachId(false) == "") {
-            ?>
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-              <?php echo(_('Before you can register competitors you need to sign up by entering your email address as Coach Id. We use the email to keep you updated about any changes regarding the tournament. Further you can view and modify your competitors later on with this email/Coach Id as login.')); ?>
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <?php
-          }
-          ?>
-        </div>
-        <form action="index.php" method="post" id="signUpForm" class="<?php echo( ($forceRegistration && getCoachId(false) == "") ? 'd-none' : ''); ?>">
+        <form action="index.php" method="post" id="signUpForm" class="">
           <div class="row">
             <div class="col-md form-group"><label for="input_firstName"><?php echo(_("First Name")); ?></label><input required name="firstName" id="input_firstName" type="text" class="form-control"></div>
             <div class="col-md form-group"><label for="input_lastName"><?php echo(_("Last Name")); ?></label><input required name="lastName" id="input_lastName" type="text" class="form-control"></div>
@@ -146,6 +185,12 @@ fclose($fp);
       </div>
     </div>
   </div>
+  <?php
+    }
+  ?>
+  <?php
+    if ($showContainerAlreadyRegistered) {
+  ?>
   <div class="container">
     <h2><?php echo(_("Already registered competitors:")); ?></h2>
     <div>
@@ -154,7 +199,7 @@ fclose($fp);
       <form id="coachIdForm">
         <div class="row"> 
           <div class="col-md form-group">
-            <label for="input_coachId"><?php echo(_('Coach Id')); ?></label><input required name="coachId" id="input_coachId" type="text" value="<?php echo(getCoachId(false)); ?>" class="form-control">
+            <label for="input_coachId"><?php echo(_('Coach Id')); ?></label><input required name="coachId" id="input_coachId" type="<?php echo($forceRegistration ? 'email' : 'text'); ?>" value="<?php echo(getCoachId(false)); ?>" class="form-control">
           </div>              
           <div class="col-md form-group align-self-end">
             <input name="postCoachId" id="input_postCoachId" type="submit" value="<?php echo(_("Log-in / Register")); ?>" class="btn btn-primary btn-blk <?php echo((getCoachId(false) != '') ? 'd-none' : ''); ?>">
@@ -182,6 +227,9 @@ fclose($fp);
       </table>
     </div>
   </div>
+  <?php
+  }
+  ?>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script>
@@ -227,7 +275,7 @@ fclose($fp);
             $("input[name=lastName]").val('');
             updateWeights(null);
             if (coachId === '') {
-              message(['<?php echo('<strong>' . _('Hint:') . ' </strong>' . _('In order to view and modify the entered competitors later on you should create a Coach Id (username).')); ?>'], 'message', 'warning');
+              message(['<?php echo('<strong>' . _('Hint:') . ' </strong>' . _('In order to view and modify the entered competitors later on you should create a Coach Id (username).')); ?>'], 'message', 'warning', true);
             }
           } else {
             message([<?php echo('\'<strong>' . _('Error:') . ' </strong> \' + data.msg'); ?>, developerContact()], 'message', 'danger');
@@ -268,7 +316,7 @@ fclose($fp);
             document.getElementById('input_coachId').value = data.new_sid;
             document.getElementById('input_postCoachId').classList.add("d-none");
             document.getElementById('input_delCoachId').classList.remove("d-none");
-            document.getElementById('signUpForm').classList.remove("d-none");
+            document.getElementById('containerSignUp').classList.remove("d-none");
           } else if (val === 'DELETE' && jqXHR.status === 204) {
             message(["<?php echo(_("You have been logged-out successfully.")); ?>"], 'message');
             coachId = '';
@@ -276,7 +324,7 @@ fclose($fp);
             document.getElementById('input_postCoachId').classList.remove("d-none");
             document.getElementById('input_delCoachId').classList.add("d-none");
             if (forceRegistration) {
-              document.getElementById('signUpForm').classList.add("d-none");
+              document.getElementById('containerSignUp').classList.add("d-none");
               message(["<?php echo(_("Before you can register competitors you need to sign up by entering your email address as Coach Id. We use the email to keep you updated about any changes regarding the tournament. Further you can view and modify your competitors later on with this email/Coach Id as login.")); ?>"], 'message', 'warning', true);
             }
           } else if (val === 'PUT' && jqXHR.status === 200) {
@@ -285,7 +333,7 @@ fclose($fp);
             document.getElementById('input_coachId').value = data.new_sid;
             document.getElementById('input_postCoachId').classList.add("d-none");
             document.getElementById('input_delCoachId').classList.remove("d-none");
-            document.getElementById('signUpForm').classList.remove("d-none");
+            document.getElementById('containerSignUp').classList.remove("d-none");
           } else {
             handleError(jqXHR, textStatus, 'setting Coach Id: unexpected response.', 'message');
             return;
