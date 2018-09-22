@@ -1,10 +1,10 @@
 
 config wifi-device 'radio0'
 	option type 'mac80211'
+	option channel 'auto'
 	option hwmode '11g'
 	option path 'platform/qca955x_wmac'
 	option htmode 'HT20'
-	option channel 'auto'
 	option country 'DE'
 	option txpower '20'
 

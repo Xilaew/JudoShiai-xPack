@@ -8,13 +8,6 @@ config interface 'loopback'
 config globals 'globals'
 	option ula_prefix 'fd0f:904c:df3f::/48'
 
-config interface 'public'
-	option _orig_ifname 'wlan0-1'
-	option _orig_bridge 'false'
-	option proto 'static'
-	option ipaddr '172.42.1.1'
-	option netmask '255.255.0.0'
-
 config interface 'lan'
 	option ifname 'eth1'
 	option force_link '1'
@@ -46,4 +39,11 @@ config switch_vlan
 	option device 'switch0'
 	option vlan '2'
 	option ports '5 6'
+
+config interface 'public'
+	option _orig_ifname 'wlan0-1'
+	option _orig_bridge 'false'
+	option proto 'static'
+	option ipaddr '172.42.1.1'
+	option netmask '255.255.0.0'
 
