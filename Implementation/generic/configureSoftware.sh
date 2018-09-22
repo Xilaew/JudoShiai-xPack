@@ -129,9 +129,9 @@ uci add_list uhttpd.main.listen_https='192.168.1.2:443'
 #configure uhttpd turnierinfo instance to serve judoshiai website
 turnierinfo=`uci add uhttpd uhttpd`
 uci rename uhttpd.$turnierinfo='turnierinfo'
-uci add_list uhttpd.turnierinfo.listen_http='10.42.1.1:80'
+uci add_list uhttpd.turnierinfo.listen_http='10.42.0.1:80'
 uci add_list uhttpd.turnierinfo.listen_http='192.168.1.1:80'
-uci add_list uhttpd.turnierinfo.listen_https='10.42.1.1:443'
+uci add_list uhttpd.turnierinfo.listen_https='10.42.0.1:443'
 uci add_list uhttpd.turnierinfo.listen_https='192.168.1.1:443'
 uci set uhttpd.turnierinfo.home='/tmp/turnierinfo'
 uci set uhttpd.turnierinfo.error_page='/error.html'
@@ -144,11 +144,12 @@ chmod 755 /etc/init.d/turnierinfo
 uci set dropbear.@dropbear[0].Interface='lan'
 
 #configure vsftpd
-#TODO 
-echo 'judoshiai:*:100:100:judoshiai:/var/turnierinfo:/bin/false' >> /etc/passwd
-echo 'judoshiai::0:0:99999:7:::' >> /etc/shadow
+echo 'judoshiai:*:100:100:judoshiai:/tmp/turnierinfo:/bin/false' >> /etc/passwd
+#echo 'judoshiai::0:0:99999:7:::' >> /etc/shadow
 
-
-
-
+###############################################################################
+# COMMIT AND REBOOT                                                           #
+###############################################################################
+uci commit
 reboot
+
