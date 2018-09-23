@@ -6,8 +6,8 @@ START=49
 start() {
   echo creating turnierinfo folder
   mkdir -m 0777 -p /tmp/turnierinfo
-  chown judoshiai:judoshiai /tmp/turnierinfo
   cp -r /www/turnierinfo/* /tmp/turnierinfo/
+  chown -R judoshiai:judoshiai /tmp/turnierinfo
 }
 
 stop() {
