@@ -144,8 +144,10 @@ chmod 755 /etc/init.d/turnierinfo
 uci set dropbear.@dropbear[0].Interface='lan'
 
 #configure vsftpd
-echo 'judoshiai:*:100:100:judoshiai:/tmp/turnierinfo:/bin/false' >> /etc/passwd
-#echo 'judoshiai::0:0:99999:7:::' >> /etc/shadow
+#create user judoshia with empty string as password
+echo 'judoshiai:x:142:142:judoshiai:/tmp/turnierinfo:/bin/false' >> /etc/passwd
+echo 'judoshiai:x:142:' >> /etc/group
+echo 'judoshiai:$1$y36WrFY7$/psY2cByxRLCXsVHF7rvD.:17797:0:99999:7:::' >> /etc/shadow
 
 ###############################################################################
 # COMMIT AND REBOOT                                                           #
