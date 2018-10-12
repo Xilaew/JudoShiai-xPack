@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR Felix von Poblotzki
+# This file is distributed under the same license as the judoshiai-xPack package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-15 21:50+0200\n"
+"Project-Id-Version: judoshiai-xPack 0.1\n"
+"Report-Msgid-Bugs-To: xilaew@gmail.com\n"
+"POT-Creation-Date: 2018-10-13 01:20+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,25 +17,36 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: index.php:20
+#: index.php:28
+#, php-format
+msgid ""
+"Registration for this tournament was closed on %s. No new registrations will "
+"be accepted. please consider registering before closing of registration for "
+"the next tournament."
+msgstr ""
+
+#: index.php:31
+#, php-format
+msgid ""
+"The tounament took place on %s. There is no point in registering new "
+"competitors for a long gone turnament."
+msgstr ""
+
+#: index.php:40
 msgid "en"
 msgstr ""
 
-#: index.php:58
-msgid "Register new competitors:"
-msgstr ""
-
-#: index.php:65 index.php:230
+#: index.php:149 index.php:337
 msgid "Hint:"
 msgstr ""
 
-#: index.php:65 index.php:230
+#: index.php:149 index.php:337
 msgid ""
 "In order to view and modify the entered competitors later on you should "
 "create a Coach Id (username)."
 msgstr ""
 
-#: index.php:77 index.php:280
+#: index.php:161 index.php:387
 msgid ""
 "Before you can register competitors you need to sign up by entering your "
 "email address as Coach Id. We use the email to keep you updated about any "
@@ -43,150 +54,162 @@ msgid ""
 "competitors later on with this email/Coach Id as login."
 msgstr ""
 
-#: index.php:88
+#: index.php:175
+msgid "Register new competitors:"
+msgstr ""
+
+#: index.php:179
 msgid "First Name"
 msgstr ""
 
-#: index.php:89
+#: index.php:180
 msgid "Last Name"
 msgstr ""
 
-#: index.php:93 index.php:170
+#: index.php:184 index.php:274
 msgid "Year of birth"
 msgstr ""
 
-#: index.php:105 index.php:171
+#: index.php:196 index.php:275
 msgid "Sex"
 msgstr ""
 
-#: index.php:108
+#: index.php:199
 msgid "male"
 msgstr ""
 
-#: index.php:111
+#: index.php:202
 msgid "female"
 msgstr ""
 
-#: index.php:118
+#: index.php:209
 msgid "Age Category"
 msgstr ""
 
-#: index.php:121
+#: index.php:212
 msgid "Weight Category"
 msgstr ""
 
-#: index.php:123 index.php:405
+#: index.php:214 index.php:509
 msgid "Select year of birth and sex first."
 msgstr ""
 
-#: index.php:127 index.php:173
+#: index.php:218 index.php:277
 msgid "Club"
 msgstr ""
 
-#: index.php:129
+#: index.php:220
 msgid "Choose the competitor's club."
 msgstr ""
 
-#: index.php:132
+#: index.php:223
 msgid "My club is not in this list."
 msgstr ""
 
-#: index.php:141
+#: index.php:237
+msgid ""
+"I consent that my information provided here can be used throughout the "
+"planning and execution of the tournament. My name will be written on "
+"competition sheets visible to anybody pysically present on the tournament. "
+"The data will be deleted one week after the tournament."
+msgstr ""
+
+#: index.php:240
 msgid "Register Competitor"
 msgstr ""
 
-#: index.php:142 index.php:162
+#: index.php:241 index.php:266
 msgid "please wait..."
 msgstr ""
 
-#: index.php:150
+#: index.php:254
 msgid "Already registered competitors:"
 msgstr ""
 
-#: index.php:157
+#: index.php:261
 msgid "Coach Id"
 msgstr ""
 
-#: index.php:160
+#: index.php:264
 msgid "Log-in / Register"
 msgstr ""
 
-#: index.php:161
+#: index.php:265
 msgid "Log-out"
 msgstr ""
 
-#: index.php:169
+#: index.php:273
 msgid "Name"
 msgstr ""
 
-#: index.php:172
+#: index.php:276
 msgid "Category"
 msgstr ""
 
-#: index.php:222
+#: index.php:329
 #, php-format
 msgid "%s was successfully registered."
 msgstr ""
 
-#: index.php:233 index.php:336
+#: index.php:340 index.php:442
 #, php-format
 msgid "Error:"
 msgstr ""
 
-#: index.php:266
+#: index.php:373
 #, php-format
 msgid ""
 "From now on you can log-in with your Coach Id %s anytime to view and edit "
 "your registered competitors."
 msgstr ""
 
-#: index.php:273
+#: index.php:380
 msgid "You have been logged-out successfully."
 msgstr ""
 
-#: index.php:283
+#: index.php:390
 #, php-format
 msgid "You have been logged-in as %s successfully."
 msgstr ""
 
-#: index.php:321
+#: index.php:428
 #, php-format
 msgid "No competitors were found for the Coach Id %s."
 msgstr ""
 
-#: index.php:336
+#: index.php:442
 #, php-format
 msgid "Something went wrong. textStatus: %s errorThrown: %s"
 msgstr ""
 
-#: index.php:341
+#: index.php:447
 msgid ""
 "Developer's contact details: Felix von Poblotzki, +4915232787790, "
 "xilaew@gmail.com"
 msgstr ""
 
-#: index.php:407
+#: index.php:511
 msgid "Please choose a weight category."
 msgstr ""
 
-#: lib.php:88
+#: lib.php:89
 msgid "Please enter a name!"
 msgstr ""
 
-#: lib.php:90
+#: lib.php:91
 msgid "Please enter a valid club!"
 msgstr ""
 
-#: lib.php:92
+#: lib.php:93
 msgid "Please enter the competitors Sex!"
 msgstr ""
 
-#: lib.php:94
+#: lib.php:95
 #, php-format
 msgid "Year of birth must be between %d and %d!"
 msgstr ""
 
-#: lib.php:104
+#: lib.php:105
 msgid "Not saved due to internal error!"
 msgstr ""
 

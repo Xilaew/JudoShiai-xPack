@@ -16,8 +16,8 @@ if (file_exists($dataCsv)) {
 }
 $competitors = csv_getCompetitors($fp, getCoachId(true));
 fclose($fp);
-$dateOfTournamentDate = strtotime($dateOfTournament) or die('ERROR: could not parse '.$dateOfTournament.' as date. Please go to config.php and enter a valid value for $dateOfTournament. See http://php.net/manual/de/datetime.formats.php for detailed information about valid Date formats.');
-$dateRegistrationClosing = strtotime($registrationClosingDate) or die('ERROR: could not parse '.$registrationClosingDate.' as date. Please go to config.php and enter a valid value for $registrationClosingDate. See http://php.net/manual/de/datetime.formats.php for detailed information about valid Date formats.');;
+$dateOfTournamentDate = strtotime($dateOfTournament) or die('ERROR: could not parse ' . $dateOfTournament . ' as date. Please go to config.php and enter a valid value for $dateOfTournament. See http://php.net/manual/de/datetime.formats.php for detailed information about valid Date formats.');
+$dateRegistrationClosing = strtotime($registrationClosingDate) or die('ERROR: could not parse ' . $registrationClosingDate . ' as date. Please go to config.php and enter a valid value for $registrationClosingDate. See http://php.net/manual/de/datetime.formats.php for detailed information about valid Date formats.');
 $yearOfTournament = date('Y', $dateOfTournamentDate);
 $turnamentIsOver = (($dateOfTournamentDate - time()) < 0);
 $registrationIsClosed = (($dateRegistrationClosing - time()) < 0);
@@ -37,7 +37,7 @@ $showContainerSignUp = !($disabled || $turnamentIsOver || ($registrationIsClosed
 $displayFormSignUp = !($forceRegistration && getCoachId(false) == "");
 $showContainerAlreadyRegistered = !($disabled || $turnamentIsOver);
 ?><!DOCTYPE html>
-<html lang="<?php echo(_("en"));?>">
+<html lang="<?php echo(_("en")); ?>">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -67,13 +67,68 @@ $showContainerAlreadyRegistered = !($disabled || $turnamentIsOver);
         color:inherit;
         white-space:normal
       }
+
+      /* The switch - the box around the slider */
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+        float:left;
+      }
+      /* Hide default HTML checkbox */
+      .switch input {display:none;}
+      /* The slider */
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+      }
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+      }
+      input.primary:checked + .slider {
+        background-color: #2196F3;
+      }
+      input:checked + .slider {
+        background-color: #007bff;
+      }
+      input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+      }
+      input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+      }
+      /* Rounded sliders */
+      .slider.round {
+        border-radius: 34px;
+      }
+      .slider.round:before {
+        border-radius: 50%;
+      }
     </style>
     <title><?php echo($info->Competition); ?></title>
   </head>
   <body>
     <div class="container">
       <h1><?php echo($info->Competition); ?></h1>
-      <h1><?php echo($info->Date . " | " . $info->Place);?></h1>
+      <h1><?php echo($info->Date . " | " . $info->Place); ?></h1>
       <div id="message" >
         <?php
         if ($showAlertDisabled) {
@@ -113,9 +168,9 @@ $showContainerAlreadyRegistered = !($disabled || $turnamentIsOver);
         ?>
       </div>
     </div>
-    <?php
-      if ($showContainerSignUp) {
-    ?>
+  <?php
+    if ($showContainerSignUp) {
+  ?>
     <div class="container <?php echo( $displayFormSignUp ? '' : 'd-none'); ?>" id="containerSignUp">
       <h2><?php echo(_("Register new competitors:")); ?></h2>
       <div>
@@ -160,18 +215,26 @@ $showContainerAlreadyRegistered = !($disabled || $turnamentIsOver);
               </select>
             </div>
           </div>
-          <div class="form-group"><label for="input_club"><?php echo(_("Club")); ?> </label>
+          <div class="form-group"><label for="input_club"><?php echo(_("Club")); ?></label>
             <select name="club" required id="input_club" class="form-control" onchange="if(this.options[this.selectedIndex].value=='customOption'){toggleField(this,this.nextSibling); this.selectedIndex='0';}">
               <option value="" selected disabled><?php echo(_("Choose the competitor's club.")); ?></option>
               <?php
               if ($allowCustomClub == true) {
-                echo('<option value="customOption">'._('My club is not in this list.').'</option>');
+                echo('<option value="customOption">' . _('My club is not in this list.') . '</option>');
               }
               foreach ($clubs as $club) {
                 echo("              <option value=\"$club\">$club</option>\n");
               }
               ?>
-            </select><input name="club" style="display:none;" disabled="disabled" type="text" class="form-control" onblur="if(this.value==''){toggleField(this,this.previousSibling);}">
+            </select>
+            <input name="club" style="display:none;" disabled="disabled" type="text" class="form-control" onblur="if(this.value==''){toggleField(this,this.previousSibling);}">
+          </div>
+          <div class="form-group">
+            <label class="switch ">
+              <input type="checkbox" class="primary">
+              <span class="slider round"></span>
+            </label>
+            <?php echo(_("I consent that my information provided here can be used throughout the planning and execution of the tournament. My name will be written on competition sheets visible to anybody pysically present on the tournament. The data will be deleted one week after the tournament.")); ?>
           </div>
           <div class="form-group">
             <input name="register" type="submit" value="<?php echo(_('Register Competitor')); ?>" class="btn btn-primary">
@@ -181,7 +244,6 @@ $showContainerAlreadyRegistered = !($disabled || $turnamentIsOver);
         </form>
       </div>
     </div>
-  </div>
   <?php
     }
   ?>
@@ -225,7 +287,7 @@ $showContainerAlreadyRegistered = !($disabled || $turnamentIsOver);
     </div>
   </div>
   <?php
-  }
+    }
   ?>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -264,7 +326,7 @@ $showContainerAlreadyRegistered = !($disabled || $turnamentIsOver);
         },
         success: function (data, textStatus, jqXHR) {
           if (jqXHR.status === 201) {
-            message(['<?php printf(_('%s was successfully registered.'), '<strong>\' + data.firstName + \' \' + data.lastName + \'</strong>'); ?>'],'message','success');
+            message(['<?php printf(_('%s was successfully registered.'), '<strong>\' + data.firstName + \' \' + data.lastName + \'</strong>'); ?>'], 'message', 'success');
             addCompetitorTableEntry(data);
             competitors.push(data);
             $('#radioset input').removeAttr('checked');
@@ -371,7 +433,6 @@ $showContainerAlreadyRegistered = !($disabled || $turnamentIsOver);
         }
       });
     }
-    ;
 
     function addCompetitorTableEntry(data) {
       $("<tr><td>" + data.firstName + " " + data.lastName + "</td><td>" + data.yearOfBirth + "</td><td>" + data.sex + "</td><td>" + data.category + "</td><td>" + data.club + "</td></tr>").appendTo("#competitor_table");
@@ -385,16 +446,15 @@ $showContainerAlreadyRegistered = !($disabled || $turnamentIsOver);
     function developerContact() {
       return "<?php echo(_("Developer's contact details: Felix von Poblotzki, +4915232787790, xilaew@gmail.com")); ?>";
     }
-    ;
 
     function message(messages, msgFieldId = "message", msgType = "success", append = false) {
-      if (!(["success","info","warning","danger"].includes(msgType))) {
-        console.log('msgType: \"'+msgType+'\" is not a valid Message Type');
-        var msgType="info";
+      if (!(["success", "info", "warning", "danger"].includes(msgType))) {
+        console.log('msgType: \"' + msgType + '\" is not a valid Message Type');
+        var msgType = "info";
       }
       var content = '';
       messages.forEach(function (m, i) {
-        if (i > 0){
+        if (i > 0) {
           content += '<br>';
         }
         content += m;
@@ -412,7 +472,6 @@ $showContainerAlreadyRegistered = !($disabled || $turnamentIsOver);
         document.getElementById(msgFieldId).innerHTML = html;
       }
     }
-    ;
 
     var category = "";
     function updateWeights(e) {
@@ -499,12 +558,12 @@ $showContainerAlreadyRegistered = !($disabled || $turnamentIsOver);
     $("input[name='sex']").change(updateWeights);
     $("input[name='yearOfBirth']").change(updateWeights);
     updateWeights();
-    
-    function toggleField(hideObj,showObj){
-      hideObj.disabled=true;
-      hideObj.style.display='none';
-      showObj.disabled=false;
-      showObj.style.display='inline';
+
+    function toggleField(hideObj, showObj) {
+      hideObj.disabled = true;
+      hideObj.style.display = 'none';
+      showObj.disabled = false;
+      showObj.style.display = 'inline';
       showObj.focus();
     }
   </script>
