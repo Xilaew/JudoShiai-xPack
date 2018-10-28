@@ -3,21 +3,21 @@
 This is necessary information to calculate the contestants age and determine
 which category they will compete in. Further this information is used to
 automatically disable registration after the Tournament began */
-$dateOfTournament='25.08.2018';
+$dateOfTournament='25.11.2022';
 /* Registration closing date and how to handle late registrations
 Typically you close registration a few days before the Turnament, but that does
 not keep some people from registering late.
-You have the following options to Handle late registrations:
+You have the following options to handle late registrations:
 'reject' will not allow any further registrations after closing.
 'warn' will prominently show a warning banner and mark late registrations as such in the database.
 'allow' will simply accept late registrations. */
-$registrationClosingDate='17.08.2018';
+$registrationClosingDate='17.11.2022';
 $lateRegistrationHandling='warn';
 /* The minimum and maximum yearOfBirth for competitors.
 Input will be validated against these boundaries and hopefully nobody will try
 to enter a way to young or to old competitor. */
 $minYearOfBirth=1980;
-$maxYearOfBirth=2006;
+$maxYearOfBirth=2012;
 /* Filenames of different config files.
 The registration website reads information such as Tournament name and 
 Description as well as category definitions from a JudoShiai file. For the clubs
@@ -48,4 +48,35 @@ want potential visitors to know in the disabledErrorMessage. */
 $disabled=false;
 $disabledErrorMessage='The Turnament got canceled due to way too little'
         . 'prospective competitors';
+/* In case you use the collected data for other purposes than only what is
+necessary to execute the tournament and verify payment for the tournament
+consent of the contestants to this further data usage is necessary according to
+the EU General Data Protection Regulation (GDPR), you can enable a simple
+checkbox asking for this consent by setting showLegalConsentCheckbox to true.
+It is recommended that you also edit customLegalConsentText to inform users
+about the intended further data usage. e.g you can ask for consent to publish
+the fotos made on the event or for publishing the names of winners online.
+It is forbidden by GPDR to make this consent obligatory. */
+$showInputLegalConsent=false;
+$customLegalConsentText='';
+/* For a tournament it is not crucial to know weights of fighters in advance.
+For some official turnaments however a registration with weight might be
+required. For turnaments not using official weight at all the precense of this
+input field might confuse users.
+inputWeight can take the following values:
+'none' will not show the weight form field at all
+'optional' will show the form field, which is the default
+'required' will show the form field and makes it mandatory. */
+$inputWeight='optional';
+/* There are two alternative ways to get the information which age category a 
+competitor will start in. You can have people directly enter the age category of
+theire competitors or you ask for the year of birth and calculate the age 
+category from this. The first allows users to intentionaly put a junger talented
+fighter into the higher age category. The later is helpfull if fighters might be
+confused about which age category they should register for; e.g. when your 
+tournament has atypical age categories. 
+input Age may take the following values:
+'yearOfBirth' The age category will be calculated from the entered year of birth
+'category' The age category can directly be entered */
+$inputAge='yearOfBirth'
 ?>

@@ -36,6 +36,9 @@ $showAlertRegistrationRequired = (!$showAlertDisabled && $forceRegistration && g
 $showContainerSignUp = !($disabled || $turnamentIsOver || ($registrationIsClosed && $lateRegistrationHandling == 'reject'));
 $displayFormSignUp = !($forceRegistration && getCoachId(false) == "");
 $showContainerAlreadyRegistered = !($disabled || $turnamentIsOver);
+$showInputWeight = ($inputWeight == 'optional' || $inputWeight == 'required');
+$attributesInputWeight = ($inputWeight == 'required') ? 'required' : '';
+$textLabelLegalConsent = ($customLegalConsentText == '') ? _("I consent that my information provided here can be used throughout the planning and execution of the tournament. My name will be written on competition sheets visible to anybody pysically present on the tournament. The data will be deleted one week after the tournament.") : $customLegalConsentText;
 ?><!DOCTYPE html>
 <html lang="<?php echo(_("en")); ?>">
   <head>
@@ -71,10 +74,14 @@ $showContainerAlreadyRegistered = !($disabled || $turnamentIsOver);
       /* The switch - the box around the slider */
       .switch {
         position: relative;
-        display: inline-block;
+        display: inline;
         width: 60px;
         height: 34px;
         float:left;
+        margin-right: 0.5em;
+      }
+      .switch-label {
+        display: inline;
       }
       /* Hide default HTML checkbox */
       .switch input {display:none;}
@@ -101,14 +108,11 @@ $showContainerAlreadyRegistered = !($disabled || $turnamentIsOver);
         -webkit-transition: .4s;
         transition: .4s;
       }
-      input.primary:checked + .slider {
-        background-color: #2196F3;
-      }
       input:checked + .slider {
         background-color: #007bff;
       }
       input:focus + .slider {
-        box-shadow: 0 0 1px #2196F3;
+        box-shadow: 0 0 1px #007bff;
       }
       input:checked + .slider:before {
         -webkit-transform: translateX(26px);
@@ -180,18 +184,6 @@ $showContainerAlreadyRegistered = !($disabled || $turnamentIsOver);
             <div class="col-md form-group"><label for="input_lastName"><?php echo(_("Last Name")); ?></label><input required name="lastName" id="input_lastName" type="text" class="form-control"></div>
           </div>
           <div class="row">
-            <div class="col-md form-group">
-              <label for="input_yearOfBirth"><?php echo(_("Year of birth")); ?></label>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <button id="btn_dec_yearOfBirth" class="btn btn-outline-primary" type="button" tabindex="-1">-</button>
-                </div>
-                <input name="yearOfBirth" id="input_yearOfBirth" type="number" required value="<?php echo(floor(($minYearOfBirth + $maxYearOfBirth) / 2)); ?>" min="<?php echo($minYearOfBirth); ?>" max="<?php echo($maxYearOfBirth); ?>" class="form-control input-number–noSpinners">
-                <div class="input-group-append">
-                  <button id="btn_inc_yearOfBirth" class="btn btn-outline-primary" type="button" tabindex="-1">+</button>
-                </div>
-              </div>
-            </div>
             <fieldset class="col-md form-group">
               <legend class="label"><?php echo(_("Sex")); ?></legend>
               <div id="btn_group_sex" class="btn-group btn-group-toggle d-flex" data-toggle="buttons">
@@ -203,18 +195,43 @@ $showContainerAlreadyRegistered = !($disabled || $turnamentIsOver);
                 </label>
               </div>
             </fieldset>
+            <div class="col-md form-group">
+              <label for="input_yearOfBirth"><?php echo(_("Year of birth")); ?></label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <button id="btn_dec_yearOfBirth" class="btn btn-outline-primary" type="button" tabindex="-1">-</button>
+                </div>
+                <input name="yearOfBirth" id="input_yearOfBirth" type="number" required value="<?php echo(floor(($minYearOfBirth + $maxYearOfBirth) / 2)); ?>" min="<?php echo($minYearOfBirth); ?>" max="<?php echo($maxYearOfBirth); ?>" class="form-control input-number–noSpinners">
+                <div class="input-group-append">
+                  <button id="btn_inc_yearOfBirth" class="btn btn-outline-primary" type="button" tabindex="-1">+</button>
+                </div>
+              </div>
+  <?php
+    if (!$showInputWeight) {
+  ?>
+              <span class="form-text text-muted small" id="labelAgeCat"></span>
+  <?php
+    }
+  ?>
+            </div>
           </div>
+  <?php
+    if ($showInputWeight) {
+  ?>
           <div class="row">
             <div class="col-md form-group">
               <label for="labelAgeCat"><?php echo(_("Age Category")); ?></label>
               <input id="labelAgeCat" type="text" readonly class="form-control-plaintext" value="">
             </div>
             <div class="col-md form-group"><label for="input_weight"><?php echo(_("Weight Category")); ?></label>
-              <select name="weight" id="input_weight" class="form-control">
+              <select name="weight" id="input_weight" class="form-control" <?php echo($attributesInputWeight)?>>
                 <option value="" selected disabled><?php echo(_("Select year of birth and sex first.")); ?></option>
               </select>
             </div>
           </div>
+  <?php
+    }
+  ?>
           <div class="form-group"><label for="input_club"><?php echo(_("Club")); ?></label>
             <select name="club" required id="input_club" class="form-control" onchange="if(this.options[this.selectedIndex].value=='customOption'){toggleField(this,this.nextSibling); this.selectedIndex='0';}">
               <option value="" selected disabled><?php echo(_("Choose the competitor's club.")); ?></option>
@@ -229,16 +246,23 @@ $showContainerAlreadyRegistered = !($disabled || $turnamentIsOver);
             </select>
             <input name="club" style="display:none;" disabled="disabled" type="text" class="form-control" onblur="if(this.value==''){toggleField(this,this.previousSibling);}">
           </div>
-          <div class="form-group">
-            <label class="switch ">
-              <input type="checkbox" class="primary">
-              <span class="slider round"></span>
+  <?php
+    if ($showInputLegalConsent) {
+  ?>
+          <div class="form-group clearfix">
+            <label for="input_legal" class="switch mb-0">
+              <input type="checkbox" id="input_legal" name="legal" class="">
+              <div class="slider round"></div>
             </label>
-            <?php echo(_("I consent that my information provided here can be used throughout the planning and execution of the tournament. My name will be written on competition sheets visible to anybody pysically present on the tournament. The data will be deleted one week after the tournament.")); ?>
+            <span class="switch-label"><?php echo($textLabelLegalConsent); ?></span>
           </div>
+  <?php
+    }
+  ?>
           <div class="form-group">
             <input name="register" type="submit" value="<?php echo(_('Register Competitor')); ?>" class="btn btn-primary">
             <span id="loading" class="d-none"><p><img src="loading.gif" /><?php echo(_('please wait...')); ?></p></span>
+            <p class="form-text text-muted small"><?php echo(_('I am having trouble registering competitors.')); ?></p>
           </div>
           <!--      <div id="test-output" style="padding: .7em;"></div> -->
         </form>
@@ -503,7 +527,7 @@ $showContainerAlreadyRegistered = !($disabled || $turnamentIsOver);
       } else {
         //    $("#test-output").text(function(i,text){return text + "#"});
         category = newcategory;
-        $("#labelAgeCat").val(category);
+        $("#labelAgeCat").val(category).text(category);
         $("#input_weight").empty();
         if (weights === null) {
           $("<option/>").text("<?php echo(_("Select year of birth and sex first.")); ?>").appendTo("#input_weight");

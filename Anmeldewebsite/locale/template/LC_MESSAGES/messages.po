@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: judoshiai-xPack 0.1\n"
 "Report-Msgid-Bugs-To: xilaew@gmail.com\n"
-"POT-Creation-Date: 2018-10-13 01:20+0200\n"
+"POT-Creation-Date: 2018-10-28 13:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: index.php:28
+#: index.php
 #, php-format
 msgid ""
 "Registration for this tournament was closed on %s. No new registrations will "
@@ -25,28 +25,28 @@ msgid ""
 "the next tournament."
 msgstr ""
 
-#: index.php:31
+#: index.php
 #, php-format
 msgid ""
 "The tounament took place on %s. There is no point in registering new "
 "competitors for a long gone turnament."
 msgstr ""
 
-#: index.php:40
+#: index.php
 msgid "en"
 msgstr ""
 
-#: index.php:149 index.php:337
+#: index.php
 msgid "Hint:"
 msgstr ""
 
-#: index.php:149 index.php:337
+#: index.php
 msgid ""
 "In order to view and modify the entered competitors later on you should "
 "create a Coach Id (username)."
 msgstr ""
 
-#: index.php:161 index.php:387
+#: index.php
 msgid ""
 "Before you can register competitors you need to sign up by entering your "
 "email address as Coach Id. We use the email to keep you updated about any "
@@ -54,59 +54,59 @@ msgid ""
 "competitors later on with this email/Coach Id as login."
 msgstr ""
 
-#: index.php:175
+#: index.php
 msgid "Register new competitors:"
 msgstr ""
 
-#: index.php:179
+#: index.php
 msgid "First Name"
 msgstr ""
 
-#: index.php:180
+#: index.php
 msgid "Last Name"
 msgstr ""
 
-#: index.php:184 index.php:274
+#: index.php
 msgid "Year of birth"
 msgstr ""
 
-#: index.php:196 index.php:275
+#: index.php
 msgid "Sex"
 msgstr ""
 
-#: index.php:199
+#: index.php
 msgid "male"
 msgstr ""
 
-#: index.php:202
+#: index.php
 msgid "female"
 msgstr ""
 
-#: index.php:209
+#: index.php
 msgid "Age Category"
 msgstr ""
 
-#: index.php:212
+#: index.php
 msgid "Weight Category"
 msgstr ""
 
-#: index.php:214 index.php:509
+#: index.php
 msgid "Select year of birth and sex first."
 msgstr ""
 
-#: index.php:218 index.php:277
+#: index.php
 msgid "Club"
 msgstr ""
 
-#: index.php:220
+#: index.php
 msgid "Choose the competitor's club."
 msgstr ""
 
-#: index.php:223
+#: index.php
 msgid "My club is not in this list."
 msgstr ""
 
-#: index.php:237
+#: index.php
 msgid ""
 "I consent that my information provided here can be used throughout the "
 "planning and execution of the tournament. My name will be written on "
@@ -114,106 +114,110 @@ msgid ""
 "The data will be deleted one week after the tournament."
 msgstr ""
 
-#: index.php:240
+#: index.php
 msgid "Register Competitor"
 msgstr ""
 
-#: index.php:241 index.php:266
+#: index.php
 msgid "please wait..."
 msgstr ""
 
-#: index.php:254
+#: index.php
+msgid "I am having trouble registering competitors."
+msgstr ""
+
+#: index.php
 msgid "Already registered competitors:"
 msgstr ""
 
-#: index.php:261
+#: index.php
 msgid "Coach Id"
 msgstr ""
 
-#: index.php:264
+#: index.php
 msgid "Log-in / Register"
 msgstr ""
 
-#: index.php:265
+#: index.php
 msgid "Log-out"
 msgstr ""
 
-#: index.php:273
+#: index.php
 msgid "Name"
 msgstr ""
 
-#: index.php:276
+#: index.php
 msgid "Category"
 msgstr ""
 
-#: index.php:329
+#: index.php
 #, php-format
 msgid "%s was successfully registered."
 msgstr ""
 
-#: index.php:340 index.php:442
+#: index.php
 #, php-format
 msgid "Error:"
 msgstr ""
 
-#: index.php:373
+#: index.php
 #, php-format
 msgid ""
 "From now on you can log-in with your Coach Id %s anytime to view and edit "
 "your registered competitors."
 msgstr ""
 
-#: index.php:380
+#: index.php
 msgid "You have been logged-out successfully."
 msgstr ""
 
-#: index.php:390
+#: index.php
 #, php-format
 msgid "You have been logged-in as %s successfully."
 msgstr ""
 
-#: index.php:428
+#: index.php
 #, php-format
 msgid "No competitors were found for the Coach Id %s."
 msgstr ""
 
-#: index.php:442
+#: index.php
 #, php-format
 msgid "Something went wrong. textStatus: %s errorThrown: %s"
 msgstr ""
 
-#: index.php:447
+#: index.php
 msgid ""
 "Developer's contact details: Felix von Poblotzki, +4915232787790, "
 "xilaew@gmail.com"
 msgstr ""
 
-#: index.php:511
+#: index.php
 msgid "Please choose a weight category."
 msgstr ""
 
-#: lib.php:89
+#: lib.php
 msgid "Please enter a name!"
 msgstr ""
 
-#: lib.php:91
+#: lib.php
 msgid "Please enter a valid club!"
 msgstr ""
 
-#: lib.php:93
+#: lib.php
 msgid "Please enter the competitors Sex!"
 msgstr ""
 
-#: lib.php:95
+#: lib.php
 #, php-format
 msgid "Year of birth must be between %d and %d!"
 msgstr ""
 
-#: lib.php:105
+#: lib.php
 msgid "Not saved due to internal error!"
 msgstr ""
 
-#: rest.php:178 rest.php:193
+#: rest.php
 #, php-format
 msgid ""
 "\"%s\" is not a valid Coach Id. A Coach Id should consist of at least two "
