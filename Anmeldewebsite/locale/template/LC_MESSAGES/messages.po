@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: judoshiai-xPack 0.1\n"
 "Report-Msgid-Bugs-To: xilaew@gmail.com\n"
-"POT-Creation-Date: 2018-10-28 13:14+0100\n"
+"POT-Creation-Date: 2018-10-29 07:36+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,6 +30,14 @@ msgstr ""
 msgid ""
 "The tounament took place on %s. There is no point in registering new "
 "competitors for a long gone turnament."
+msgstr ""
+
+#: index.php
+msgid ""
+"I consent that my information provided here can be used throughout the "
+"planning and execution of the tournament. My name will be written on "
+"competition sheets visible to anybody pysically present on the tournament. "
+"The data will be deleted one week after the tournament."
 msgstr ""
 
 #: index.php
@@ -55,6 +63,59 @@ msgid ""
 msgstr ""
 
 #: index.php
+#, php-format
+msgid "Registration for %s"
+msgstr ""
+
+#: index.php
+msgid "Hi,"
+msgstr ""
+
+#: index.php
+msgid ""
+"I was not able to use the registration website because [Reason why I could "
+"not use Website]."
+msgstr ""
+
+#: index.php
+msgid "I would like to register the following competitors:"
+msgstr ""
+
+#: index.php
+msgid "John,Smith,1990,m,,,London Judo Club,"
+msgstr ""
+
+#: index.php
+msgid "Amanda,Johnson,2002,f,,,London Judo Club,"
+msgstr ""
+
+#: index.php
+msgid "Regards [your Name]"
+msgstr ""
+
+#: index.php
+#, php-format
+msgid ""
+"If you are having trouble with this registration page please tell us about "
+"it and of course we also take your registration when you send an email to %s."
+msgstr ""
+
+#: index.php
+msgid ""
+"Please enclose the competitors information in the following format in your "
+"email:"
+msgstr ""
+
+#: index.php
+msgid ""
+"first name,last name,year of birth,sex as \"m\"=male or \"f\"=female,,,club,"
+msgstr ""
+
+#: index.php
+msgid "for example:"
+msgstr ""
+
+#: index.php
 msgid "Register new competitors:"
 msgstr ""
 
@@ -67,10 +128,6 @@ msgid "Last Name"
 msgstr ""
 
 #: index.php
-msgid "Year of birth"
-msgstr ""
-
-#: index.php
 msgid "Sex"
 msgstr ""
 
@@ -80,6 +137,10 @@ msgstr ""
 
 #: index.php
 msgid "female"
+msgstr ""
+
+#: index.php
+msgid "Year of birth"
 msgstr ""
 
 #: index.php
@@ -104,14 +165,6 @@ msgstr ""
 
 #: index.php
 msgid "My club is not in this list."
-msgstr ""
-
-#: index.php
-msgid ""
-"I consent that my information provided here can be used throughout the "
-"planning and execution of the tournament. My name will be written on "
-"competition sheets visible to anybody pysically present on the tournament. "
-"The data will be deleted one week after the tournament."
 msgstr ""
 
 #: index.php

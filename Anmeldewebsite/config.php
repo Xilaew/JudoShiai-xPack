@@ -78,5 +78,10 @@ tournament has atypical age categories.
 input Age may take the following values:
 'yearOfBirth' The age category will be calculated from the entered year of birth
 'category' The age category can directly be entered */
-$inputAge='yearOfBirth'
+$inputAge='yearOfBirth';
+/* Alternative registration email address.
+For whatever reason some people might not be able/comforable with using the
+registration page. There is a troubleshooting link, wich will show this email
+address and instructions how to register via email. */
+$emailAlternativeRegistration='';
 ?>

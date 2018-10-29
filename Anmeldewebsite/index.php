@@ -33,6 +33,8 @@ if (!$disabled) { /* if manually disabled the $disabledErrorMessage supplied in 
 }
 $showAlertCoachId = (!$showAlertDisabled && count($competitors) > 0 && getCoachId(false) == "");
 $showAlertRegistrationRequired = (!$showAlertDisabled && $forceRegistration && getCoachId(false) == "");
+$showAlertTroubleshooting = isset($_GET['troubleshooting']);
+$showLinkTroubleshooting = ($emailAlternativeRegistration != '');
 $showContainerSignUp = !($disabled || $turnamentIsOver || ($registrationIsClosed && $lateRegistrationHandling == 'reject'));
 $displayFormSignUp = !($forceRegistration && getCoachId(false) == "");
 $showContainerAlreadyRegistered = !($disabled || $turnamentIsOver);
@@ -170,6 +172,30 @@ $textLabelLegalConsent = ($customLegalConsentText == '') ? _("I consent that my 
         <?php
         }
         ?>
+        <?php
+        if ($showAlertTroubleshooting) {
+        ?>
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <?php 
+            $emailLink = '<a href="mailto:'.$emailAlternativeRegistration.'?subject='.rawurlencode(sprintf(_('Registration for %s'),$info->Competition)).'&amp;body='.rawurlencode(_('Hi,')."\n"._('I was not able to use the registration website because [Reason why I could not use Website].')."\n\n"._('I would like to register the following competitors:')."\n"._('John,Smith,1990,m,,,London Judo Club,')."\n"._('Amanda,Johnson,2002,f,,,London Judo Club,')."\n\n"._('Regards [your Name]')).'">'.$emailAlternativeRegistration.'</a>';
+            printf(_('If you are having trouble with this registration page please tell us about it and of course we also take your registration when you send an email to %s.'),$emailLink);
+            echo('<br>');
+            echo(_('Please enclose the competitors information in the following format in your email:'));
+            echo('<br>');
+            echo(_('first name,last name,year of birth,sex as "m"=male or "f"=female,,,club,'));
+            echo('<br>');
+            echo(_('for example:'));
+            echo('<br>');
+            echo(_('John,Smith,1990,m,,,London Judo Club,'));
+            echo('<br>');
+            echo(_('Amanda,Johnson,2002,f,,,London Judo Club,')); ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        <?php
+        }
+        ?>
       </div>
     </div>
   <?php
@@ -262,8 +288,14 @@ $textLabelLegalConsent = ($customLegalConsentText == '') ? _("I consent that my 
           <div class="form-group">
             <input name="register" type="submit" value="<?php echo(_('Register Competitor')); ?>" class="btn btn-primary">
             <span id="loading" class="d-none"><p><img src="loading.gif" /><?php echo(_('please wait...')); ?></p></span>
-            <p class="form-text text-muted small"><?php echo(_('I am having trouble registering competitors.')); ?></p>
+  <?php
+    if ($showLinkTroubleshooting) {
+  ?>
+            <a href='index.php?troubleshooting=true' class="form-text text-muted small"><?php echo(_('I am having trouble registering competitors.')); ?></a>
           </div>
+  <?php
+    }
+  ?>
           <!--      <div id="test-output" style="padding: .7em;"></div> -->
         </form>
       </div>
@@ -591,5 +623,5 @@ $textLabelLegalConsent = ($customLegalConsentText == '') ? _("I consent that my 
       showObj.focus();
     }
   </script>
-</body>
+  </body>
 </html>
