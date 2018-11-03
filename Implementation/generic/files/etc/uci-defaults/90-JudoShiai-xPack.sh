@@ -1,7 +1,7 @@
 #!/bin/sh
 # this script is based on few assumptions:
-# 1: there is exactly one vlan enabled switch with 7 ports. port 6 ist mapped to device eth0 and port 0 is mapped to device eth1
-# 2: there are 2 pysical wifi devices [0] 5Ghy and [1] 2.4Ghz
+# 1: there is exactly one vlan enabled switch with 7 ports. port 6 is mapped to device eth0 and port 0 is mapped to device eth1
+# 2: there are at most 2 pysical wifi devices wifi-device[0] and wifi-device[1]
 # 3: The script will only be executed once on a newly installed openwrt router
 echo '###############################################################################'
 echo '# BASIC NETWORK                                                               #'
@@ -16,6 +16,7 @@ tmp=`uci add network switch_vlan`
 uci rename network.$tmp='public_vlan'
 tmp=`uci get network.@switch[0].name`
 uci set network.public_vlan.device=$tmp
+#XXX this is device specific
 uci set network.public_vlan.vlan='3'
 uci set network.public_vlan.ports='1t 2t 3t 4t 5t 6t'
 
@@ -24,6 +25,7 @@ tmp=`uci add network interface`
 uci rename network.$tmp='public'
 uci set network.public.type='bridge'
 uci set network.public.proto='static'
+#XXX this is device specific
 uci set network.public.ifname='eth0.3'
 uci add_list network.public.ipaddr='10.42.0.1/16'
 
@@ -73,9 +75,34 @@ if uci get wireless.@wifi-device[1]; then
    uci set wireless.public1.network='public'
 
    echo '#turn on wifi-iface[1] aka "radio1"'
-   uci del wireless.radio1.disabled
+   uci del wireless.@wifi-iface[1].disabled
 else
    echo 'wifi-device[1] not found'
+fi
+
+if uci get wireless.@wifi-device[2]; then
+   echo '#configure wireless SSIDs on "radio2"'
+
+   #reconfigure default wifi
+   uci rename wireless.@wifi-iface[2]='judoshiai1'
+   uci set wireless.@wifi-iface[2].ssid='judoshiai'
+   uci set wireless.@wifi-iface[2].hidden='1'
+   uci set wireless.@wifi-iface[2].encryption='psk2'
+   uci set wireless.@wifi-iface[2].key='IchBinKampfrichter'
+
+   #add public wifi
+   tmp=`uci add wireless wifi-iface`
+   uci rename wireless.$tmp='public2'
+   uci set wireless.public1.device='radio2'
+   uci set wireless.public1.mode='ap'
+   uci set wireless.public1.encryption='none'
+   uci set wireless.public1.ssid='turnierinfo'
+   uci set wireless.public1.network='public'
+
+   echo '#turn on wifi-iface[1] aka "radio2"'
+   uci del wireless.@wifi-iface[2].disabled
+else
+   echo 'wifi-device[2] not found'
 fi
 
 
@@ -158,14 +185,16 @@ uci set dropbear.@dropbear[0].Interface='lan'
 
 echo '#configure vsftpd'
 #TODO stop vsftpd from binding to any interface, should be lan only
-#create user judoshia with empty string as password
+#create user judoshiai with empty string as password
 echo 'judoshiai:x:142:142:judoshiai:/tmp/turnierinfo:/bin/false' >> /etc/passwd
 echo 'judoshiai:x:142:' >> /etc/group
 echo 'judoshiai:$1$y36WrFY7$/psY2cByxRLCXsVHF7rvD.:17797:0:99999:7:::' >> /etc/shadow
+
+#TODO set root password to 1234 to enable ssh
 
 echo '###############################################################################'
 echo '# COMMIT AND REBOOT                                                           #'
 echo '###############################################################################'
 uci commit
-reboot
+#reboot
 
