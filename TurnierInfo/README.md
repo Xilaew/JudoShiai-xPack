@@ -8,5 +8,5 @@ Further it contains a preconfigured Webserver and FTP-server, to upload and host
 See [openWRT installation instructions via OEM Firmware](https://openwrt.org/docs/guide-user/installation/generic.flashing#method_1via_oem_firmware) for more info about how to install openWRT images on your router.
 Currently 2 router models are supported by TurnierInfo, support for most devices with openWRT support is expected to be added soon.
 # Supported Devices
-[TP-Link TL-WR1043ND](https://openwrt.org/toh/tp-link/tl-wr1043nd)
+[TP-Link TL-WR1043ND](https://openwrt.org/toh/tp-link/tl-wr1043nd)  
 [TP-Link Archer C7 AC1750](https://openwrt.org/toh/tp-link/archer-c7-1750)
