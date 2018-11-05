@@ -292,10 +292,10 @@ $textLabelLegalConsent = ($customLegalConsentText == '') ? _("I consent that my 
     if ($showLinkTroubleshooting) {
   ?>
             <a href='index.php?troubleshooting=true' class="form-text text-muted small"><?php echo(_('I am having trouble registering competitors.')); ?></a>
-          </div>
   <?php
     }
   ?>
+          </div>
           <!--      <div id="test-output" style="padding: .7em;"></div> -->
         </form>
       </div>

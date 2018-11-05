@@ -24,8 +24,8 @@ Description as well as category definitions from a JudoShiai file. For the clubs
 options the clubs.txt file as utilised by JudoShiais autocomplete feature is
 used. See JudoShiai docu for more information on clubs.txt. dataCsv is the name
 of the file where the registrations shall be stored in csv format. */
-$judoShiaiTemplateFile='template.shi';
-$clubsTxt='clubs.txt';
+$judoShiaiTemplateFile='template_DE_official.shi';
+$clubsTxt='clubs_HAMBURG.txt';
 $dataCsv='data.csv';
 /* For internationalisation you can set the default locale to use when nothing
 else is requested by the user. */
