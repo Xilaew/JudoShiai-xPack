@@ -12,6 +12,4 @@ make info
 make image PROFILE="tl-wr1043nd-v1" PACKAGES="vsftpd luci" FILES="files/"
 make image PROFILE="tl-wr1043nd-v2" PACKAGES="vsftpd luci" FILES="files/"
 make image PROFILE="archer-c7-v2" PACKAGES="vsftpd luci" FILES="files/"
-
-
-
+make image PROFILE="archer-c60-v2" PACKAGES="vsftpd luci" FILES="files/"

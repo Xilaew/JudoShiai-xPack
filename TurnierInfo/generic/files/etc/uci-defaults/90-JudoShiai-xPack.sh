@@ -1,116 +1,92 @@
 #!/bin/sh
 # this script is based on few assumptions:
-# 1: there is exactly one vlan enabled switch with 7 ports. port 6 is mapped to device eth0 and port 0 is mapped to device eth1
-# 2: there are at most 2 pysical wifi devices wifi-device[0] and wifi-device[1]
+# 1: If a VLAN enabld switch is installed, then the switch_vlan[0] is the switch_vlan for lan
 # 3: The script will only be executed once on a newly installed openwrt router
+
+PUBLIC_VLAN_ID=7
+HOSTNAME="turnierinfo"
+
+function configure_lan ()
+{
+	uci del network.lan.ipaddr
+	uci add_list network.lan.ipaddr=192.168.1.1/24
+	uci add_list network.lan.ipaddr=192.168.1.2/24
+}
+
+function add_public_network ()
+{
+	local tmp=`uci add network interface`
+	uci rename network.$tmp='public'
+	uci set network.public.type='bridge'
+	uci set network.public.proto='static'
+	uci add_list network.public.ipaddr='10.42.0.1/16'
+	
+	local lan_interface=`uci get network.lan.ifname`
+	lan_interface=${lan_interface%%.*}
+	echo ${lan_interface}
+	uci set network.public.ifname="${lan_interface}.${PUBLIC_VLAN_ID}"
+}
+
+function add_switch_vlan ()
+{
+	local switch_name
+	if switch_name=`uci get network.@switch[0].name` && [ `uci get network.@switch[0].enable_vlan` == "1" ]; then
+		echo '#add public vlan for distribution of public network between multiple Access Points'
+		local tmp=`uci add network switch_vlan`
+		uci rename network.$tmp='public_vlan'
+		uci set network.public_vlan.device=$switch_name
+		uci set network.public_vlan.vlan='7'
+		local ports=`uci get network.@switch_vlan[0].ports`
+		local ports_new=""
+		for p in $ports; do
+			ports_new="${ports_new}${p%t}t "
+		done
+		uci set network.public_vlan.ports="${ports_new}"
+	fi
+}
+
+function configure_wifi ()
+{
+	local i=0
+	while uci rename wireless.@wifi-device[${i}]="radio${i}"; do
+		echo "#configure wireless SSIDs on radio${i}"
+		#reconfigure default wifi
+		uci rename wireless.@wifi-iface[${i}]="judoshiai${i}"
+		uci set wireless.@wifi-iface[${i}].device="radio${i}"
+		uci set wireless.@wifi-iface[${i}].ssid='judoshiai'
+		uci set wireless.@wifi-iface[${i}].hidden='1'
+		uci set wireless.@wifi-iface[${i}].encryption='psk2'
+		uci set wireless.@wifi-iface[${i}].key='IchBinKampfrichter'
+
+		#add public wifi
+		local tmp=`uci add wireless wifi-iface`
+		uci rename wireless.$tmp="public${i}"
+		uci set wireless.public${i}.device="radio${i}"
+		uci set wireless.public${i}.mode='ap'
+		uci set wireless.public${i}.encryption='none'
+		uci set wireless.public${i}.ssid='turnierinfo'
+		uci set wireless.public${i}.network='public'
+
+		echo "#turn on wifi-iface[0] aka \"radio0\""
+		uci del wireless.@wifi-device[${i}].disabled
+
+		i=$((i+1))
+	done
+}
+
 echo '###############################################################################'
 echo '# BASIC NETWORK                                                               #'
 echo '###############################################################################'
-echo '#configure basic network settings'
-uci del network.lan.ipaddr
-uci add_list network.lan.ipaddr=192.168.1.1/24
-uci add_list network.lan.ipaddr=192.168.1.2/24
-
-echo '#add public vlan for distribution of public network between multiple Access Points'
-tmp=`uci add network switch_vlan`
-uci rename network.$tmp='public_vlan'
-tmp=`uci get network.@switch[0].name`
-uci set network.public_vlan.device=$tmp
-#XXX this is device specific
-uci set network.public_vlan.vlan='3'
-uci set network.public_vlan.ports='1t 2t 3t 4t 5t 6t'
-
-echo '#add public network'
-tmp=`uci add network interface`
-uci rename network.$tmp='public'
-uci set network.public.type='bridge'
-uci set network.public.proto='static'
-#XXX this is device specific
-uci set network.public.ifname='eth0.3'
-uci add_list network.public.ipaddr='10.42.0.1/16'
-
-echo '#configure wireless SSIDs'
-if uci get wireless.@wifi-device[0]; then
-   echo '#configure wireless SSIDs on "radio0"'
-
-   #reconfigure default wifi
-   uci rename wireless.@wifi-iface[0]='judoshiai0'
-   uci set wireless.@wifi-iface[0].ssid='judoshiai'
-   uci set wireless.@wifi-iface[0].hidden='1'
-   uci set wireless.@wifi-iface[0].encryption='psk2'
-   uci set wireless.@wifi-iface[0].key='IchBinKampfrichter'
-
-   #add public wifi
-   tmp=`uci add wireless wifi-iface`
-   uci rename wireless.$tmp='public0'
-   uci set wireless.public0.device='radio0'
-   uci set wireless.public0.mode='ap'
-   uci set wireless.public0.encryption='none'
-   uci set wireless.public0.ssid='turnierinfo'
-   uci set wireless.public0.network='public'
-
-   echo '#turn on wifi-iface[0] aka "radio0"'
-   uci del wireless.@wifi-device[0].disabled
-else
-   echo 'wifi-device[0] not found'
-fi
-
-if uci get wireless.@wifi-device[1]; then
-   echo '#configure wireless SSIDs on "radio1"'
-
-   #reconfigure default wifi
-   uci rename wireless.@wifi-iface[1]='judoshiai1'
-   uci set wireless.@wifi-iface[1].ssid='judoshiai'
-   uci set wireless.@wifi-iface[1].hidden='1'
-   uci set wireless.@wifi-iface[1].encryption='psk2'
-   uci set wireless.@wifi-iface[1].key='IchBinKampfrichter'
-
-   #add public wifi
-   tmp=`uci add wireless wifi-iface`
-   uci rename wireless.$tmp='public1'
-   uci set wireless.public1.device='radio1'
-   uci set wireless.public1.mode='ap'
-   uci set wireless.public1.encryption='none'
-   uci set wireless.public1.ssid='turnierinfo'
-   uci set wireless.public1.network='public'
-
-   echo '#turn on wifi-iface[1] aka "radio1"'
-   uci del wireless.@wifi-iface[1].disabled
-else
-   echo 'wifi-device[1] not found'
-fi
-
-if uci get wireless.@wifi-device[2]; then
-   echo '#configure wireless SSIDs on "radio2"'
-
-   #reconfigure default wifi
-   uci rename wireless.@wifi-iface[2]='judoshiai1'
-   uci set wireless.@wifi-iface[2].ssid='judoshiai'
-   uci set wireless.@wifi-iface[2].hidden='1'
-   uci set wireless.@wifi-iface[2].encryption='psk2'
-   uci set wireless.@wifi-iface[2].key='IchBinKampfrichter'
-
-   #add public wifi
-   tmp=`uci add wireless wifi-iface`
-   uci rename wireless.$tmp='public2'
-   uci set wireless.public1.device='radio2'
-   uci set wireless.public1.mode='ap'
-   uci set wireless.public1.encryption='none'
-   uci set wireless.public1.ssid='turnierinfo'
-   uci set wireless.public1.network='public'
-
-   echo '#turn on wifi-iface[1] aka "radio2"'
-   uci del wireless.@wifi-iface[2].disabled
-else
-   echo 'wifi-device[2] not found'
-fi
-
+configure_lan
+add_public_network
+add_switch_vlan
+configure_wifi
 
 echo '###############################################################################'
 echo '# NETWORK                                                                     #'
 echo '###############################################################################'
 echo '#set hostname'
-uci set system.@system[0].hostname='turnierinfo'
+uci set system.@system[0].hostname="${HOSTNAME}"
 
 echo '#create firewall zone'
 uci add firewall zone
@@ -196,5 +172,4 @@ echo '##########################################################################
 echo '# COMMIT AND REBOOT                                                           #'
 echo '###############################################################################'
 uci commit
-#reboot
 
