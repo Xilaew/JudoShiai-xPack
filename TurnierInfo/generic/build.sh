@@ -9,7 +9,8 @@ fi
 cp -r files ${IMAGEBUILDER}/
 cd "${IMAGEBUILDER}"
 make info
-make image PROFILE="tl-wr1043nd-v1" PACKAGES="vsftpd luci" FILES="files/"
-make image PROFILE="tl-wr1043nd-v2" PACKAGES="vsftpd luci" FILES="files/"
-make image PROFILE="archer-c7-v2" PACKAGES="vsftpd luci" FILES="files/"
-make image PROFILE="archer-c60-v2" PACKAGES="vsftpd luci" FILES="files/"
+make clean
+make image PROFILE="tl-wr1043nd-v1" PACKAGES="vsftpd luci -ppp -ppp-mod-pppoe" EXTRA_IMAGE_NAME="TurnierInfo" FILES="files/"
+make image PROFILE="tl-wr1043nd-v2" PACKAGES="vsftpd luci -ppp -ppp-mod-pppoe" EXTRA_IMAGE_NAME="TurnierInfo" FILES="files/"
+make image PROFILE="archer-c7-v2" PACKAGES="vsftpd luci -ppp -ppp-mod-pppoe" EXTRA_IMAGE_NAME="TurnierInfo" FILES="files/"
+make image PROFILE="archer-c60-v2" PACKAGES="vsftpd luci -ppp -ppp-mod-pppoe" EXTRA_IMAGE_NAME="TurnierInfo" FILES="files/"
