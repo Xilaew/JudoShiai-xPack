@@ -1,0 +1,6 @@
+#!/bin/ash
+. /etc/turnierinfo.config
+. /lib/judoshiai_functions.sh
+
+add_vlan ${PUBLIC_VLAN_ID}
+add_switch_vlan ${PUBLIC_VLAN_ID}

@@ -3,8 +3,7 @@
 # 1: If a VLAN enabld switch is installed, then the switch_vlan[0] is the switch_vlan for lan
 # 3: The script will only be executed once on a newly installed openwrt router
 
-PUBLIC_VLAN_ID=7
-HOSTNAME="turnierinfo"
+. /etc/turnierinfo.config
 . /lib/judoshiai_functions.sh
 
 # BASIC NETWORK
