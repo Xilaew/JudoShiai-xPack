@@ -7,8 +7,12 @@ TurnierInfo provides two securely separeted WiFi networks:
 * another network for communication of the different JudoShiai programms (JudoWeight, JudoTimer ...) among each other, from this network JudoShiai can upload the results via ftp.
 
 # How to Install
+In order to turn your WiFi Device into a TurnierInfo Router you first need to identify and download the appropriate TurnierInfo firmware image for your device and then install it onto your device.
+## Find Firmware Image
+## Install
+### The Easy Way
 On many WiFi Routers/AccessPoints you can simply install a custom firmware image via the routers configuration website. Often this function is hidden under Advanvced, System or similarly named menu entries.
-
+### A little more complicated
 See [openWRT installation instructions via OEM Firmware](https://openwrt.org/docs/guide-user/installation/generic.flashing#method_1via_oem_firmware) for more info about how to install openWRT images on your router.
 
 # Tested Devices
@@ -16,6 +20,7 @@ Since TurnierInfo Router Firmware is OpenWRT based all devices Supported by open
 
 Brand | Model | Version | OpenWRT Device Page | TurnierInfo Firmware Image
 --- | --- | --- | --- | ---
+TP-Link | WR841N(D) | 7.x | [TP-Link TL-WR841ND](https://openwrt.org/toh/tp-link/tl-wr841nd) | not yet uploaded
 TP-Link | WR1043N(D) | 1.x | [TP-Link TL-WR1043ND](https://openwrt.org/toh/tp-link/tl-wr1043nd) | [https://drive.google.com/file/d/1Ub9yEyrrYBdpsLnabhPn2-Lx08AqQlEU/view?usp=sharing](https://drive.google.com/file/d/1Ub9yEyrrYBdpsLnabhPn2-Lx08AqQlEU/view?usp=sharing)
 TP-Link | WR1043N(D) | 2.x | [TP-Link TL-WR1043ND](https://openwrt.org/toh/tp-link/tl-wr1043nd) | [https://drive.google.com/file/d/1Ub9yEyrrYBdpsLnabhPn2-Lx08AqQlEU/view?usp=sharing](https://drive.google.com/file/d/1Ub9yEyrrYBdpsLnabhPn2-Lx08AqQlEU/view?usp=sharing)
 TP-Link | Archer C7 | 2.x | [TP-Link Archer C7 AC1750](https://openwrt.org/toh/tp-link/archer-c7-1750) | [https://drive.google.com/file/d/1a4ZZ-o0xwQ0Q27jMYKNapmXKgTZeBoi_/view?usp=sharing](https://drive.google.com/file/d/1a4ZZ-o0xwQ0Q27jMYKNapmXKgTZeBoi_/view?usp=sharing)

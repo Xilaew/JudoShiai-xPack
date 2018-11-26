@@ -4,7 +4,7 @@
 # 3: The script will only be executed once on a newly installed openwrt router
 
 . /etc/turnierinfo.config
-. /lib/judoshiai_functions.sh
+. /lib/turnierinfo-functions.sh
 
 # BASIC NETWORK
 configure_lan
