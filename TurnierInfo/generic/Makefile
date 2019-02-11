@@ -8,35 +8,35 @@ ar71xx_mikrotik_profiles := nand-64m nand-large nand-large-ac rb-nor-flash-16M r
 ar71xx_nand_profiles := c-60 domywifi-dw33d hiveap-121 mr18 NBG6716 R6100 rambutan wi2a-ac200i WNDR3700V4 WNDR4300V1 z1
 ar71xx_tiny_profiles := A02RBW300N DIR600A1 DIR601A1 DIR601B1 DIR615C1 DIR615E1 DIR615E4 DIR615I1 DIR615I3 EBR2310C1 FR54RTR N150R NBG_460N_550N_550NH REALWNR1000V2 REALWNR612V2 rnx-n360rt TEW632BRP TEW652BRP_FW TEW652BRP_RECOVERY TEW712BR tl-mr10u-v1 tl-mr11u-v1 tl-mr11u-v2 tl-mr12u-v1 tl-mr13u-v1 tl-mr3020-v1 tl-mr3040-v1 tl-mr3040-v2 tl-mr3220-v1 tl-mr3220-v2 tl-mr3420-v1 tl-mr3420-v2 tl-wa701nd-v1 tl-wa701nd-v2 tl-wa7210n-v2 tl-wa730re-v1 tl-wa750re-v1 tl-wa7510n-v1 tl-wa801nd-v1 tl-wa801nd-v2 tl-wa801nd-v3 tl-wa830re-v1 tl-wa830re-v2 tl-wa850re-v1 tl-wa850re-v2 tl-wa855re-v1 tl-wa860re-v1 tl-wa901nd-v1 tl-wa901nd-v2 tl-wa901nd-v3 tl-wa901nd-v4 tl-wa901nd-v5 tl-wdr3320-v2 tl-wr1041n-v2 tl-wr703n-v1 tl-wr710n-v2 tl-wr720n-v3 tl-wr720n-v4 tl-wr740n-v1 tl-wr740n-v3 tl-wr740n-v4 tl-wr740n-v5 tl-wr740n-v6 tl-wr741nd-v1 tl-wr741nd-v2 tl-wr741nd-v4 tl-wr741nd-v5 tl-wr743nd-v1 tl-wr743nd-v2 tl-wr802n-v1 tl-wr802n-v2 tl-wr840n-v2 tl-wr840n-v3 tl-wr841-v10 tl-wr841-v11 tl-wr841-v12 tl-wr841-v1.5 tl-wr841-v3 tl-wr841-v5 tl-wr841-v7 tl-wr841-v8 tl-wr841-v9 tl-wr843nd-v1 tl-wr847n-v8 tl-wr940n-v4 tl-wr940n-v6 tl-wr941nd-v2 tl-wr941nd-v3 tl-wr941nd-v4 tl-wr941nd-v5 tl-wr941nd-v6 tl-wr941nd-v6-cn WHRG301N WHRHPG300N WHRHPGN WLAEAG300N WNR1000V2_VC WNR2000 WNR2000V3 WNR2000V4 WP543_4M WPE72_4M WPN824N
 
-bcm53xx_generic_profiles :=
+#bcm53xx_generic_profiles :=
 brcm2708_bcm2708_profiles := rpi
 brcm2708_bcm2709_profiles := rpi-2
 brcm2708_bcm2710_profiles := rpi-3
-brcm47xx_generic_profiles :=
-brcm47xx_legacy_profiles :=
-brcm47xx_mips74k_profiles :=
+#brcm47xx_generic_profiles :=
+#brcm47xx_legacy_profiles :=
+#brcm47xx_mips74k_profiles :=
 #brcm63xx_generic_profiles := 96328avng-generic
 brcm63xx_generic_profiles := 96328avng-generic 96358VW2-generic A226M A4001N A4001N1 AD1018-SPI_flash AGPF-S0 AR1004G AR5315u AR5381u AR5387un CPA-ZNTE60T CPVA502PLUS CT-5365 CT-6373 DVAG3810BN EVG2000 FAST2404 FAST2604 FAST2704N GW6000 GW6200 HG556a-A HG556a-B HG556a-C HG622 HG655b livebox NEUFBOX6 R5010UNv2 SPW303V USR9108 VR-3025u VR-3025un
 brcm63xx_smp_profiles := P870HW-51a_v2 HG655b FAST2704N FAST2704V2 AV4202N R1000H VH4032N
 
-cns3xxx_generic_profiles :=
+#cns3xxx_generic_profiles :=
 
-gemini_generic_profiles := 
+#gemini_generic_profiles := 
 
-imx6_generic_profiles :=
+#imx6_generic_profiles :=
 
-ipq40xx_generic_profiles :=
+#ipq40xx_generic_profiles :=
 
-ipq806x_generic_profiles :=
+#ipq806x_generic_profiles :=
 
-ixp4xx_generic_profiles :=
+#ixp4xx_generic_profiles :=
 
-kirkwood_generic_profiles :=
+#kirkwood_generic_profiles :=
 
-lantiq_xrx200_profiles :=arcadyan_arv7519rw22 arcadyan_vg3503j arcadyan_vgv7510kw22-brn arcadyan_vgv7510kw22-nor arcadyan_vgv7519-brn arcadyan_vgv7519-nor avm_fritz3370 avm_fritz7360sl bt_homehub-v5a buffalo_wbmr-300hpd lantiq_easy80920-nand lantiq_easy80920-nor tplink_tdw8970 tplink_tdw8980 tplink_vr200v zyxel_p-2812hnu-f1 zyxel_p-2812hnu-f3
+lantiq_xrx200_profiles := arcadyan_arv7519rw22 arcadyan_vg3503j arcadyan_vgv7510kw22-brn arcadyan_vgv7510kw22-nor arcadyan_vgv7519-brn arcadyan_vgv7519-nor avm_fritz3370 avm_fritz7360sl bt_homehub-v5a buffalo_wbmr-300hpd lantiq_easy80920-nand lantiq_easy80920-nor tplink_tdw8970 tplink_tdw8980 tplink_vr200v zyxel_p-2812hnu-f1 zyxel_p-2812hnu-f3
 lantiq_xway_profiles := arcadyan_arv4510pw arcadyan_arv4519pw arcadyan_arv7506pw11 arcadyan_arv7510pw22 arcadyan_arv7518pw arcadyan_arv7519pw arcadyan_arv7525pw arcadyan_arv752dpw arcadyan_arv752dpw22 arcadyan_arv8539pw22 audiocodes_mp-252 avm_fritz7320 bt_homehub-v2b bt_homehub-v3a lantiq_easy50712 netgear_dgn3500 netgear_dgn3500b zte_h201l zyxel_p-2601hn
 
-mediatek_mt7623_profiles :=
+#mediatek_mt7623_profiles :=
 
 mvebu_cortexa9_profiles := linksys-wrt1200ac linksys-wrt1900ac linksys-wrt1900acs linksys-wrt1900acv2 linksys-wrt3200acm linksys-wrt32x turris-omnia
 
@@ -45,11 +45,11 @@ ramips_mt7621_profiles := d-team_newifi-d2 dir-860l-b1 elecom_wrc-1167ghbk2-s ew
 ramips_mt76x8_profiles := alfa-network_awusfree1 duzun-dm06 gl-mt300n-v2 hc5661a LinkIt7688 mac1200r-v2 miwifi-nano mt7628 pbr-d1 tama_w06 tl-wr840n-v4 tl-wr840n-v5 tl-wr841n-v13 tplink_c20-v4 tplink_c50-v3 tplink_tl-mr3420-v5 tplink_tl-wr842n-v5 tplink_tl-wr902ac-v3 u7628-01-128M-16M wcr-1166ds wl-wn575a3 zbtlink_zbt-we1226
 ramips_rt288x_profiles := ar670w ar725w dlink_dap-1522-a1 f5d8235-v1 rt-n15 wli-tx4-ag300n wzr-agl300nh
 ramips_rt305x_profiles := 3g150b 3g300m 3g-6200n 3g-6200nl a5-v11 air3gii ALL02393G all0256n-4M all0256n-8M asl26555-16M asl26555-8M atp-52b awapn2403 awm002-evb-4M awm002-evb-8M bc2 broadway d105 dap-1350 dir-300-b1 dir-300-b7 dir-320-b1 dir-600-b1 dir-610-a1 dir-615-d dir-615-h1 dir-620-a1 dir-620-d1 dwr-512-b esr-9753 f5d8235-v2 fonera20n freestation5 hg255d hlk-rm04 ht-tm02 hw550-3g ip2202 jhr-n805r jhr-n825r jhr-n926r kn m3 m4-4M m4-8M mofi3500-3gn mpr-a1 mpr-a2 mr-102n mzk-dp150n mzk-w300nh2 mzk-wdpr nbg-419n nbg-419n2 nw718 psr-680w pwh2004 px-4885-4M px-4885-8M rt-g32-b1 rt-n10-plus rt-n13u rut5xx sl-r7205 tew-638apb-v2 tew-714tru ur-326n4g ur-336un v22rw-2x2 w150m w306r-v20 wcr-150gn whr-g300n wizard8800 wizfi630a wl-330n wl-330n3g WL-341V3 wl-351 wnce2001 wr512-3gn-4M wr512-3gn-8M wr6202 wt1520-4M wt1520-8M x5 x8 xdxrn502j zorlik_zl5900v2
-ramips_rt3883_profiles :=
+#ramips_rt3883_profiles :=
 
-sunxi_cortexa53_profiles :=
-sunxi_cortexa7_profiles :=
-sunxi_cortexa8_profiles :=
+#sunxi_cortexa53_profiles :=
+#sunxi_cortexa7_profiles :=
+#sunxi_cortexa8_profiles :=
 
 files := $(wildcard files/* ) $(wildcard files/*/* ) $(wildcard files/*/*/* ) $(wildcard files/*/*/*/* )
 
@@ -59,35 +59,35 @@ all:
 	make target=ar71xx subtarget=mikrotik release/ar71xx-mikrotik
 	make target=ar71xx subtarget=nand release/ar71xx-nand
 	make target=ar71xx subtarget=tiny release/ar71xx-tiny
-	make target=bcm53xx subtarget=generic release/bcm53xx-generic
+#	make target=bcm53xx subtarget=generic release/bcm53xx-generic
 	make target=brcm2708 subtarget=bcm2708 release/brcm2708-bcm2708
 	make target=brcm2708 subtarget=bcm2709 release/brcm2708-bcm2709
 	make target=brcm2708 subtarget=bcm2710 release/brcm2708-bcm2710
-	make target=brcm47xx subtarget=generic release/brcm47xx-generic
-	make target=brcm47xx subtarget=legacy release/brcm47xx-legacy
-	make target=brcm47xx subtarget=mips74k release/brcm47xx-mips74k
+#	make target=brcm47xx subtarget=generic release/brcm47xx-generic
+#	make target=brcm47xx subtarget=legacy release/brcm47xx-legacy
+#	make target=brcm47xx subtarget=mips74k release/brcm47xx-mips74k
 	make target=brcm63xx subtarget=generic release/brcm63xx-generic
 	make target=brcm63xx subtarget=smp release/brcm63xx-smp
-	make target=cns3xxx subtarget=generic release/cns3xxx-generic
-	make target=gemini subtarget=generic  release/gemini-generic
-	make target=imx6 subtarget=generic release/imx6-generic
-	make target=ipq40xx subtarget=generic release/ipq40xx-generic
-	make target=ipq806x subtarget=generic release/ipq806x-generic
-	make target=ixp4xx subtarget=generic release/ixp4xx-generic
-	make target=kirkwood subtarget=generic release/kirkwood-generic
+#	make target=cns3xxx subtarget=generic release/cns3xxx-generic
+#	make target=gemini subtarget=generic  release/gemini-generic
+#	make target=imx6 subtarget=generic release/imx6-generic
+#	make target=ipq40xx subtarget=generic release/ipq40xx-generic
+#	make target=ipq806x subtarget=generic release/ipq806x-generic
+#	make target=ixp4xx subtarget=generic release/ixp4xx-generic
+#	make target=kirkwood subtarget=generic release/kirkwood-generic
 	make target=lantiq subtarget=xrx200 release/lantiq-xrx200
 	make target=lantiq subtarget=xway release/lantiq-xway
-	make target=mediatek subtarget=mt7623 release/mediatek-mt7623
+#	make target=mediatek subtarget=mt7623 release/mediatek-mt7623
 	make target=mvebu subtarget=cortexa9 release/mvebu-cortexa9
 	make target=ramips subtarget=mt7620 release/ramips-mt7620
 	make target=ramips subtarget=mt7621 release/ramips-mt7621
 	make target=ramips subtarget=mt76x8 release/ramips-mt76x8
 	make target=ramips subtarget=rt288x release/ramips-rt288x
 	make target=ramips subtarget=rt305x release/ramips-rt305x
-	make target=ramips subtarget=rt3883 release/ramips-rt3883
-	make target=sunxi subtarget=cortexa53 release/sunxi-cortexa53
-	make target=sunxi subtarget=cortexa7  release/sunxi-cortexa7
-	make target=sunxi subtarget=cortexa8  release/sunxi-cortexa8
+#	make target=ramips subtarget=rt3883 release/ramips-rt3883
+#	make target=sunxi subtarget=cortexa53 release/sunxi-cortexa53
+#	make target=sunxi subtarget=cortexa7  release/sunxi-cortexa7
+#	make target=sunxi subtarget=cortexa8  release/sunxi-cortexa8
 
 clean:
 	rm -rf openwrt-imagebuilder*/
@@ -107,7 +107,7 @@ release/$(target)-$(subtarget): $(foreach profile,$($(target)_$(subtarget)_profi
 release/$(target)-$(subtarget)-%: openwrt-imagebuilder-$(OPENWRT_VERSION)-$(target)-$(subtarget).Linux-x86_64/ $(files) | release
 	echo "Building Image for $(target) $(subtarget) $*"
 	{ make -C $< image PROFILE="$*" PACKAGES="vsftpd luci -ppp -ppp-mod-pppoe" EXTRA_IMAGE_NAME="TurnierInfo" FILES="../files/" >$@ 2>&1 ; } \
-	|| { mv --backup=numbered $@ release/00ERROR_$(target)-$(subtarget)-$* ; echo -e '\033[0;31m' "$(target) $(subtarget) $* FAILED" '\033[0m' ; }
+	|| { mv --backup=numbered $@ release/00ERROR_$(target)-$(subtarget)-$* ; echo '\033[0;31m'$(target) $(subtarget) $* FAILED'\033[0m' ; }
 	
 release/$(target)_$(subtarget)_00EXCLUDED: openwrt-imagebuilder-$(OPENWRT_VERSION)-$(target)-$(subtarget).Linux-x86_64/ | release
 	make -C $< info | grep :$$ | tr -d : | sort > release/$(target)_$(subtarget)_00ALL
