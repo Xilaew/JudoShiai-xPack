@@ -1,6 +1,6 @@
-Öffentliches WLAN:
+Ã–ffentliches WLAN:
 SSID: turnierinfo
-Security: unverschlüsselt
+Security: unverschlÃ¼sselt
 
 Privates WLAN:
 SSID: judoshiai
@@ -13,10 +13,10 @@ Username: judoshiai
 (kein Passwort notwendig)
 
 HTTP Server (turnierinfo):
-Erreichbar aus beiden Netzen unter 172.41.1.1:80 oder turnierinfo.lan:80
+Erreichbar aus beiden Netzen unter 172.41.1.1:80 oder http://turnierinfo.lan:80/
 
 HTTP Server (OpenWRT luci):
-Erreichbar aus dem privaten Netz unter 192.168.1.1:80
+Erreichbar aus dem privaten Netz unter 192.168.1.1:80 oder http://admin.turnierinfo.lan:80/
 username: root
 passwort: 1234
 
