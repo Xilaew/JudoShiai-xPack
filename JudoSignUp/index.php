@@ -624,8 +624,6 @@ $textLabelLegalConsent = ($customLegalConsentText == '') ? _("I consent that my 
     updateWeights();
 
     function toggleField(hideObj, showObj) {
-      console.log(hideObj)
-      console.log(showObj)
       hideObj.disabled = true;
       hideObj.style.display = 'none';
       showObj.disabled = false;
