@@ -81,55 +81,58 @@ msgstr ""
 #: index.php
 #, php-format
 msgid "Registration for %s"
-msgstr ""
+msgstr "Anmeldung für %s"
 
 #: index.php
 msgid "Hi,"
-msgstr ""
+msgstr "Hi,"
 
 #: index.php
 msgid ""
 "I was not able to use the registration website because [Reason why I could "
 "not use Website]."
-msgstr ""
+msgstr "Ich konnte leider die Anmeldewebsite nicht benutzen, weil [Bitte Grund "
+"angeben]."
 
 #: index.php
 msgid "I would like to register the following competitors:"
-msgstr ""
+msgstr "Ich möchte gerne die folgenden Kämpfer Anmelden:"
 
 #: index.php
 msgid "John,Smith,1990,m,,,London Judo Club,"
-msgstr ""
+msgstr "Max,Mustermann,1990,m,,,Hamburger Judo Team,"
 
 #: index.php
 msgid "Amanda,Johnson,2002,f,,,London Judo Club,"
-msgstr ""
+msgstr "Clara,Mustermann,2002,f,,,Hamburger Judo Team,"
 
 #: index.php
 msgid "Regards [your Name]"
-msgstr ""
+msgstr "mit freundlichen Grüßen [dein Name]"
 
 #: index.php
 #, php-format
 msgid ""
 "If you are having trouble with this registration page please tell us about "
 "it and of course we also take your registration when you send an email to %s."
-msgstr ""
+msgstr "Falls du Schwierigkeiten mit der Anmeldewebsite hast, bitte erzähl uns "
+"davon. Ja, natürlich nehmen wir deine Anmeldung auch per Email an %s entgegen."
 
 #: index.php
 msgid ""
 "Please enclose the competitors information in the following format in your "
 "email:"
-msgstr ""
+msgstr "Bitte gib die Kämpferdaten im folgenden Format in deiner Email an:"
 
 #: index.php
 msgid ""
 "first name,last name,year of birth,sex as \"m\"=male or \"f\"=female,,,club,"
-msgstr ""
+msgstr "Vorname, Nachname, Geburtsjahr, Geschlecht \"m\"=männlich or "
+"\"f\"=fraulich,,,Verein,"
 
 #: index.php
 msgid "for example:"
-msgstr ""
+msgstr "Zum Beispiel:"
 
 #: index.php
 msgid "Register new competitors:"

@@ -263,14 +263,14 @@ $textLabelLegalConsent = ($customLegalConsentText == '') ? _("I consent that my 
               <option value="" selected disabled><?php echo(_("Choose the competitor's club.")); ?></option>
               <?php
               if ($allowCustomClub == true) {
-                echo('<option value="customOption">' . _('My club is not in this list.') . '</option>');
+                echo('<option value="customOption">' . _('My club is not in this list.') . '</option>' . "\n");
               }
               foreach ($clubs as $club) {
                 echo("              <option value=\"$club\">$club</option>\n");
               }
               ?>
-            </select>
-            <input name="club" style="display:none;" disabled="disabled" type="text" class="form-control" onblur="if(this.value==''){toggleField(this,this.previousSibling);}">
+<!--        No space allowed between </select> and <input> because nextSibling would return a reference to that whitespace node instad of the input node-->
+            </select><input name="club" style="display:none;" disabled="disabled" type="text" class="form-control" onblur="if(this.value==''){toggleField(this,this.previousSibling);}">
           </div>
   <?php
     if ($showInputLegalConsent) {
@@ -624,6 +624,8 @@ $textLabelLegalConsent = ($customLegalConsentText == '') ? _("I consent that my 
     updateWeights();
 
     function toggleField(hideObj, showObj) {
+      console.log(hideObj)
+      console.log(showObj)
       hideObj.disabled = true;
       hideObj.style.display = 'none';
       showObj.disabled = false;
