@@ -115,8 +115,9 @@ msgstr "mit freundlichen Grüßen [dein Name]"
 msgid ""
 "If you are having trouble with this registration page please tell us about "
 "it and of course we also take your registration when you send an email to %s."
-msgstr "Falls du Schwierigkeiten mit der Anmeldewebsite hast, bitte erzähl uns "
-"davon. Ja, natürlich nehmen wir deine Anmeldung auch per Email an %s entgegen."
+msgstr ""
+"Falls du Schwierigkeiten mit der Anmeldewebsite hast, erzähl uns bitte davon. "
+"Natürlich nehmen wir deine Anmeldung auch per Email an %s entgegen."
 
 #: index.php
 msgid ""
@@ -127,7 +128,7 @@ msgstr "Bitte gib die Kämpferdaten im folgenden Format in deiner Email an:"
 #: index.php
 msgid ""
 "first name,last name,year of birth,sex as \"m\"=male or \"f\"=female,,,club,"
-msgstr "Vorname, Nachname, Geburtsjahr, Geschlecht \"m\"=männlich or "
+msgstr "Vorname, Nachname, Geburtsjahr, Geschlecht \"m\"=männlich oder "
 "\"f\"=fraulich,,,Verein,"
 
 #: index.php
