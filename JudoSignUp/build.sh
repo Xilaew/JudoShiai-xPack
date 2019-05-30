@@ -17,6 +17,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
 function updateLocalisation {
   cd ${DIR}
+  ${XGETTEXT} --version
   echo ${XGETTEXT} --from-code=UTF-8 --output="${LOCALE}/${TEMPLATE_PATH}.po" --add-location=file --language=php --package-name="judoshiai-xPack" --package-version="${VERSION}" --copyright-holder="${COPYRIGHTHOLDER}" --msgid-bugs-address="${EMAIL}" ${SOURCES}
   ${XGETTEXT} --from-code=UTF-8 --output="${LOCALE}/${TEMPLATE_PATH}.po" --add-location=file --language=php --package-name="judoshiai-xPack" --package-version="${VERSION}" --copyright-holder="${COPYRIGHTHOLDER}" --msgid-bugs-address="${EMAIL}" ${SOURCES}
   sed -i '/POT-Creation-Date/d' ${LOCALE}/${TEMPLATE_PATH}.po
@@ -41,4 +42,3 @@ function release {
 
 updateLocalisation
 release
-

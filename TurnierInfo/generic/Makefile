@@ -52,6 +52,8 @@ ramips_rt305x_profiles := 3g150b 3g300m 3g-6200n 3g-6200nl a5-v11 air3gii ALL023
 #sunxi_cortexa8_profiles :=
 
 files := $(wildcard files/* ) $(wildcard files/*/* ) $(wildcard files/*/*/* ) $(wildcard files/*/*/*/* )
+WGET-OPTIONS := -nv
+#WGET-OPTIONS := -nv --show-progress
 
 all:
 	make target=apm821xx subtarget=nand release/apm821xx-nand
@@ -125,11 +127,11 @@ openwrt-imagebuilder-%.Linux-x86_64/: | openwrt-imagebuilder-%.Linux-x86_64.tar.
 
 openwrt-imagebuilder-%.Linux-x86_64.tar.xz:
 	echo "Downloading $@"
-	wget -nv --show-progress https://downloads.openwrt.org/releases/$(word 1,$(subst -, ,$*))/targets/$(word 2,$(subst -, ,$*))/$(word 3,$(subst -, ,$*))/openwrt-imagebuilder-$(word 1,$(subst -, ,$*))-$(word 2,$(subst -, ,$*))-$(word 3,$(subst -, ,$*)).Linux-x86_64.tar.xz \
-	|| { wget -nv --show-progress https://downloads.openwrt.org/releases/$(word 1,$(subst -, ,$*))/targets/$(word 2,$(subst -, ,$*))/$(word 3,$(subst -, ,$*))/openwrt-imagebuilder-$(word 1,$(subst -, ,$*))-$(word 2,$(subst -, ,$*)).Linux-x86_64.tar.xz \
+	wget $(WGET-OPTIONS) https://downloads.openwrt.org/releases/$(word 1,$(subst -, ,$*))/targets/$(word 2,$(subst -, ,$*))/$(word 3,$(subst -, ,$*))/openwrt-imagebuilder-$(word 1,$(subst -, ,$*))-$(word 2,$(subst -, ,$*))-$(word 3,$(subst -, ,$*)).Linux-x86_64.tar.xz \
+	|| { wget $(WGET-OPTIONS) https://downloads.openwrt.org/releases/$(word 1,$(subst -, ,$*))/targets/$(word 2,$(subst -, ,$*))/$(word 3,$(subst -, ,$*))/openwrt-imagebuilder-$(word 1,$(subst -, ,$*))-$(word 2,$(subst -, ,$*)).Linux-x86_64.tar.xz \
 	; ln -s -f openwrt-imagebuilder-$(word 1,$(subst -, ,$*))-$(word 2,$(subst -, ,$*)).Linux-x86_64.tar.xz $@ ; }
 
 gmsl:
-	wget -nv --show-progress https://netcologne.dl.sourceforge.net/project/gmsl/GNU%20Make%20Standard%20Library/v1.1.8/gmsl-1.1.8.tar.gz
+	wget $(WGET-OPTIONS) https://netcologne.dl.sourceforge.net/project/gmsl/GNU%20Make%20Standard%20Library/v1.1.8/gmsl-1.1.8.tar.gz
 	tar -xzf gmsl-1.1.8.tar.gz
 

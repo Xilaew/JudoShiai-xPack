@@ -1,13 +1,22 @@
 language: minimal
-
 script:
-  - cd JudoSignUp
-  - ./build.sh
-
+  - (cd JudoSignUp && ./build.sh)
+  - (cd TurnierInfo/generic && make --quiet target=ar71xx subtarget=generic release/ar71xx-generic-archer-c7-v2 release/ar71xx-generic-archer-c60-v2 release/ar71xx-generic-tl-wr1043nd-v1 release/ar71xx-generic-tl-wr1043nd-v2 release/ar71xx-generic-tl-wr1043nd-v3 release/ar71xx-generic-tl-wr1043nd-v4 release/ar71xx-generic-tl-wr1043nd-v5)
+  - (cd TurnierInfo/generic && make --quiet target=ar71xx subtarget=tiny release/ar71xx-tiny-tl-wr841-v3 release/ar71xx-tiny-tl-wr841-v5  release/ar71xx-tiny-tl-wr841-v7  release/ar71xx-tiny-tl-wr841-v8  release/ar71xx-tiny-tl-wr841-v9  release/ar71xx-tiny-tl-wr841-v10  release/ar71xx-tiny-tl-wr841-v11  release/ar71xx-tiny-tl-wr841-v12)
+  - cat ./TurnierInfo/generic/openwrt-imagebuilder-18.06.1-*.Linux-x86_64/bin/targets/*/*/sha256sums > sha256sums
+  - zip -u -j build-logs.zip ./TurnierInfo/generic/release/* ./TurnierInfo/generic/openwrt-imagebuilder-18.06.1-*.Linux-x86_64/bin/targets/*/*/openwrt-18.06.1-turnierinfo-*-device-*.manifest sha256sums
 deploy:
   provider: releases
-  api_key: "314fdc0b81c60ae649cce18d4b107119dede7e35"
-  file: "JudoSignUp/JudoSignUp-v*.zip"
+  api_key:
+    secure: bS1x9/GTZBLtbRts0n/WvCGLjFrqUG3eTcD/nGJS7zwCwzXGiJMiCMU4/5beopr7fYl4KQuv4NNEITEh3iH8Xba/pkRMZUZvmap9ax4SD6WflFp+UtaK3UxndWvP0r6Dr4CFM4hGutyPhONxljXUllGLnOolSGoWfP7sH0qQqGGk6SuULmlyPDEm+2LSVMKEiUb6SJ++M9UVhrQmjbpjQGSnnNJtxsMEG5FIgM15puKO7DMvf4b4XXoJ2Hbm2ccsJ+4w9RX9JD/h1JM5i1hziiJqnuq6W3hUm5Lv82AAH3UXHCzldSZjegWuH3rXOeAnoPudaz7awQmxU4QLXuHu+Tzz7l+i0+OlelB3V28IYUynCvYcOZ3+sKjZkQsP8pZG1DejsvTep3iulCY7ivUNtLpELL2Cx7HecnfhfImau4BxJNASO6DY0nFy+M1jq+EyQWy97txsM30aQVnockIAiDeYOMfrBu4ADmmXIGaSETwJ49E5xWdRTtRwpASMeTCnH3VZOK/mPxJxfbxlPCcFDoEeyj+bV9/fkMRh6glijGzxuwb5s6qQAQLMXNTv2FIgzih2HV/3n/RrYXl9XUjadkgT6vRww9yIYLdwn09u8wBnbVpe3jrBXCmwVTWc6snRPc2zWxeJ/BZ2ba9TodDXkmgGr5xyUxog3SP+bEMnK5Y=
+  file_glob: true
+  file:
+    - JudoSignUp/JudoSignUp-v*.zip
+    - TurnierInfo/generic/openwrt-imagebuilder-18.06.1-ar71xx-generic.Linux-x86_64/bin/targets/ar71xx/generic/openwrt-18.06.1-turnierinfo-ar71xx-generic-archer-*-squashfs-factory*.bin
+    - TurnierInfo/generic/openwrt-imagebuilder-18.06.1-ar71xx-generic.Linux-x86_64/bin/targets/ar71xx/generic/openwrt-18.06.1-turnierinfo-ar71xx-generic-tl-wr1043nd-*-squashfs-factory.bin
+    - TurnierInfo/generic/openwrt-imagebuilder-18.06.1-ar71xx-tiny.Linux-x86_64/bin/targets/ar71xx/tiny/openwrt-18.06.1-turnierinfo-ar71xx-tiny-tl-wr841-*-squashfs-factory*.bin
+    - build-logs.zip
   skip_cleanup: true
   on:
+    repo: Xilaew/JudoShiai-xPack
     tags: true
