@@ -20,7 +20,7 @@ fclose($fp);
 $showAlertDisabled = ($disabled || $turnamentIsOver || ($registrationIsClosed && $lateRegistrationHandling == 'reject'));
 if (!$disabled) { /* if manually disabled the $disabledErrorMessage supplied in the config file shall be used */
   if ($registrationIsClosed && $lateRegistrationHandling == 'reject') {
-    $disabledErrorMessage = sprintf(_('Registration for this tournament was closed on %s. No new registrations will be accepted. please consider registering before closing of registration for the next tournament.'), $registrationClosingDate);
+    $disabledErrorMessage = sprintf(_('Registration for this tournament was closed on %s. No new registrations will be accepted. Please consider registering before closing of registration for the next tournament.'), $registrationClosingDate);
   }
   if ($turnamentIsOver) {
     $disabledErrorMessage = sprintf(_('The tounament took place on %s. There is no point in registering new competitors for a long gone turnament.'), $dateOfTournament);
@@ -28,6 +28,7 @@ if (!$disabled) { /* if manually disabled the $disabledErrorMessage supplied in 
 }
 $showAlertCoachId = (!$showAlertDisabled && count($competitors) > 0 && getCoachId(false) == "");
 $showAlertRegistrationRequired = (!$showAlertDisabled && $forceRegistration && getCoachId(false) == "");
+$showAlertLateRegistration = (!$showAlertDisabled && ($registrationIsClosed && $lateRegistrationHandling == 'warn'));
 $showAlertTroubleshooting = isset($_GET['troubleshooting']);
 $showLinkTroubleshooting = ($emailAlternativeRegistration != '');
 $showContainerSignUp = !($disabled || $turnamentIsOver || ($registrationIsClosed && $lateRegistrationHandling == 'reject'));
@@ -151,6 +152,15 @@ $textLabelLegalConsent = ($customLegalConsentText == '') ? _("I consent that my 
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
+          </div>
+        <?php
+        }
+        ?>
+        <?php
+        if ($showAlertLateRegistration) {
+        ?>
+          <div class="alert alert-warning fade show" role="alert">
+            <strong><?php echo(_('Hint:')); ?></strong><?php printf(_('Registration for this tournament was closed on %s. We kindly accept late registrations. Please consider registering before closing of registration for the next tournament.'), $registrationClosingDate); ?>
           </div>
         <?php
         }
@@ -385,7 +395,11 @@ $textLabelLegalConsent = ($customLegalConsentText == '') ? _("I consent that my 
         },
         success: function (data, textStatus, jqXHR) {
           if (jqXHR.status === 201) {
-            message(['<?php printf(_('%s was successfully registered.'), '<strong>\' + data.firstName + \' \' + data.lastName + \'</strong>'); ?>'], 'message', 'success');
+            if (data.lateRegistration) {
+              message(['<?php printf(_('The late registration of %s has been accepted.'), '<strong>\' + data.firstName + \' \' + data.lastName + \'</strong>'); ?>'], 'message', 'success');
+            } else {
+              message(['<?php printf(_('%s was successfully registered.'), '<strong>\' + data.firstName + \' \' + data.lastName + \'</strong>'); ?>'], 'message', 'success');
+            }
             addCompetitorTableEntry(data);
             competitors.push(data);
             $('#radioset input').removeAttr('checked');

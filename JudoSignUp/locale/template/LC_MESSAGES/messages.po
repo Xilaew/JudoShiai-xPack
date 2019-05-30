@@ -20,7 +20,7 @@ msgstr ""
 #, php-format
 msgid ""
 "Registration for this tournament was closed on %s. No new registrations will "
-"be accepted. please consider registering before closing of registration for "
+"be accepted. Please consider registering before closing of registration for "
 "the next tournament."
 msgstr ""
 
@@ -51,6 +51,14 @@ msgstr ""
 msgid ""
 "In order to view and modify the entered competitors later on you should "
 "create a Coach Id (username)."
+msgstr ""
+
+#: index.php
+#, php-format
+msgid ""
+"Registration for this tournament was closed on %s. We kindly accept late "
+"registrations. Please consider registering before closing of registration "
+"for the next tournament."
 msgstr ""
 
 #: index.php
@@ -200,6 +208,11 @@ msgstr ""
 
 #: index.php
 msgid "Category"
+msgstr ""
+
+#: index.php
+#, php-format
+msgid "The late registration of %s has been accepted."
 msgstr ""
 
 #: index.php

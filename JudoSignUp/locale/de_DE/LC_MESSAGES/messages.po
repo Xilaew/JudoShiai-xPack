@@ -20,7 +20,7 @@ msgstr ""
 #, php-format
 msgid ""
 "Registration for this tournament was closed on %s. No new registrations will "
-"be accepted. please consider registering before closing of registration for "
+"be accepted. Please consider registering before closing of registration for "
 "the next tournament."
 msgstr ""
 "Anmeldeschluss für dieses Turnier war am %s. Es werden keine weiteren "
@@ -66,6 +66,17 @@ msgstr ""
 "können solltest du eine Trainer Id (Benutzernamen) anlegen."
 
 #: index.php
+#, php-format
+msgid ""
+"Registration for this tournament was closed on %s. We kindly accept late "
+"registrations. Please consider registering before closing of registration "
+"for the next tournament."
+msgstr ""
+"Anmeldeschluss für dieses Turnier war am %s. Wir nehmen deine Ameldung "
+"freundlicherweise noch an. Bitte versuche dich beim nächsten Turnier "
+"rechtzeitig anzumelden."
+
+#: index.php
 msgid ""
 "Before you can register competitors you need to sign up by entering your "
 "email address as Coach Id. We use the email to keep you updated about any "
@@ -91,7 +102,8 @@ msgstr "Hi,"
 msgid ""
 "I was not able to use the registration website because [Reason why I could "
 "not use Website]."
-msgstr "Ich konnte leider die Anmeldewebsite nicht benutzen, weil [Bitte Grund "
+msgstr ""
+"Ich konnte leider die Anmeldewebsite nicht benutzen, weil [Bitte Grund "
 "angeben]."
 
 #: index.php
@@ -116,8 +128,8 @@ msgid ""
 "If you are having trouble with this registration page please tell us about "
 "it and of course we also take your registration when you send an email to %s."
 msgstr ""
-"Falls du Schwierigkeiten mit der Anmeldewebsite hast, erzähl uns bitte davon. "
-"Natürlich nehmen wir deine Anmeldung auch per Email an %s entgegen."
+"Falls du Schwierigkeiten mit der Anmeldewebsite hast, erzähl uns bitte "
+"davon. Natürlich nehmen wir deine Anmeldung auch per Email an %s entgegen."
 
 #: index.php
 msgid ""
@@ -128,8 +140,9 @@ msgstr "Bitte gib die Kämpferdaten im folgenden Format in deiner Email an:"
 #: index.php
 msgid ""
 "first name,last name,year of birth,sex as \"m\"=male or \"f\"=female,,,club,"
-msgstr "Vorname, Nachname, Geburtsjahr, Geschlecht \"m\"=männlich oder "
-"\"f\"=fraulich,,,Verein,"
+msgstr ""
+"Vorname, Nachname, Geburtsjahr, Geschlecht \"m\"=männlich oder \"f"
+"\"=fraulich,,,Verein,"
 
 #: index.php
 msgid "for example:"
@@ -222,6 +235,11 @@ msgstr "Name"
 #: index.php
 msgid "Category"
 msgstr "Klasse"
+
+#: index.php
+#, php-format
+msgid "The late registration of %s has been accepted."
+msgstr "Die Nachmeldung von %s wurde angenommen."
 
 #: index.php
 #, php-format

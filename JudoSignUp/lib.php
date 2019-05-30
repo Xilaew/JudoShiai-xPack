@@ -3,9 +3,9 @@
 require_once 'config.php';
 $dateOfTournamentDate = strtotime($dateOfTournament) or die('ERROR: could not parse ' . $dateOfTournament . ' as date. Please go to config.php and enter a valid value for $dateOfTournament. See http://php.net/manual/de/datetime.formats.php for detailed information about valid Date formats.');
 $yearOfTournament = date('Y', $dateOfTournamentDate);
-$dateRegistrationClosing = strtotime($registrationClosingDate) or die('ERROR: could not parse ' . $registrationClosingDate . ' as date. Please go to config.php and enter a valid value for $registrationClosingDate. See http://php.net/manual/de/datetime.formats.php for detailed information about valid Date formats.');
+$dateRegistrationClosingDate = strtotime($registrationClosingDate) or die('ERROR: could not parse ' . $registrationClosingDate . ' as date. Please go to config.php and enter a valid value for $registrationClosingDate. See http://php.net/manual/de/datetime.formats.php for detailed information about valid Date formats.');
 $turnamentIsOver = (($dateOfTournamentDate - time()) < 0);
-$registrationIsClosed = (($dateRegistrationClosing - time()) < 0);
+$registrationIsClosed = (($dateRegistrationClosingDate - time()) < 0);
 
 function sqlite_getInfo($db) {
   $result = new \stdClass;
@@ -88,7 +88,8 @@ function csv_getCompetitors($fp, $coachid) {
 function csv_addCompetitor($competitor, $fp, $categories, $coachid) {
   global $maxYearOfBirth;
   global $minYearOfBirth;
-  $indices = array("firstName", "lastName", "yearOfBirth", "sex", "weight", "category", "club", "coachid");
+  global $registrationIsClosed;
+  $indices = array("firstName", "lastName", "yearOfBirth", "sex", "weight", "category", "club", "coachid", "lateRegistration");
   $result = new \stdClass;
   if ($competitor->lastName == "" and $competitor->firstName == "") {
     $result->msg = _("Please enter a name!");
@@ -101,6 +102,7 @@ function csv_addCompetitor($competitor, $fp, $categories, $coachid) {
   } else {
     $competitor->category = map_category($competitor->sex, $competitor->yearOfBirth, $competitor->weight, $categories);
     $competitor->coachid = $coachid;
+    $competitor->lateRegistration = $registrationIsClosed;
     $line = array();
     foreach ($indices as $key) {
       $line[] = $competitor->$key;
