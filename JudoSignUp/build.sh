@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 COPYRIGHTHOLDER='Felix von Poblotzki'
 EMAIL='xilaew@gmail.com'
-VERSION='1.0.0'
+VERSION=`git describe --tags`
 
 XGETTEXT=xgettext
 MSGMERGE=msgmerge

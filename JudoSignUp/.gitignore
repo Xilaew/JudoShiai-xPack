@@ -5,3 +5,4 @@ clubs_*.txt
 nbproject
 /.buildpath
 /.project
+.idea/
