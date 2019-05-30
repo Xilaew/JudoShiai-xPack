@@ -1,0 +1,7 @@
+JudoSignUp*.zip
+locale/*/LC_MESSAGES/messages.mo
+template_*.shi
+clubs_*.txt
+nbproject
+/.buildpath
+/.project

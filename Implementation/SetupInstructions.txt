@@ -1,6 +1,0 @@
-1. Flash image
-2. run installSoftware.sh on device
-3. copy config files and any thing else to the device
-4. run configureSoftware.sh on device
-
-reboot!

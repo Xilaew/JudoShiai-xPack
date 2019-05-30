@@ -1,0 +1,321 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Felix von Poblotzki
+# This file is distributed under the same license as the judoshiai-xPack package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: judoshiai-xPack 0.1\n"
+"Report-Msgid-Bugs-To: xilaew@gmail.com\n"
+"POT-Creation-Date: 2018-10-29 07:27+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: index.php
+#, php-format
+msgid ""
+"Registration for this tournament was closed on %s. No new registrations will "
+"be accepted. Please consider registering before closing of registration for "
+"the next tournament."
+msgstr ""
+"Anmeldeschluss für dieses Turnier war am %s. Es werden keine weiteren "
+"Anmeldungen angenommen. Bitte versuche dich beim nächsten Turnier "
+"rechtzeitig anzumelden."
+
+#: index.php
+#, php-format
+msgid ""
+"The tounament took place on %s. There is no point in registering new "
+"competitors for a long gone turnament."
+msgstr ""
+"Das Turnier war am %s. Es macht keinen Sinn sich für ein vergangenes Turnier "
+"anzumelden."
+
+#: index.php
+msgid ""
+"I consent that my information provided here can be used throughout the "
+"planning and execution of the tournament. My name will be written on "
+"competition sheets visible to anybody pysically present on the tournament. "
+"The data will be deleted one week after the tournament."
+msgstr ""
+"Ich willige ein, dass meine persönlichen Daten während der Planung und "
+"Durchführung des Turniers genutzt werden dürfen. Mein Name wird auf den "
+"Wettkampflisten auftauchen. Die Wettkampflisten können von jedem am "
+"Turniertag vor Ort eingesehen werden. Meine Daten werden eine Woche nach dem "
+"Turnier wieder gelöscht."
+
+#: index.php
+msgid "en"
+msgstr "de"
+
+#: index.php
+msgid "Hint:"
+msgstr "Hinweis:"
+
+#: index.php
+msgid ""
+"In order to view and modify the entered competitors later on you should "
+"create a Coach Id (username)."
+msgstr ""
+"Um später deine bereits angemeldeten Kämpfer einsehen und bearbeiten zu "
+"können solltest du eine Trainer Id (Benutzernamen) anlegen."
+
+#: index.php
+#, php-format
+msgid ""
+"Registration for this tournament was closed on %s. We kindly accept late "
+"registrations. Please consider registering before closing of registration "
+"for the next tournament."
+msgstr ""
+"Anmeldeschluss für dieses Turnier war am %s. Wir nehmen deine Ameldung "
+"freundlicherweise noch an. Bitte versuche dich beim nächsten Turnier "
+"rechtzeitig anzumelden."
+
+#: index.php
+msgid ""
+"Before you can register competitors you need to sign up by entering your "
+"email address as Coach Id. We use the email to keep you updated about any "
+"changes regarding the tournament. Further you can view and modify your "
+"competitors later on with this email/Coach Id as login."
+msgstr ""
+"Befor du Kämpfer anmelden kannst musst du dich mit deiner Emailadresse als "
+"Trainer Id registrieren. Wir benutzen deine Emailadresse um dich über "
+"organisatorische Änderungen auf dem laufenden zu halten. Außerdem kannst du "
+"später mit deiner email/Trainer Id bereits registrierte Kämpfer einsehen und "
+"bearbeiten."
+
+#: index.php
+#, php-format
+msgid "Registration for %s"
+msgstr "Anmeldung für %s"
+
+#: index.php
+msgid "Hi,"
+msgstr "Hi,"
+
+#: index.php
+msgid ""
+"I was not able to use the registration website because [Reason why I could "
+"not use Website]."
+msgstr ""
+"Ich konnte leider die Anmeldewebsite nicht benutzen, weil [Bitte Grund "
+"angeben]."
+
+#: index.php
+msgid "I would like to register the following competitors:"
+msgstr "Ich möchte gerne die folgenden Kämpfer Anmelden:"
+
+#: index.php
+msgid "John,Smith,1990,m,,,London Judo Club,"
+msgstr "Max,Mustermann,1990,m,,,Hamburger Judo Team,"
+
+#: index.php
+msgid "Amanda,Johnson,2002,f,,,London Judo Club,"
+msgstr "Clara,Mustermann,2002,f,,,Hamburger Judo Team,"
+
+#: index.php
+msgid "Regards [your Name]"
+msgstr "mit freundlichen Grüßen [dein Name]"
+
+#: index.php
+#, php-format
+msgid ""
+"If you are having trouble with this registration page please tell us about "
+"it and of course we also take your registration when you send an email to %s."
+msgstr ""
+"Falls du Schwierigkeiten mit der Anmeldewebsite hast, erzähl uns bitte "
+"davon. Natürlich nehmen wir deine Anmeldung auch per Email an %s entgegen."
+
+#: index.php
+msgid ""
+"Please enclose the competitors information in the following format in your "
+"email:"
+msgstr "Bitte gib die Kämpferdaten im folgenden Format in deiner Email an:"
+
+#: index.php
+msgid ""
+"first name,last name,year of birth,sex as \"m\"=male or \"f\"=female,,,club,"
+msgstr ""
+"Vorname, Nachname, Geburtsjahr, Geschlecht \"m\"=männlich oder \"f"
+"\"=fraulich,,,Verein,"
+
+#: index.php
+msgid "for example:"
+msgstr "Zum Beispiel:"
+
+#: index.php
+msgid "Register new competitors:"
+msgstr "Neue Kämpfer anmelden:"
+
+#: index.php
+msgid "First Name"
+msgstr "Vorname"
+
+#: index.php
+msgid "Last Name"
+msgstr "Nachname"
+
+#: index.php
+msgid "Sex"
+msgstr "Geschlecht"
+
+#: index.php
+msgid "male"
+msgstr "männlich"
+
+#: index.php
+msgid "female"
+msgstr "weiblich"
+
+#: index.php
+msgid "Year of birth"
+msgstr "Geburtsjahr"
+
+#: index.php
+msgid "Age Category"
+msgstr "Altersklasse"
+
+#: index.php
+msgid "Weight Category"
+msgstr "Gewichtsklasse"
+
+#: index.php
+msgid "Select year of birth and sex first."
+msgstr "Wähle zuerst Geburtsjahr und Geschlecht"
+
+#: index.php
+msgid "Club"
+msgstr "Verein"
+
+#: index.php
+msgid "Choose the competitor's club."
+msgstr "Wähle den Verein des Kämpfers."
+
+#: index.php
+msgid "My club is not in this list."
+msgstr "Mein Verein ist nicht in der Liste."
+
+#: index.php
+msgid "Register Competitor"
+msgstr "Kämpfer Anmelden"
+
+#: index.php
+msgid "please wait..."
+msgstr "Bitte Warten..."
+
+#: index.php
+msgid "I am having trouble registering competitors."
+msgstr "Ich habe Probleme bei der Anmeldung von Kämpfern."
+
+#: index.php
+msgid "Already registered competitors:"
+msgstr "Bereits eingegebene Anmeldungen:"
+
+#: index.php
+msgid "Coach Id"
+msgstr "Trainer Id"
+
+#: index.php
+msgid "Log-in / Register"
+msgstr "Anmelden / Registrieren"
+
+#: index.php
+msgid "Log-out"
+msgstr "Abmelden"
+
+#: index.php
+msgid "Name"
+msgstr "Name"
+
+#: index.php
+msgid "Category"
+msgstr "Klasse"
+
+#: index.php
+#, php-format
+msgid "The late registration of %s has been accepted."
+msgstr "Die Nachmeldung von %s wurde angenommen."
+
+#: index.php
+#, php-format
+msgid "%s was successfully registered."
+msgstr "%s wurde erfolgreich angemeldet."
+
+#: index.php
+#, php-format
+msgid "Error:"
+msgstr "Fehler:"
+
+#: index.php
+#, php-format
+msgid ""
+"From now on you can log-in with your Coach Id %s anytime to view and edit "
+"your registered competitors."
+msgstr ""
+"Du kannst dich ab sofort jederzeit mit der Trainer Id %s wieder einloggen "
+"und deine Anmeldungen einsehen und bearbeiten."
+
+#: index.php
+msgid "You have been logged-out successfully."
+msgstr "Du wurdest erfolgreich abgemeldet."
+
+#: index.php
+#, php-format
+msgid "You have been logged-in as %s successfully."
+msgstr "Du wurdest erfolgreich als %s angemeldet."
+
+#: index.php
+#, php-format
+msgid "No competitors were found for the Coach Id %s."
+msgstr "Mit der Trainer Id %s wurden keine Kämpfer gefunden."
+
+#: index.php
+#, php-format
+msgid "Something went wrong. textStatus: %s errorThrown: %s"
+msgstr "Etwas ist schief gegangen. textStatus: %s errorThrown: %s"
+
+#: index.php
+msgid ""
+"Developer's contact details: Felix von Poblotzki, +4915232787790, "
+"xilaew@gmail.com"
+msgstr ""
+"Kontakt zum Entwickler: Felix von Poblotzki, +4915232787790, xilaew@gmail.com"
+
+#: index.php
+msgid "Please choose a weight category."
+msgstr "Bitte wähle eine Gewichtsklasse."
+
+#: lib.php
+msgid "Please enter a name!"
+msgstr "Bitte gib einen Namen ein!"
+
+#: lib.php
+msgid "Please enter a valid club!"
+msgstr "Bitte gib einen Vereinsnamen an!"
+
+#: lib.php
+msgid "Please enter the competitors Sex!"
+msgstr "Bitte gib das Geschlecht des Kämpfers an!"
+
+#: lib.php
+#, php-format
+msgid "Year of birth must be between %d and %d!"
+msgstr "Das Geburtsjahr muss zwischen %d und %d liegen!"
+
+#: lib.php
+msgid "Not saved due to internal error!"
+msgstr "Wegen internem Fehler nicht gespeichert!"
+
+#: rest.php
+#, php-format
+msgid ""
+"\"%s\" is not a valid Coach Id. A Coach Id should consist of at least two "
+"characters out of [A-Za-z0-9]"
+msgstr ""
+"\"%s\" ist keine zulässige Trainer Id. Eine Trainer Id sollte mindestens aus "
+"zwei der folgenden Zeichen bestehen [A-Za-z0-9]"

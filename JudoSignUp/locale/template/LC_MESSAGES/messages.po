@@ -1,0 +1,290 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Felix von Poblotzki
+# This file is distributed under the same license as the judoshiai-xPack package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: judoshiai-xPack 1.0.0\n"
+"Report-Msgid-Bugs-To: xilaew@gmail.com\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: index.php
+#, php-format
+msgid ""
+"Registration for this tournament was closed on %s. No new registrations will "
+"be accepted. Please consider registering before closing of registration for "
+"the next tournament."
+msgstr ""
+
+#: index.php
+#, php-format
+msgid ""
+"The tounament took place on %s. There is no point in registering new "
+"competitors for a long gone turnament."
+msgstr ""
+
+#: index.php
+msgid ""
+"I consent that my information provided here can be used throughout the "
+"planning and execution of the tournament. My name will be written on "
+"competition sheets visible to anybody pysically present on the tournament. "
+"The data will be deleted one week after the tournament."
+msgstr ""
+
+#: index.php
+msgid "en"
+msgstr ""
+
+#: index.php
+msgid "Hint:"
+msgstr ""
+
+#: index.php
+msgid ""
+"In order to view and modify the entered competitors later on you should "
+"create a Coach Id (username)."
+msgstr ""
+
+#: index.php
+#, php-format
+msgid ""
+"Registration for this tournament was closed on %s. We kindly accept late "
+"registrations. Please consider registering before closing of registration "
+"for the next tournament."
+msgstr ""
+
+#: index.php
+msgid ""
+"Before you can register competitors you need to sign up by entering your "
+"email address as Coach Id. We use the email to keep you updated about any "
+"changes regarding the tournament. Further you can view and modify your "
+"competitors later on with this email/Coach Id as login."
+msgstr ""
+
+#: index.php
+#, php-format
+msgid "Registration for %s"
+msgstr ""
+
+#: index.php
+msgid "Hi,"
+msgstr ""
+
+#: index.php
+msgid ""
+"I was not able to use the registration website because [Reason why I could "
+"not use Website]."
+msgstr ""
+
+#: index.php
+msgid "I would like to register the following competitors:"
+msgstr ""
+
+#: index.php
+msgid "John,Smith,1990,m,,,London Judo Club,"
+msgstr ""
+
+#: index.php
+msgid "Amanda,Johnson,2002,f,,,London Judo Club,"
+msgstr ""
+
+#: index.php
+msgid "Regards [your Name]"
+msgstr ""
+
+#: index.php
+#, php-format
+msgid ""
+"If you are having trouble with this registration page please tell us about "
+"it and of course we also take your registration when you send an email to %s."
+msgstr ""
+
+#: index.php
+msgid ""
+"Please enclose the competitors information in the following format in your "
+"email:"
+msgstr ""
+
+#: index.php
+msgid ""
+"first name,last name,year of birth,sex as \"m\"=male or \"f\"=female,,,club,"
+msgstr ""
+
+#: index.php
+msgid "for example:"
+msgstr ""
+
+#: index.php
+msgid "Register new competitors:"
+msgstr ""
+
+#: index.php
+msgid "First Name"
+msgstr ""
+
+#: index.php
+msgid "Last Name"
+msgstr ""
+
+#: index.php
+msgid "Sex"
+msgstr ""
+
+#: index.php
+msgid "male"
+msgstr ""
+
+#: index.php
+msgid "female"
+msgstr ""
+
+#: index.php
+msgid "Year of birth"
+msgstr ""
+
+#: index.php
+msgid "Age Category"
+msgstr ""
+
+#: index.php
+msgid "Weight Category"
+msgstr ""
+
+#: index.php
+msgid "Select year of birth and sex first."
+msgstr ""
+
+#: index.php
+msgid "Club"
+msgstr ""
+
+#: index.php
+msgid "Choose the competitor's club."
+msgstr ""
+
+#: index.php
+msgid "My club is not in this list."
+msgstr ""
+
+#: index.php
+msgid "Register Competitor"
+msgstr ""
+
+#: index.php
+msgid "please wait..."
+msgstr ""
+
+#: index.php
+msgid "I am having trouble registering competitors."
+msgstr ""
+
+#: index.php
+msgid "Already registered competitors:"
+msgstr ""
+
+#: index.php
+msgid "Coach Id"
+msgstr ""
+
+#: index.php
+msgid "Log-in / Register"
+msgstr ""
+
+#: index.php
+msgid "Log-out"
+msgstr ""
+
+#: index.php
+msgid "Name"
+msgstr ""
+
+#: index.php
+msgid "Category"
+msgstr ""
+
+#: index.php
+#, php-format
+msgid "The late registration of %s has been accepted."
+msgstr ""
+
+#: index.php
+#, php-format
+msgid "%s was successfully registered."
+msgstr ""
+
+#: index.php
+#, php-format
+msgid "Error:"
+msgstr ""
+
+#: index.php
+#, php-format
+msgid ""
+"From now on you can log-in with your Coach Id %s anytime to view and edit "
+"your registered competitors."
+msgstr ""
+
+#: index.php
+msgid "You have been logged-out successfully."
+msgstr ""
+
+#: index.php
+#, php-format
+msgid "You have been logged-in as %s successfully."
+msgstr ""
+
+#: index.php
+#, php-format
+msgid "No competitors were found for the Coach Id %s."
+msgstr ""
+
+#: index.php
+#, php-format
+msgid "Something went wrong. textStatus: %s errorThrown: %s"
+msgstr ""
+
+#: index.php
+msgid ""
+"Developer's contact details: Felix von Poblotzki, +4915232787790, "
+"xilaew@gmail.com"
+msgstr ""
+
+#: index.php
+msgid "Please choose a weight category."
+msgstr ""
+
+#: lib.php
+msgid "Please enter a name!"
+msgstr ""
+
+#: lib.php
+msgid "Please enter a valid club!"
+msgstr ""
+
+#: lib.php
+msgid "Please enter the competitors Sex!"
+msgstr ""
+
+#: lib.php
+#, php-format
+msgid "Year of birth must be between %d and %d!"
+msgstr ""
+
+#: lib.php
+msgid "Not saved due to internal error!"
+msgstr ""
+
+#: rest.php
+#, php-format
+msgid ""
+"\"%s\" is not a valid Coach Id. A Coach Id should consist of at least two "
+"characters out of [A-Za-z0-9]"
+msgstr ""

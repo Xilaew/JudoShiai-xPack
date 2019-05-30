@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg2"
+   viewBox="0 0 488.64268 492.22191"
+   version="1.0"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="Logo-JudoSignUp.svg"
+   width="488.6427"
+   height="492.22192">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1680"
+     inkscape:window-height="987"
+     id="namedview33"
+     showgrid="false"
+     fit-margin-top="-15"
+     fit-margin-left="-15"
+     fit-margin-right="-15"
+     fit-margin-bottom="-15"
+     inkscape:zoom="0.71908129"
+     inkscape:cx="92.393278"
+     inkscape:cy="52.175786"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <defs
+     id="defs4">
+    <filter
+       id="filter3901">
+      <feGaussianBlur
+         id="feGaussianBlur3903"
+         stdDeviation="2.1482521" />
+    </filter>
+    <radialGradient
+       id="radialGradient3998"
+       gradientUnits="userSpaceOnUse"
+       cy="287.45001"
+       cx="205.06"
+       gradientTransform="matrix(1.2632474,5.6934003e-8,-5.5616485e-8,1.2339569,-14.68893,-108.56993)"
+       r="209.97">
+      <stop
+         id="stop3917"
+         stop-color="#fff"
+         stop-opacity="0"
+         offset="0" />
+      <stop
+         id="stop3923"
+         stop-color="#787878"
+         stop-opacity=".096939"
+         offset=".5" />
+      <stop
+         id="stop3919"
+         offset="1" />
+    </radialGradient>
+    <radialGradient
+       id="radialGradient4000"
+       gradientUnits="userSpaceOnUse"
+       cy="440.54999"
+       cx="62.546001"
+       gradientTransform="matrix(0.95782,0.79649,-3.1229,3.7554,1388.5,-1274.8)"
+       r="209.97">
+      <stop
+         id="stop3879"
+         stop-color="#fff"
+         offset="0" />
+      <stop
+         id="stop3881"
+         stop-opacity="0"
+         offset="1" />
+    </radialGradient>
+    <linearGradient
+       id="linearGradient4002"
+       y2="243.92"
+       gradientUnits="userSpaceOnUse"
+       x2="-226.91"
+       y1="81.872002"
+       x1="-217.71001"
+       gradientTransform="matrix(1.141,0.90894,-0.943,1.1825,752.89073,135.69041)">
+      <stop
+         id="stop3909"
+         stop-color="#fff"
+         offset="0" />
+      <stop
+         id="stop3911"
+         stop-color="#fff"
+         stop-opacity="0"
+         offset="1" />
+    </linearGradient>
+  </defs>
+  <path
+     style="fill:#00ff00"
+     inkscape:connector-curvature="0"
+     d="m 476.41234,246.12889 a 232.07984,232.07984 0 1 1 -464.148636,0 232.07984,232.07984 0 1 1 464.148636,0 z"
+     id="path3925" />
+  <path
+     style="fill:#000000;fill-opacity:1"
+     d="M 376.13717,255.1476 C 334.53835,213.51187 257.61251,136.73268 257.61251,136.73268 c -20.8763,-19.70571 -44.12585,-12.84197 -50.40843,-7.43179 -11.61509,11.37113 -34.71187,34.29865 -34.71187,34.29865 -21.08377,-21.08377 -7.86737,-28.43389 -28.69415,-47.9742 -9.28152,-9.01079 -26.83908,-10.45812 -44.49075,-10.98629 l -21.149368,20.89747 c 16.643803,-0.60603 34.198218,-2.69212 52.090418,7.58999 17.00018,17.00017 7.499,29.6136 25.30109,47.41569 -10.83789,10.83788 -17.99006,18.4033 -32.65216,33.0654 -14.66211,14.6621 -18.61059,34.2708 -4.9524,47.92898 L 270.90381,414.4955 c 24.85772,24.85773 43.056,11.22653 56.51335,-2.23083 13.45734,-13.45734 53.35575,-52.94414 75.96454,-75.96454 22.60876,-23.02039 5.85544,-47.68 -1.57868,-55.37694 -1.85851,-1.92427 -11.79956,-11.89714 -25.6659,-25.77564 z m -18.93787,10.76999 c 13.9124,13.92895 24.01013,24.16517 27.93865,28.09368 7.857,7.85701 10.31185,16.74867 1.75301,25.30752 -8.55885,8.55884 -70.73584,71.14907 -75.62879,76.04201 -4.89296,4.89296 -13.97171,15.68553 -27.65134,2.08879 -13.67968,-13.59666 -78.88624,-80.53918 -78.88624,-80.53918 0,0 67.42432,-67.97608 101.65624,-101.243 19.18238,18.69931 36.90649,36.32082 50.81844,50.25021 z M 241.08943,149.96276 c 16.03682,16.31122 31.43325,31.93774 48.34869,48.76194 -15.6045,16.28526 -40.8394,41.3947 -40.8394,41.3947 l -60.81684,-61.23006 c 0,0 16.34562,-16.46568 24.3842,-24.79743 12.72128,-12.41383 20.68564,-11.80809 28.92335,-4.12915 z m -67.77083,44.62958 59.91932,60.33255 -45.43989,46.35679 c 0,0 -36.89579,-36.54067 -45.05895,-44.70383 -8.16314,-8.16315 -13.24783,-19.39788 -4.5456,-28.10011 8.97172,-8.97171 35.12512,-33.8854 35.12512,-33.8854 z"
+     id="path6315"
+     inkscape:connector-curvature="0" />
+  <path
+     id="path2838"
+     d="m 476.41134,246.13189 a 232.07984,232.07984 0 1 1 -464.148636,0 232.07984,232.07984 0 1 1 464.148636,0 z"
+     style="fill:url(#radialGradient3998)"
+     inkscape:connector-curvature="0" />
+  <path
+     id="path3875"
+     d="m 415.02,287.45 a 209.97,209.97 0 1 1 -419.93,0 209.97,209.97 0 1 1 419.93,0 z"
+     transform="matrix(1.0292,0,0,1.0292,33.278727,-49.732586)"
+     style="fill:none;stroke:url(#radialGradient4000);stroke-width:9.71590042;stroke-linecap:square;filter:url(#filter3901)"
+     inkscape:connector-curvature="0" />
+  <path
+     id="path3905"
+     d="M 430.08874,230.20533 A 137.03096,89.143635 38.519675 1 1 215.72907,59.442773 137.03096,89.143635 38.519675 1 1 430.08874,230.20533 Z"
+     style="fill:url(#linearGradient4002)"
+     inkscape:connector-curvature="0" />
+  <metadata
+     id="metadata31">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title></dc:title>
+        <dc:date>2008-04-14T11:42:44</dc:date>
+        <dc:description>A general purpose WiFi symbol with a glassy finish. Although I did it in green you can always re-edit with a different color scheme.</dc:description>
+        <dc:source>http://openclipart.org/detail/16369/glassy-wifi-symbol-by-coredump</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>coredump</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>clip art</rdf:li>
+            <rdf:li>clipart</rdf:li>
+            <rdf:li>how i did it</rdf:li>
+            <rdf:li>icon</rdf:li>
+            <rdf:li>image</rdf:li>
+            <rdf:li>media</rdf:li>
+            <rdf:li>network</rdf:li>
+            <rdf:li>png</rdf:li>
+            <rdf:li>public domain</rdf:li>
+            <rdf:li>remix</rdf:li>
+            <rdf:li>svg</rdf:li>
+            <rdf:li>symbol</rdf:li>
+            <rdf:li>wifi</rdf:li>
+            <rdf:li>wireless</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>
