@@ -16,11 +16,6 @@ if (file_exists($dataCsv)) {
 }
 $competitors = csv_getCompetitors($fp, getCoachId(true));
 fclose($fp);
-$dateOfTournamentDate = strtotime($dateOfTournament) or die('ERROR: could not parse ' . $dateOfTournament . ' as date. Please go to config.php and enter a valid value for $dateOfTournament. See http://php.net/manual/de/datetime.formats.php for detailed information about valid Date formats.');
-$dateRegistrationClosing = strtotime($registrationClosingDate) or die('ERROR: could not parse ' . $registrationClosingDate . ' as date. Please go to config.php and enter a valid value for $registrationClosingDate. See http://php.net/manual/de/datetime.formats.php for detailed information about valid Date formats.');
-$yearOfTournament = date('Y', $dateOfTournamentDate);
-$turnamentIsOver = (($dateOfTournamentDate - time()) < 0);
-$registrationIsClosed = (($dateRegistrationClosing - time()) < 0);
 /* Buissness logic to determine which parts of the website are visible and which not. */
 $showAlertDisabled = ($disabled || $turnamentIsOver || ($registrationIsClosed && $lateRegistrationHandling == 'reject'));
 if (!$disabled) { /* if manually disabled the $disabledErrorMessage supplied in the config file shall be used */

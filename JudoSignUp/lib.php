@@ -1,6 +1,11 @@
 <?php
 
 require_once 'config.php';
+$dateOfTournamentDate = strtotime($dateOfTournament) or die('ERROR: could not parse ' . $dateOfTournament . ' as date. Please go to config.php and enter a valid value for $dateOfTournament. See http://php.net/manual/de/datetime.formats.php for detailed information about valid Date formats.');
+$yearOfTournament = date('Y', $dateOfTournamentDate);
+$dateRegistrationClosing = strtotime($registrationClosingDate) or die('ERROR: could not parse ' . $registrationClosingDate . ' as date. Please go to config.php and enter a valid value for $registrationClosingDate. See http://php.net/manual/de/datetime.formats.php for detailed information about valid Date formats.');
+$turnamentIsOver = (($dateOfTournamentDate - time()) < 0);
+$registrationIsClosed = (($dateRegistrationClosing - time()) < 0);
 
 function sqlite_getInfo($db) {
   $result = new \stdClass;

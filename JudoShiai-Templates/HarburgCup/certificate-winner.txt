@@ -136,7 +136,7 @@ fontsize 20
 text 130.0 200.0 0 Wir gratulieren Dir
 text 130.0 209.0 0 zu diesem sportlichen Erfolg!
 fontsize 14
-text 130.0 235.0 0 Michael Lax
+text 130.0 235.0 0 Ralf Reinholz
 align left
 text 70.0 262.0 0 Hamburg:  30.11.2019
 text 70.0 268.0 0 Ausrichter: Harburger Turnerbund von 1865 e.V.
