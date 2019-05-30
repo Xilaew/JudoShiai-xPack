@@ -7,7 +7,7 @@ script:
 deploy:
   provider: releases
   api_key: "314fdc0b81c60ae649cce18d4b107119dede7e35"
-  file: "JudoSignup/JudoSignUp-v*.zip"
+  file: "JudoSignUp/JudoSignUp-v*.zip"
   skip_cleanup: true
   on:
     tags: true
