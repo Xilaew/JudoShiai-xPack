@@ -1,6 +1,8 @@
 language: minimal
 
-script: JudoSignUp/build.sh
+script:
+  - cd JudoSignUp
+  - ./build.sh
 
 deploy:
   provider: releases
