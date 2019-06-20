@@ -24,7 +24,7 @@ Die Rechner an den Kampfrichtertischen können entweder per Ethernet Kabel oder 
 
 Verbinden sie den Rechner auf dem JudoShiai läuft mit dem Router (s. vorheriges Kapitel) und gehen Sie nun in Judoshiai zu dem Menüpunkt "Ergebnisse"->"Alle drucken (Web und PDF)". Es erscheint ein Dateiauswahldialog, in dem Sie irgendeinen lokalen Ordner auswählen, in dem JudoShiai die Dateien für die Turnierinfowebsite temporär ablegen kann. Achten sie darauf, dass die Häckchen bei "Statistik erzeugen" und "Automatische Webseitenaktualisierung" wie im folgenden Bild zu sehen gesetzt sind.
 
-![Dateiauswahl Dialog](./Router.png)
+![Dateiauswahl Dialog](./JudoShiai-PrintAll.png)
 
 Nun wählen Sie den Menüpunkt "Ergebnisse"->"Auf den Server kopieren" und erhalten den ServerURL Dialog. Füllen sie den Dialog wie in in der folgenden Abbildung gezeigt aus.
 

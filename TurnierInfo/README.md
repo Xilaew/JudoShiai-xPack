@@ -13,4 +13,4 @@ If you have a preconfigured router and want to use it in your Judo Torunament wi
 For instructions how to install the preconfigured firmware into your router see [installation instructions](./install.md)
 
 # How it works
-![Details of inner working](./router-interal.svg)
+![Details of inner working](./router-internal.svg)
