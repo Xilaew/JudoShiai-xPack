@@ -51,6 +51,7 @@ $textLabelLegalConsent = ($customLegalConsentText == '') ? _("I consent that my 
 	Information and contribution at https://typo3.org/
 -->
 
+<link rel="shortcut icon" href="https://www.hamburg-judo.de/fileadmin/template/Resources/Public/Icon/favicon.ico" type="image/x-icon" />
 
 <meta name="generator" content="TYPO3 CMS" />
 <meta name="author" content="Author" />
@@ -58,11 +59,8 @@ $textLabelLegalConsent = ($customLegalConsentText == '') ? _("I consent that my 
 <meta name="language" content="deutsch,de" />
 
 
-<link rel="stylesheet" type="text/css" href="https://www.hamburg-judo.de/typo3conf/ext/mc_foundation_template/Resources/Public/foundation-5.4.6/css/normalize.css?1412891670" media="all" />
-<link rel="stylesheet" type="text/css" href="https://www.hamburg-judo.de/typo3conf/ext/mc_foundation_template/Resources/Public/foundation-5.4.6/css/foundation.css?1412891670" media="all" />
-<link rel="stylesheet" type="text/css" href="https://www.hamburg-judo.de/fileadmin/template/Resources/Public/Css/app.css?1557431976" media="all" />
-<link rel="stylesheet" type="text/css" href="https://www.hamburg-judo.de/fileadmin/template/ext/indexed_search/indexed_search.css?1421573072" media="all" />
-<link rel="stylesheet" type="text/css" href="https://www.hamburg-judo.de/typo3conf/ext/cl_jquery_fancybox/Resources/Public/CSS/fancybox3/jquery.fancybox.min.css?1533473943" media="screen" />
+<link rel="stylesheet" type="text/css" href="https://www.hamburg-judo.de/typo3temp/assets/compressed/merged-864823138d307e6efb75442ab65753e6-89949576671f2b6a0010bc2bbdc5eee1.css?1563091149" media="all" />
+<link rel="stylesheet" type="text/css" href="https://www.hamburg-judo.de/typo3temp/assets/compressed/merged-3c464f7d7d2999cef9094e97109006ab-ac49b268eb9f4b5ec72639bf659a1702.css?1563015424" media="screen" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
       input[type=number].input-number–noSpinners {
@@ -149,34 +147,18 @@ $textLabelLegalConsent = ($customLegalConsentText == '') ? _("I consent that my 
 
 
 
-<script src="https://www.hamburg-judo.de/typo3conf/ext/mc_foundation_template/Resources/Public/foundation-5.4.6/js/vendor/modernizr.js?1412891670" type="text/javascript"></script>
-<script src="https://www.hamburg-judo.de/typo3temp/assets/js/9a38f34785.js?1546505992" type="text/javascript"></script>
+<script src="https://www.hamburg-judo.de/typo3temp/assets/compressed/merged-548afee6001c7b2aa6b98d9e382046c2-a9bb53a79192c05396b70b6a244ef1a2.js?1563015424" type="text/javascript"></script>
 
 
 
-    <title><?php echo($info->Competition); ?></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">	<script>
-	  window.fbAsyncInit = function() {
-		FB.init({
-		  appId      : '1504986766427968',
-		  xfbml      : true,
-		  version    : 'v2.2'
-		});
-	  };
-
-	  (function(d, s, id){
-		 var js, fjs = d.getElementsByTagName(s)[0];
-		 if (d.getElementById(id)) {return;}
-		 js = d.createElement(s); js.id = id;
-		 js.src = "//connect.facebook.net/en_US/sdk.js";
-		 fjs.parentNode.insertBefore(js, fjs);
-	   }(document, 'script', 'facebook-jssdk'));
-	</script>
+<title><?php echo($info->Competition); ?></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="https://www.hamburg-judo.de/fileadmin/template/Resources/Public/Icon/manifest.json">
 
 </head>
 <body>
 
-<div class="off-canvas-wrap" data-offcanvas>
+﻿<div class="off-canvas-wrap" data-offcanvas>
 	<div class="inner-wrap">
 	
 		<!-- Off Canvas Menu -->
@@ -204,7 +186,7 @@ $textLabelLegalConsent = ($customLegalConsentText == '') ? _("I consent that my 
 
 		<!-- header -->
 		<header calss="hide-for-small">
-			<img class="hide-for-small" src="https://www.hamburg-judo.de/typo3conf/ext/mc_foundation_template/Resources/Public/Images/header-2019.jpg" width="100%" alt="Hamburger Judo Verband e.V.">
+			<img class="lazy hide-for-small" data-src="https://www.hamburg-judo.de/typo3conf/ext/mc_foundation_template/Resources/Public/Images/header-2019.jpg" width="100%" alt="Hamburger Judo Verband e.V.">
 		</header>
 		
 		<section class="top-menu-bar">
@@ -227,7 +209,7 @@ $textLabelLegalConsent = ($customLegalConsentText == '') ? _("I consent that my 
 		
 		<!-- header -->
 		<header calss="show-for-small-only">
-			<img class="show-for-small-only" src="https://www.hamburg-judo.de/typo3conf/ext/mc_foundation_template/Resources/Public/Images/header-small-2019.jpg" width="100%" alt="Hamburger Judo Verband e.V.">
+			<img class="show-for-small-only lazy" data-src="https://www.hamburg-judo.de/typo3conf/ext/mc_foundation_template/Resources/Public/Images/header-small-2019.jpg" width="100%" alt="Hamburger Judo Verband e.V.">
 		</header>
 		
 		
@@ -468,33 +450,37 @@ $textLabelLegalConsent = ($customLegalConsentText == '') ? _("I consent that my 
 		</section>
 
 				
+
+
+
+
 		<section class="footer-top">
 			<div class="row">
 				<div class="small-12 large-12 columns">
 					<ul class="small-block-grid-3 medium-block-grid-5 large-block-grid-5">
 						<li>
 							<a href="http://www.foerderverein-judo-in-hamburg.de" target="_blank">
-								<img src="https://www.hamburg-judo.de/fileadmin/template/Resources/Public/Images/footer_logo_foerderverein.jpg" alt="F�rderverein: Judo in Hamburg e.V.">	
+								<img class="lazy" data-src="https://www.hamburg-judo.de/fileadmin/template/Resources/Public/Images/footer_logo_foerderverein.jpg" alt="Förderverein: Judo in Hamburg e.V.">
 							</a>
 						</li>
 						<li>
 							<a href="https://www.facebook.com/FoerdervereinJudoInHamburg" target="_blank">
-								<img src="https://www.hamburg-judo.de/fileadmin/template/Resources/Public/Images/footer_logo_herz.jpg" alt="F�rderverein: Judo in Hamburg e.V.">	
+								<img class="lazy" data-src="https://www.hamburg-judo.de/fileadmin/template/Resources/Public/Images/footer_logo_herz.jpg" alt="Förderverein: Judo in Hamburg e.V.">
 							</a>
 						</li>
 						<li>
 							<a href="https://www.hamburger-judo-team.de" target="_blank">
-								<img src="https://www.hamburg-judo.de/fileadmin/template/Resources/Public/Images/footer_logo_hjt.jpg" alt="F�rderverein Facebook Seite">	
+								<img class="lazy" data-src="https://www.hamburg-judo.de/fileadmin/template/Resources/Public/Images/footer_logo_hjt.jpg" alt="Förderverein Facebook Seite">
 							</a>
 						</li>
 						<li>
 							<a href="https://www.stiftung-leistungssport.de" target="_blank">
-								<img src="https://www.hamburg-judo.de/fileadmin/template/Resources/Public/Images/footer_logo_leistungssport.jpg" alt="Stiftung Leistungssport Hamburg">	
+								<img class="lazy" data-src="https://www.hamburg-judo.de/fileadmin/template/Resources/Public/Images/footer_logo_leistungssport.jpg" alt="Stiftung Leistungssport Hamburg">
 							</a>
 						</li>
 						<li>
 							<a href="https://www.hamburg.de/active-city/" target="_blank">							
-								<img src="https://www.hamburg-judo.de/fileadmin/template/Resources/Public/Images/footer_logo_activecity.jpg" alt="Hamburg Active City">	
+								<img class="lazy" data-src="https://www.hamburg-judo.de/fileadmin/template/Resources/Public/Images/footer_logo_activecity.jpg" alt="Hamburg Active City">
 							</a>
 						</li>						
 					</ul>
@@ -540,12 +526,9 @@ $textLabelLegalConsent = ($customLegalConsentText == '') ? _("I consent that my 
 	  window[disableStr] = true;
 	}
 </script>
-<script src="https://www.hamburg-judo.de/typo3conf/ext/mc_foundation_template/Resources/Public/foundation-5.4.6/js/vendor/jquery.js?1412891670" type="text/javascript"></script>
-<script src="https://www.hamburg-judo.de/typo3conf/ext/mc_foundation_template/Resources/Public/foundation-5.4.6/js/foundation.min.js?1412891670" type="text/javascript"></script>
+<script src="https://www.hamburg-judo.de/typo3temp/assets/compressed/merged-4b712c7f7e3ac0f7dde027df3a688aee-8cf15ecfbe692bced5039b1cbeef95f3.js?1568547437" type="text/javascript"></script>
 
-<script src="https://www.hamburg-judo.de/typo3conf/ext/cl_jquery_fancybox/Resources/Public/JavaScript/fancybox3/jquery.fancybox.min.js?1533473943" type="text/javascript"></script>
-<script src="https://www.hamburg-judo.de/typo3conf/ext/cl_jquery_fancybox/Resources/Public/JavaScript/fancybox3/helper.js?1533473943" type="text/javascript"></script>
-<script src="https://www.hamburg-judo.de/typo3temp/assets/js/5349cc8de7.js?1546505992" type="text/javascript"></script>
+<script src="https://www.hamburg-judo.de/typo3temp/assets/compressed/merged-46e0369ca5e2a03e2042a290ac63d621-7b8f833318b45c400d5c1369f1c16b80.js?1563015424" type="text/javascript"></script>
 
 
 <script>
@@ -835,3 +818,4 @@ $textLabelLegalConsent = ($customLegalConsentText == '') ? _("I consent that my 
   </script>
 </body>
 </html>
+<!-- Cached page generated 17-10-19 21:46. Expires 19-10-19 00:00 -->

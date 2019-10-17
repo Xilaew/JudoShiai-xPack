@@ -45,7 +45,7 @@ $textLabelLegalConsent = ($customLegalConsentText == '') ? _("I consent that my 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
       input[type=number].input-number–noSpinners {
-        -moz-appearance: textfield; 
+        -moz-appearance: textfield;
       }
       input[type=number].input-number–noSpinners::-webkit-inner-spin-button,
       input[type=number].input-number–noSpinners::-webkit-outer-spin-button {
@@ -128,6 +128,7 @@ $textLabelLegalConsent = ($customLegalConsentText == '') ? _("I consent that my 
     <title><?php echo($info->Competition); ?></title>
   </head>
   <body>
+<!--CONTENT_begin-->
     <div class="container">
       <h1><?php echo($info->Competition); ?></h1>
       <h1><?php echo($info->Date . " | " . $info->Place); ?></h1>
@@ -350,6 +351,7 @@ $textLabelLegalConsent = ($customLegalConsentText == '') ? _("I consent that my 
   <?php
     }
   ?>
+<!--CONTENT_end-->
   <footer class="footer">
     <div class="container">
       <p class="text-muted small">
