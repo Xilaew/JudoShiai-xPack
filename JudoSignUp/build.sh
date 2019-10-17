@@ -37,6 +37,7 @@ function release {
   cd ${DIR}
   cp ../JudoShiai-Templates/template_*.shi ./
   cp ../JudoShiai-Templates/clubs_*.txt ./
+  sed -i 's/${VERSION}/'"${VERSION}"'/g' *.php
   ${ZIP} -u ./JudoSignUp-${VERSION}.zip ./*.php ./template*.shi ./README.md ./loading.gif ./clubs_*.txt ./locale/*/*/*.mo
 }
 
