@@ -105,8 +105,8 @@ function csv_addCompetitor($competitor, $fp, $categories, $coachid) {
     $competitor->lateRegistration = $registrationIsClosed;
     $line = array();
     foreach ($indices as $key) {
-      $line[] = $competitor->$key;
-      $result->$key = $competitor->$key;
+      $line[] = trim($competitor->$key);
+      $result->$key = trim($competitor->$key);
     }
     if (!fputcsv($fp, $line)) {
       $result->msg = _("Not saved due to internal error!");
