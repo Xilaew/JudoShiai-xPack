@@ -372,7 +372,7 @@ $textLabelLegalConsent = ($customLegalConsentText == '') ? _("I consent that my 
   <footer class="footer">
     <div class="container">
       <p class="text-muted small">
-        <span>Powered by <a href="https://github.com/Xilaew/JudoShiai-xPack">JudoShiai-xPack</a> - <a href="https://github.com/Xilaew/JudoShiai-xPack/releases/download/v1.0.1-10-ga6de902/JudoSignUp-v1.0.1-10-ga6de902.zip">JudoSignUp-v1.0.1-10-ga6de902</a></span><br/>
+        <span>Powered by <a href="https://github.com/Xilaew/JudoShiai-xPack">JudoShiai-xPack</a> - <a href="https://github.com/Xilaew/JudoShiai-xPack/releases/download/${VERSION}/JudoSignUp-${VERSION}.zip">JudoSignUp-${VERSION}</a></span><br/>
         <span>© 2018 Felix von Poblotzki. All Rights Reserved.</span>
       </p>
     </div>
