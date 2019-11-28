@@ -125,6 +125,23 @@ $textLabelLegalConsent = ($customLegalConsentText == '') ? _("I consent that my 
         border-radius: 50%;
       }
     </style>
+    <script type="text/javascript" >
+      window.onerror = function(error) {
+        messages=[ "<?php printf('<strong>' . _('Error:') . ' </strong>' . _('Something went wrong. Try using another browser for Example Chrome or Firefox. errorThrown: %s'), '" + error + "'); ?> " ,
+        " <?php echo(_("Developer's contact details: Felix von Poblotzki, +4915232787790, xilaew@gmail.com")); ?> " ];
+
+        var content = '';
+        messages.forEach(function (m, i) {
+          if (i > 0) {
+            content += '<br>';
+          }
+          content += m;
+        });
+        var html = '<div class="alert alert-danger fade show" role="alert">' + content + '</div>';
+        //document.getElementById('message').innerHTML = html;
+        document.getElementById('message').insertAdjacentHTML('beforeend', html);
+      }
+    </script>
     <title><?php echo($info->Competition); ?></title>
   </head>
   <body>
@@ -355,7 +372,7 @@ $textLabelLegalConsent = ($customLegalConsentText == '') ? _("I consent that my 
   <footer class="footer">
     <div class="container">
       <p class="text-muted small">
-        <span>Powered by <a href="https://github.com/Xilaew/JudoShiai-xPack">JudoShiai-xPack</a> - <a href="https://github.com/Xilaew/JudoShiai-xPack/releases/download/${VERSION}/JudoSignUp-${VERSION}.zip">JudoSignUp-${VERSION}</a></span><br/>
+        <span>Powered by <a href="https://github.com/Xilaew/JudoShiai-xPack">JudoShiai-xPack</a> - <a href="https://github.com/Xilaew/JudoShiai-xPack/releases/download/v1.0.1-10-ga6de902/JudoSignUp-v1.0.1-10-ga6de902.zip">JudoSignUp-v1.0.1-10-ga6de902</a></span><br/>
         <span>© 2018 Felix von Poblotzki. All Rights Reserved.</span>
       </p>
     </div>
@@ -522,8 +539,20 @@ $textLabelLegalConsent = ($customLegalConsentText == '') ? _("I consent that my 
       return "<?php echo(_("Developer's contact details: Felix von Poblotzki, +4915232787790, xilaew@gmail.com")); ?>";
     }
 
-    function message(messages, msgFieldId = "message", msgType = "success", append = false) {
-      if (!(["success", "info", "warning", "danger"].includes(msgType))) {
+    function message( messages ) {
+        message(messages, "message" );
+    }
+
+    function message(messages, msgFieldId ) {
+        message(messages,msgFieldId, "success" );
+    }
+
+    function message(messages, msgFieldId , msgType ) {
+        message(messages,msgFieldId, msgType, false);
+    }
+
+    function message(messages, msgFieldId , msgType , append ) {
+      if ( msgType != "success" && msgType != "info" && msgType != "warning" && msgType != "danger" ) {
         console.log('msgType: \"' + msgType + '\" is not a valid Message Type');
         var msgType = "info";
       }
@@ -534,13 +563,13 @@ $textLabelLegalConsent = ($customLegalConsentText == '') ? _("I consent that my 
         }
         content += m;
       });
-      var html = `
-      <div class="alert alert-${msgType} alert-dismissible fade show" role="alert">
-        ${content}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>`;
+      var html = '\
+        <div class="alert alert-' + msgType + ' alert-dismissible fade show" role="alert">\
+          ' + content + '\
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">\
+          <span aria-hidden="true">&times;</span>\
+        </button>\
+      </div>';
       if (append) {
         document.getElementById(msgFieldId).insertAdjacentHTML('beforeend', html);
       } else {
