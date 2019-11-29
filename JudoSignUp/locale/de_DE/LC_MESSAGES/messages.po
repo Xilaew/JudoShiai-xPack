@@ -54,6 +54,26 @@ msgid "en"
 msgstr "de"
 
 #: index.php
+#, php-format
+msgid "Error:"
+msgstr "Fehler:"
+
+#: index.php
+#, php-format
+msgid ""
+"Something went wrong. Try using another browser for Example Chrome or "
+"Firefox. errorThrown: %s"
+msgstr "Etwas ist schief gegangen. Versuche bitte einen anderen Browser, "
+"z.B. Chrome oder Firefox. Fehler: %s"
+
+#: index.php
+msgid ""
+"Developer's contact details: Felix von Poblotzki, +4915232787790, "
+"xilaew@gmail.com"
+msgstr ""
+"Kontakt zum Entwickler: Felix von Poblotzki, +4915232787790, xilaew@gmail.com"
+
+#: index.php
 msgid "Hint:"
 msgstr "Hinweis:"
 
@@ -248,11 +268,6 @@ msgstr "%s wurde erfolgreich angemeldet."
 
 #: index.php
 #, php-format
-msgid "Error:"
-msgstr "Fehler:"
-
-#: index.php
-#, php-format
 msgid ""
 "From now on you can log-in with your Coach Id %s anytime to view and edit "
 "your registered competitors."
@@ -278,13 +293,6 @@ msgstr "Mit der Trainer Id %s wurden keine Kämpfer gefunden."
 #, php-format
 msgid "Something went wrong. textStatus: %s errorThrown: %s"
 msgstr "Etwas ist schief gegangen. textStatus: %s errorThrown: %s"
-
-#: index.php
-msgid ""
-"Developer's contact details: Felix von Poblotzki, +4915232787790, "
-"xilaew@gmail.com"
-msgstr ""
-"Kontakt zum Entwickler: Felix von Poblotzki, +4915232787790, xilaew@gmail.com"
 
 #: index.php
 msgid "Please choose a weight category."

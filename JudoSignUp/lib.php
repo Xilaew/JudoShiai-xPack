@@ -4,8 +4,8 @@ require_once 'config.php';
 $dateOfTournamentDate = strtotime($dateOfTournament) or die('ERROR: could not parse ' . $dateOfTournament . ' as date. Please go to config.php and enter a valid value for $dateOfTournament. See http://php.net/manual/de/datetime.formats.php for detailed information about valid Date formats.');
 $yearOfTournament = date('Y', $dateOfTournamentDate);
 $dateRegistrationClosingDate = strtotime($registrationClosingDate) or die('ERROR: could not parse ' . $registrationClosingDate . ' as date. Please go to config.php and enter a valid value for $registrationClosingDate. See http://php.net/manual/de/datetime.formats.php for detailed information about valid Date formats.');
-$turnamentIsOver = (($dateOfTournamentDate - time()) < 0);
-$registrationIsClosed = (($dateRegistrationClosingDate - time()) < 0);
+$turnamentIsOver = (($dateOfTournamentDate - time()) < -(24 * 60 * 60));
+$registrationIsClosed = (($dateRegistrationClosingDate - time()) < -(24 * 60 * 60));
 
 function sqlite_getInfo($db) {
   $result = new \stdClass;
@@ -105,8 +105,8 @@ function csv_addCompetitor($competitor, $fp, $categories, $coachid) {
     $competitor->lateRegistration = $registrationIsClosed;
     $line = array();
     foreach ($indices as $key) {
-      $line[] = $competitor->$key;
-      $result->$key = $competitor->$key;
+      $line[] = trim($competitor->$key);
+      $result->$key = trim($competitor->$key);
     }
     if (!fputcsv($fp, $line)) {
       $result->msg = _("Not saved due to internal error!");
