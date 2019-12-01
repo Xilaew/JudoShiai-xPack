@@ -28,7 +28,7 @@
      border 0
 # - It is possible to print medal winners only. The following line prints
 #   gold, silver, and bronze medalists:
-     winners 1 2 3
+#     winners 5 6 7
 #   Positions 1-7 are valid. Note! You must print the results first, since that
 #   saves the position information to the database!
 #

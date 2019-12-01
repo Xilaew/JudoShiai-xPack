@@ -123,9 +123,12 @@ align center
 fontsize 30
 text 105.0 20.0 0 Nachmeldung
 fontsize 16
-text 105.0 35.0 0 %BARCODE%
-text 105.0 45.0 0 %INDEX%
 text 105.0 55.0 0 Bitte fülle alle Felder gut lesbar aus und gib den Zettel bei der Waage ab.
+align left
+text 115.0 35.0 0 %BARCODE%
+text 115.0 45.0 0 %INDEX%
+text 20.0 35.0 0 %REGCATEGORY%
+text 20.0 45.0 0 %FIRST%
 align right
 fontsize 24
 text 70.0 70.0 0 Vorname:
