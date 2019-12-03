@@ -21,6 +21,11 @@ Tatami Scoreboard
 * VGA cable
 * DVI cable
 
+Communication
+-------------
+
+* Headset for Teamspeak
+
 Cables
 -------
 
