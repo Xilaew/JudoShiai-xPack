@@ -39,7 +39,7 @@ list all clubs in the ClubsTxt and only those clubs may register Competitors.
 For open tournaments you want the invitation to spread wide and do not know
 in advance from where Fighters might be registered. In this case you want to
 allow people to enter custom club names. */
-$allowCustomClub=false;
+$allowCustomClub=true;
 /* Disable Registration and show permanent error Message.
 Sometimes you want to manually disable registration for whatever reason.
 e.g the Tournament got canceled, you see to much spam and want contestants to
@@ -67,7 +67,7 @@ inputWeight can take the following values:
 'none' will not show the weight form field at all
 'optional' will show the form field, which is the default
 'required' will show the form field and makes it mandatory. */
-$inputWeight='optional';
+$inputWeight='none';
 /* There are two alternative ways to get the information which age category a 
 competitor will start in. You can have people directly enter the age category of
 their competitors or you ask for the year of birth and calculate the age
@@ -83,5 +83,5 @@ $inputAge='yearOfBirth';
 For whatever reason some people might not be able/comfortable with using the
 registration page. There is a troubleshooting link, which will show this email
 address and instructions how to register via email. */
-$emailAlternativeRegistration='';
+$emailAlternativeRegistration='xilaew@gmail.com';
 ?>
