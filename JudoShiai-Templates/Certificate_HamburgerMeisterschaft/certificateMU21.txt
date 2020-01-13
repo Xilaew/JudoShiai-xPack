@@ -150,6 +150,7 @@
 
 
 pagegeom 1 1
+border 0
 font arial
 align center
 
@@ -179,12 +180,12 @@ text 105.0 207.0 0 %FIRST% %LAST%
 align left
 color 0.0 0.0 0.0
 fontsize 28
-text 12.0 237.0 0 Jugend U18
+text 12.0 237.0 0 Männer U21
 text 100.0 237.0 0 . Platz
 text 162.0 237.0 0 kg
 fontsize 40
 text 90.0 233.0 0 %WINPOS%
-text 128.0 233.0 0 %WEIGHTCAT%
+text 131.0 233.0 0 %WEIGHTCAT%
 
 align left
 fontsize 10
